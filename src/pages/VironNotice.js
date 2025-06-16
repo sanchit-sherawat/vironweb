@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import './VironNotice.css';
 import { useState } from 'react';
 // import Logo from '../../public/assets/';// Pl   ace your VIRON logo in the same folder
+import API_BASE_URL from './config';
 
 function VironNotice() {
     let userId = localStorage.getItem('userId');
@@ -27,7 +28,7 @@ function VironNotice() {
         }
 
         try {
-            const res = await fetch('http://148.113.201.173:3000/api/payment', { // change to your API URL
+            const res = await fetch(`${API_BASE_URL}/payment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

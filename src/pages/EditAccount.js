@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
+import API_BASE_URL from './config';
 
 function EditAccount() {
   const [form, setForm] = useState({
@@ -13,7 +14,7 @@ function EditAccount() {
 
   // Fetch user info on mount
   useEffect(() => {
-    fetch('http://148.113.201.173:3000/api/user/me')
+    fetch(`${API_BASE_URL}/user/me`)
       .then(res => res.json())
       .then(data => {
         setForm({
