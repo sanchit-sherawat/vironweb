@@ -1,0 +1,19 @@
+.layout {
+  display: flex;
+  margin-top: 60px; /* height of navbar */
+}
+
+.sidebar {
+  width: 220px;
+  height: calc(100vh - 60px); /* full height minus navbar */
+  position: fixed;
+  top: 60px;
+  left: 0;
+  background-color: #1e1e2f;
+}
+
+.content {
+  margin-left: 220px;
+  padding: 20px;
+  width: calc(100% - 220px);
+}
