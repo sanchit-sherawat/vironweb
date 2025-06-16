@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'; // Changed BrowserRouter to HashRouter
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import VironNotice from './pages/VironNotice';
@@ -13,17 +13,12 @@ import ExpectationsOfViron from './pages/ExpectationsOfViron';
 import './App.css'; // Assuming you have some global styles
 import Login from './pages/Login';
 
-
-
-
-
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path="/" element={<Home />} />
-
         <Route path="/home" element={<Home />} />
         {/* Add more routes as needed */}
         <Route path='/dashboard' element={<VironNotice />} />
@@ -34,7 +29,6 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/earnings-disclaimers" element={<EarningsDisclaimers />} />
         <Route path="/expectations-of-viron" element={<ExpectationsOfViron />} />
-
       </Routes>
     </Router>
   );
