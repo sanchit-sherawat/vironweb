@@ -13,7 +13,7 @@ function EditAccount() {
 
   // Fetch user info on mount
   useEffect(() => {
-    fetch('http://localhost:3000/api/user/me')
+    fetch('http://148.113.201.173:3000/api/user/me')
       .then(res => res.json())
       .then(data => {
         setForm({
@@ -34,7 +34,7 @@ function EditAccount() {
     e.preventDefault();
     setSaving(true);
     setMessage('');
-    fetch('http://localhost:3000/api/user/me', {
+    fetch('http://148.113.201.173:3000/api/user/me', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),

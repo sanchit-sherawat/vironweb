@@ -27,7 +27,7 @@ function UserList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/adminapi/users')
+    fetch('http://148.113.201.173:3000/adminapi/users')
       .then(res => res.json())
       .then(data => {
         setUsers(data);

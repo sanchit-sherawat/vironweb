@@ -27,7 +27,7 @@ function VironNotice() {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/api/payment', { // change to your API URL
+            const res = await fetch('http://148.113.201.173:3000/api/payment', { // change to your API URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
