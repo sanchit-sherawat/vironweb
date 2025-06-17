@@ -213,38 +213,57 @@ function Login() {
             <div data-aos="fade-up" data-aos-duration="1200" className="section-title">
               <h2>Login</h2>
             </div>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Enter your username"
-                value={username}
-                onChange={e => setUsername(e.target.value)}
-                autoComplete="username"
-              />
-              <input
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                autoComplete="current-password"
-              />
-
-              <div className="login-options">
-                <label>
+            <form onSubmit={handleSubmit} data-aos="fade-up" data-aos-duration="1600">
+              <div className="row">
+							<div className="col-12">
+								<div className="form-group">
                   <input
+                  className="form-control"
+                  type="text"
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                  autoComplete="username"
+                />
+								</div>
+							</div>
+
+							<div className="col-12">
+								<div className="form-group">
+                  <input
+                  className="form-control"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                />
+								</div>
+							</div>
+
+							<div className="col-12">
+								<div className="login-action">
+									<span className="log-rem">
+                     <input
                     type="checkbox"
+                    id="remember"
                     checked={remember}
                     onChange={e => setRemember(e.target.checked)}
-                  /> Remember me!
-                </label>
-                <a href="#">Lost your password?</a>
-              </div>
-
+                    />
+										<label htmlFor="remember">Remember me!</label>
+									</span>
+									<span className="forgot-login">
+										<a href="#">Lost your password?</a>
+									</span>
+								</div>
+							</div>
               {error && <div className="login-error">{error}</div>}
-
-              <button type="submit" disabled={loading}>
-                {loading ? 'Logging in...' : 'LOG IN NOW'}
-              </button>
+							<div className="col-12">
+								<button className="default-btn btn-two" type="submit" disabled={loading}>
+                  {loading ? 'Logging in...' : 'LOG IN NOW'}
+								</button>
+							</div>
+						</div>
             </form>
           </div>
         </div>
@@ -257,7 +276,7 @@ function Login() {
           <div className="row">
             <div className="col-lg-3 col-md-6">
               <div className="single-widget text-center">
-                <a href="javascript:void(0)">
+                <a href="#">
                   <img src="http://viron.network:3000/assets/img/viron-logo-footer.svg" style={{ marginTop: "50%", marginBottom: "50%" }} alt="VIRON.NETWORK" />
                 </a>
               </div>
@@ -292,10 +311,10 @@ function Login() {
               <div className="single-widget">
                 <h3>Social Media</h3>
                 <ul className="social-icon">
-                  <li><a href="javascript:void(0)"><i className="bx bxl-facebook"></i></a></li>
-                  <li><a href="javascript:void(0)"><i className="bx bxl-instagram"></i></a></li>
-                  <li><a href="javascript:void(0)"><i className="bx bxl-youtube"></i></a></li>
-                  <li><a href="javascript:void(0)"><i className="bx bxl-twitter"></i></a></li>
+                  <li><a href="#"><i className="bx bxl-facebook"></i></a></li>
+                  <li><a href="#"><i className="bx bxl-instagram"></i></a></li>
+                  <li><a href="#"><i className="bx bxl-youtube"></i></a></li>
+                  <li><a href="#"><i className="bx bxl-twitter"></i></a></li>
                 </ul>
               </div>
             </div>
