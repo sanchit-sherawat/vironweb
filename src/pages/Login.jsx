@@ -11,23 +11,59 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'http://viron.network:3000/assets/css/meanmenu.css';
-    document.head.appendChild(link);
-    //JS 
-    const script = document.createElement('script');
-    script.src = 'http://viron.network:3000/assets/js/meanmenu.js'; // Agar aapke pass JS file hai
-    script.async = true;
-    document.body.appendChild(script);
+     useEffect(() => {
+    //CSS
+    const cssFiles = [
+      'http://viron.network:3000/assets/css/bootstrap.min.css',
+      'http://viron.network:3000/assets/css/owl.theme.default.min.css',
+      'http://viron.network:3000/assets/css/owl.carousel.min.css',
+      'http://viron.network:3000/assets/css/animate.css',
+      'http://viron.network:3000/assets/css/boxicons.min.css',
+      'http://viron.network:3000/assets/css/flaticon.css',
+      'http://viron.network:3000/assets/css/meanmenu.css',
+      'http://viron.network:3000/assets/css/nice-select.css',
+      'http://viron.network:3000/assets/css/odometer.css',
+      'http://viron.network:3000/assets/css/aos.css',
+      'http://viron.network:3000/assets/css/style.css',
+      'http://viron.network:3000/assets/css/responsive.css'
+    ];
+    //JS
+    const jsFiles = [
+      'http://viron.network:3000/assets/js/jquery.slim.min.js',
+      'http://viron.network:3000/assets/js/popper.min.js',
+      'http://viron.network:3000/assets/js/bootstrap.min.js',
+      'http://viron.network:3000/assets/js/jquery.meanmenu.js',
+      'http://viron.network:3000/assets/js/wow.min.js',
+      'http://viron.network:3000/assets/js/owl.carousel.js',
+      'http://viron.network:3000/assets/js/jquery.nice-select.min.js',
+      'http://viron.network:3000/assets/js/jquery.appear.js',
+      'http://viron.network:3000/assets/js/odometer.min.js',
+      'http://viron.network:3000/assets/js/aos.js',
+      'http://viron.network:3000/assets/js/custom.js'
+    ];
+
+    const links = cssFiles.map(href => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      document.head.appendChild(link);
+      return link;
+    });
+
+    const scripts = jsFiles.map(src => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      document.body.appendChild(script);
+      return script;
+    });
 
     return () => {
-      document.head.removeChild(link);
-      document.body.removeChild(script);
+      links.forEach(link => document.head.removeChild(link));
+      scripts.forEach(script => document.body.removeChild(script));
     };
   }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,41 +121,41 @@ function Login() {
           <div className="main-nav">
             <nav className="navbar navbar-expand-md">
               <div className="container">
-                <a className="navbar-brand" href="index.html">
+                <a className="navbar-brand" href="http://viron.network:3000/index.html">
                   <img src="http://viron.network:3000/assets/img/viron-logo.svg" alt="Logo" />
                 </a>
 
                 <div className="collapse navbar-collapse mean-menu">
                   <ul className="navbar-nav m-auto">
                     <li className="nav-item">
-                      <a href="index.html" className="nav-link">Home</a>
+                      <a href="http://viron.network:3000/index.html" className="nav-link">Home</a>
                     </li>
                     <li className="nav-item">
-                      <a href="works" className="nav-link">How It Works</a>
+                      <a href="http://viron.network:3000/works" className="nav-link">How It Works</a>
                     </li>
                     <li className="nav-item">
-                      <a href="about" className="nav-link">About Us</a>
+                      <a href="http://viron.network:3000/about" className="nav-link">About Us</a>
                     </li>
                     <li className="nav-item">
-                      <a href="team" className="nav-link">Meet Our Team</a>
+                      <a href="http://viron.network:3000/team" className="nav-link">Meet Our Team</a>
                     </li>
                     <li className="nav-item">
-                      <a href="mission" className="nav-link">Our Mission</a>
+                      <a href="http://viron.network:3000/mission" className="nav-link">Our Mission</a>
                     </li>
                     <li className="nav-item">
-                      <a href="testimonials" className="nav-link">Testimonial</a>
+                      <a href="http://viron.network:3000/testimonials" className="nav-link">Testimonial</a>
                     </li>
                     <li className="nav-item">
-                      <a href="contact" className="nav-link">Contact Us</a>
+                      <a href="http://viron.network:3000/contact" className="nav-link">Contact Us</a>
                     </li>
                   </ul>
 
                   {/* Start Others Option */}
                   <div className="nav-others-option desktop d-flex align-items-center">
-                    <a href="register" className="default-btn icon menu-btn-style">
+                    <a href="http://viron.network:3000/register" className="default-btn icon menu-btn-style">
                       Registration
                     </a>&nbsp;
-                    <a href="login" className="default-btn blue-btn icon menu-btn-style">
+                    <a href="http://viron.network:3000/login" className="default-btn blue-btn icon menu-btn-style">
                       Login
                     </a>
                   </div>
@@ -146,10 +182,10 @@ function Login() {
               <div className="container">
                 <div className="option-inner">
                   <div className="nav-others-option d-flex align-items-center">
-                    <a href="register" className="default-btn icon menu-btn-style">Registration</a>
+                    <a href="http://viron.network:3000/register" className="default-btn icon menu-btn-style">Registration</a>
                   </div>
                   <div className="nav-others-option d-flex align-items-center">
-                    <a href="login" className="default-btn blue-btn icon menu-btn-style">Login</a>
+                    <a href="http://viron.network:3000/login" className="default-btn blue-btn icon menu-btn-style">Login</a>
                   </div>
                 </div>
               </div>
@@ -231,13 +267,13 @@ function Login() {
               <div className="single-widget pl-40">
                 <h3>Navigation</h3>
                 <ul>
-                  <li><a href="index.html"><i className="right-icon bx bx-right-arrow-alt"></i>Home</a></li>
-                  <li><a href="works"><i className="right-icon bx bx-right-arrow-alt"></i>How It Works</a></li>
-                  <li><a href="about"><i className="right-icon bx bx-right-arrow-alt"></i>About Us</a></li>
-                  <li><a href="team"><i className="right-icon bx bx-right-arrow-alt"></i>Meet Our Team</a></li>
-                  <li><a href="mission"><i className="right-icon bx bx-right-arrow-alt"></i>Our Mission</a></li>
-                  <li><a href="testimonials"><i className="right-icon bx bx-right-arrow-alt"></i>Testimonials</a></li>
-                  <li><a href="contact"><i className="right-icon bx bx-right-arrow-alt"></i>Contact Us</a></li>
+                  <li><a href="http://viron.network:3000/index.html"><i className="right-icon bx bx-right-arrow-alt"></i>Home</a></li>
+                  <li><a href="http://viron.network:3000/works"><i className="right-icon bx bx-right-arrow-alt"></i>How It Works</a></li>
+                  <li><a href="http://viron.network:3000/about"><i className="right-icon bx bx-right-arrow-alt"></i>About Us</a></li>
+                  <li><a href="http://viron.network:3000/team"><i className="right-icon bx bx-right-arrow-alt"></i>Meet Our Team</a></li>
+                  <li><a href="http://viron.network:3000/mission"><i className="right-icon bx bx-right-arrow-alt"></i>Our Mission</a></li>
+                  <li><a href="http://viron.network:3000/testimonials"><i className="right-icon bx bx-right-arrow-alt"></i>Testimonials</a></li>
+                  <li><a href="http://viron.network:3000/contact"><i className="right-icon bx bx-right-arrow-alt"></i>Contact Us</a></li>
                 </ul>
               </div>
             </div>
@@ -246,8 +282,8 @@ function Login() {
               <div className="single-widget">
                 <h3>Access</h3>
                 <ul>
-                  <li><a href="login" className="default-btn blue-btn">Login</a></li>
-                  <li><a href="register" className="default-btn">Register</a></li>
+                  <li><a href="http://viron.network:3000/login" className="default-btn blue-btn">Login</a></li>
+                  <li><a href="http://viron.network:3000/register" className="default-btn">Register</a></li>
                 </ul>
               </div>
             </div>
@@ -274,7 +310,7 @@ function Login() {
           <div className="copy-right">
             <p>Copyright <i className="bx bx-copyright"></i> 2025 VIRON.NETWORK. All rights reserved.</p>
             <p>
-              <a href="faq.html"><b>FAQ</b></a> | <a href="privacy-policy.html"><b>Privacy Policy</b></a> | <a href="disclaimer.html"><b>Disclaimer</b></a> | <a href="terms-of-use.html"><b>Terms of Use</b></a> | <a href="service-agreement.html"><b>Service Agreement</b></a>
+              <a href="http://viron.network:3000/faq.html"><b>FAQ</b></a> | <a href="http://viron.network:3000/privacy-policy.html"><b>Privacy Policy</b></a> | <a href="http://viron.network:3000/disclaimer.html"><b>Disclaimer</b></a> | <a href="http://viron.network:3000/terms-of-use.html"><b>Terms of Use</b></a> | <a href="http://viron.network:3000/service-agreement.html"><b>Service Agreement</b></a>
             </p>
           </div>
         </div>
