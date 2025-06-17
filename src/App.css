@@ -36,3 +36,59 @@
     transform: rotate(360deg);
   }
 }
+
+/* Custom styles for the all static pages */
+.text-center {
+  text-align: center;
+}
+.text-blue{
+  color: #0000B3;
+}
+.text-red {
+  color: #D00000;
+}
+.text-tab{
+  margin-left:40px;
+}
+ul>li, ol>li{
+  margin-bottom:10px;
+}
+/* Container: sets max-width and horizontal padding */
+.container {
+  width: 100%;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container { max-width: 540px; }
+}
+
+@media (min-width: 768px) {
+  .container { max-width: 720px; }
+}
+
+@media (min-width: 992px) {
+  .container { max-width: 960px; }
+}
+
+@media (min-width: 1200px) {
+  .container { max-width: 1140px; }
+}
+
+/* Row: uses flex to layout columns in a row */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -12px;
+  margin-left: -12px;
+}
+
+/* Col: flexible width, padding inside each column */
+.col {
+  flex: 1 0 0%;
+  padding-right: 12px;
+  padding-left: 12px;
+}
