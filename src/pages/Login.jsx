@@ -86,7 +86,7 @@ function Login() {
             <nav className="navbar navbar-expand-md">
               <div className="container">
                 <a className="navbar-brand" href="index.html">
-                  <img src="assets/img/viron-logo.svg" alt="Logo" />
+                  <img src="http://viron.network:3000/assets/img/viron-logo.svg" alt="Logo" />
                 </a>
 
                 <div className="collapse navbar-collapse mean-menu">
@@ -132,7 +132,7 @@ function Login() {
           {/* Menu For Mobile Device */}
           <div className="mobile-nav">
             <a href="index.html" className="logo">
-              <img src="assets/img/viron-logo.svg" alt="Viron" />
+              <img src="http://viron.network:3000/assets/img/viron-logo.svg" alt="Viron" />
             </a>
             {/* Start Others Option */}
             <div className="container">
@@ -222,7 +222,7 @@ function Login() {
             <div className="col-lg-3 col-md-6">
               <div className="single-widget text-center">
                 <a href="javascript:void(0)">
-                  <img src="assets/img/viron-logo-footer.svg" style={{ marginTop: "50%", marginBottom: "50%" }} alt="VIRON.NETWORK" />
+                  <img src="http://viron.network:3000/assets/img/viron-logo-footer.svg" style={{ marginTop: "50%", marginBottom: "50%" }} alt="VIRON.NETWORK" />
                 </a>
               </div>
             </div>
