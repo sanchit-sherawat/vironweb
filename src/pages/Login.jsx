@@ -109,11 +109,7 @@ function Login() {
   return (
     <div>
       {/* Loader */}
-      <div className="loader js-preloader">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      
 
       {/* START NAV AREA */}
       <div className="nav-area">
