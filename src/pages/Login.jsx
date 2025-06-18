@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 import API_BASE_URL from './config';
 
@@ -11,7 +11,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-     useEffect(() => {
+    useEffect(() => {
     //CSS
     const cssFiles = [
       'http://viron.network:3000/assets/css/bootstrap.min.css',
@@ -63,7 +63,6 @@ function Login() {
       scripts.forEach(script => document.body.removeChild(script));
     };
   }, []);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -266,7 +265,7 @@ function Login() {
               <div className="col-12">
 								<div className="login-action text-center">
 									<span className="forgot-login">
-										<a href="#">Lost your password?</a>
+										<Link to="/forgot-password">Forgot password?</Link>
 									</span>
 								</div>
 							</div>
