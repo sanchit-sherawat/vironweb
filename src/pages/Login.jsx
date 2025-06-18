@@ -252,9 +252,7 @@ function Login() {
                     />
 										<label htmlFor="remember">Remember me!</label>
 									</span>
-									<span className="forgot-login">
-										<a href="#">Lost your password?</a>
-									</span>
+									
 								</div>
 							</div>
               {error && <div className="login-error">{error}</div>}
@@ -262,6 +260,13 @@ function Login() {
 								<button className="default-btn btn-two" type="submit" disabled={loading}>
                   {loading ? 'Logging in...' : 'LOG IN NOW'}
 								</button>
+							</div>
+              <div className="col-12">
+								<div className="login-action text-center">
+									<span className="forgot-login">
+										<a href="#">Lost your password?</a>
+									</span>
+								</div>
 							</div>
 						</div>
             </form>

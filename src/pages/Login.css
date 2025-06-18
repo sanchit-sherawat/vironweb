@@ -71,3 +71,7 @@ body {
 .login-box button:hover {
   background: #bb0000;
 }
+.forgot-login{
+  float: none!important;
+  margin-top: 15px;
+}
