@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './UserList.css'; // <- Add this
+import { ADMIN_BASE_URL } from './config';
 
 import { ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
@@ -27,7 +28,7 @@ function UserList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://148.113.201.173:3000/adminapi/users')
+    fetch(`${ADMIN_BASE_URL}/adminapi/users`)
       .then(res => res.json())
       .then(data => {
         setUsers(data);

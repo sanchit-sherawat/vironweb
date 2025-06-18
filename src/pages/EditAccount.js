@@ -1,6 +1,6 @@
 import  { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-import API_BASE_URL from './config';
+import {API_BASE_URL} from './config';
 
 function EditAccount() {
   const [form, setForm] = useState({

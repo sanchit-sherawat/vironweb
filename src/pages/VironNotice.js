@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import './VironNotice.css';
 import { useState } from 'react';
 // import Logo from '../../public/assets/';// Pl   ace your VIRON logo in the same folder
-import API_BASE_URL from './config';
+import { API_BASE_URL } from './config';
 
 function VironNotice() {
     let userId = localStorage.getItem('userId');
