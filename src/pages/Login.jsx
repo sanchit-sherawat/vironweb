@@ -201,6 +201,7 @@ function Login() {
         <div className="container">
           <div className="page-title-content">
             <h2>Login</h2>
+            
           </div>
         </div>
       </div>
@@ -212,6 +213,7 @@ function Login() {
           <div className="contact-form-action">
             <div data-aos="fade-up" data-aos-duration="1200" className="section-title">
               <h2>Login</h2>
+              <h2>VIRON.NETWORK</h2>
             </div>
             <form onSubmit={handleSubmit} data-aos="fade-up" data-aos-duration="1600">
               <div className="row">
