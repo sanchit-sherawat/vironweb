@@ -41,18 +41,145 @@
 .text-center {
   text-align: center;
 }
+
 .text-blue{
   color: #0000B3;
 }
+
 .text-red {
   color: #D00000;
 }
+
 .text-tab{
   margin-left:40px;
 }
+
+.text-tab1{
+  margin-left:80px;
+}
+
+.text-tab2{
+  margin-left:120px;
+}
+
+.text-tab3{
+  margin-left:160px;
+}
+
+.text-tab4{
+  margin-left:200px;
+}
+
 ul>li, ol>li{
   margin-bottom:10px;
 }
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.pt-50 {
+  padding-top: 50px;
+}
+
+.pb-1 {
+  padding-bottom: 1px;
+}
+
+hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+.menu-group-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 15px 0 5px 5px!important;
+  color: #cfcfcf;
+  border-bottom: #cfcfcf 1px dotted;
+  padding-bottom: 10px;
+  border-top: 0px;
+}
+
+/* FAQ Accordion Styles */
+.faq-accordion h2 {
+  margin-bottom: 40px;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.faq-accordion h2 span {
+  display: inline-block;
+  color: #0000B3;
+}
+
+.faq-accordion .accordion {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.faq-accordion .accordion .accordion-item {
+  display: block;
+  background: #ffffff;
+  -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 10px;
+}
+
+.faq-accordion .accordion .accordion-item:last-child {
+  margin-bottom: 0;
+}
+
+.faq-accordion .accordion .accordion-title {
+  padding: 12px 40px 10px 20px;
+  color: #000000;
+  position: relative;
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.faq-accordion .accordion .accordion-title i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: #000000;
+  font-size: 20px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.faq-accordion .accordion .accordion-title.active i::before {
+  content: "\eaf8";
+  color: #0000B3;
+}
+
+.faq-accordion .accordion .accordion-content {
+  display: none;
+  position: relative;
+  padding: 15px 20px;
+  font-size: 14px;
+  border-top: 1px solid #0000B3;
+  color: #000000;
+  
+}
+.faq-accordion .accordion .accordion-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.faq-accordion .accordion .accordion-content.show {
+  display: block;
+}
+/* FAQ Accordion Styles */
+
 /* Container: sets max-width and horizontal padding */
 .container {
   width: 100%;

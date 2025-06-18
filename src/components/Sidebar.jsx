@@ -31,12 +31,35 @@ function Sidebar() {
         </li>
           
           </>:<> 
-          <li>
+        <li className="menu-group-title">
           <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaTachometerAlt /> <span>Dashboard</span>
           </NavLink>
         </li>
-       
+
+        <li> 
+          <NavLink to="/username" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaTachometerAlt /> <span>VIRON Username:</span>
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/referranl" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaTachometerAlt /> <span>VIRON Referral Link:</span>
+          </NavLink>
+        </li>
+
+        <li className="menu-group-title">INFORMATION & RESOURCES:</li>
+        <li>
+          <NavLink to="/expectations-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaChartLine /> <span>Expectations of VIRON</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/core-perspective-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaChartLine /> <span>Core Perspective of VIRON</span>
+          </NavLink>
+        </li>
         <li>
           <NavLink to="/mlm-qualifications" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaChartLine /> <span>MLM Qualifications</span>
@@ -57,11 +80,7 @@ function Sidebar() {
             <FaChartLine /> <span>Earnings Disclaimers</span>
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/expectations-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaChartLine /> <span>Expectations of VIRON</span>
-          </NavLink>
-        </li>
+        
         <li>
           <NavLink to="/edit-account" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaCog /> <span>Edit Account</span>

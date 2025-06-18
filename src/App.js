@@ -11,6 +11,7 @@ import WhySaveClub from './pages/WhySaveClub';
 import FAQ from './pages/FAQ';
 import EarningsDisclaimers from './pages/EarningsDisclaimers';
 import ExpectationsOfViron from './pages/ExpectationsOfViron';
+import CorePerspectiveOfViron from './pages/CorePerspectiveOfViron';
 import './App.css';
 import Login from './pages/Login';
 
@@ -87,6 +88,14 @@ function App() {
             <ProtectedRoute>
               <ExpectationsOfViron />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/core-perspective-of-viron"
+          element={
+            <CorePerspectiveOfViron>
+              <ExpectationsOfViron />
+            </CorePerspectiveOfViron>
           }
         />
       </Routes>
