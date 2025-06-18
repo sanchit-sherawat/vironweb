@@ -18,41 +18,43 @@ function VironNotice() {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        let data={
-            user_id: userId,
-            btc_txn: formData.btc_txn,
-            eth_txn: formData.eth_txn,
-            usdt_txn: formData.usdt_txn
-        }
-
-        try {
-            const res = await fetch(`${API_BASE_URL}/payment`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            const result = await res.json();
-            if (res.ok) {
-                alert('Payment submitted successfully!');
-                setFormData({
-                    user_id: '',
-                    btc_txn: '',
-                    eth_txn: '',
-                    usdt_txn: ''
-                });
-            } else {
-                alert('Error: ' + result.message);
-            }
-        } catch (err) {
-            alert('Failed to submit payment.');
-            console.error(err);
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let data = {
+        user_id: userId,
+        btc_txn: formData.btc_txn,
+        eth_txn: formData.eth_txn,
+        usdt_txn: formData.usdt_txn
     };
+
+    try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`${API_BASE_URL}/payment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+            alert('Payment submitted successfully!');
+            setFormData({
+                user_id: '',
+                btc_txn: '',
+                eth_txn: '',
+                usdt_txn: ''
+            });
+        } else {
+            alert('Error: ' + result.message);
+        }
+    } catch (err) {
+        alert('Failed to submit payment.');
+        console.error(err);
+    }
+};
     return (
         <Layout>
             <div className="notice-container">

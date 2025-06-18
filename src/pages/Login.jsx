@@ -94,7 +94,11 @@ function Login() {
           localStorage.setItem('token', data.token); // Assuming the API returns a token
           localStorage.setItem('userId', data.userId); // Assuming the API returns a user ID
           localStorage.setItem('isAdmin', data.isAdmin); // Assuming the API returns an isAdmin flag
-          navigate('/dashboard');
+          if (data.isAdmin === 1) {
+            navigate('/admin/userlist');
+          } else {
+            navigate('/dashboard');
+          }
         } else {
           localStorage.removeItem('username');
         }

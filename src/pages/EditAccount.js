@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import API_BASE_URL from './config';
 
@@ -12,15 +12,19 @@ function EditAccount() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
 
-  // Fetch user info on mount
   useEffect(() => {
-    fetch(`${API_BASE_URL}/user/me`)
+    const token = localStorage.getItem('token');
+    fetch(`${API_BASE_URL}/profile`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
       .then(res => res.json())
       .then(data => {
         setForm({
-          name: data.name || '',
+          username: data.user_name || '',
           email: data.email || '',
-          phone: data.phone || '',
+          phone: data.phone_number || '',
         });
         setLoading(false);
       })
@@ -35,71 +39,134 @@ function EditAccount() {
     e.preventDefault();
     setSaving(true);
     setMessage('');
-    fetch('http://148.113.201.173:3000/api/user/me', {
+    const token = localStorage.getItem('token');
+    fetch(`${API_BASE_URL}/profile`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
       body: JSON.stringify(form),
     })
       .then(res => res.json())
       .then(() => {
-        setMessage('Account updated successfully!');
+        setMessage('✅ Account updated successfully!');
         setSaving(false);
       })
       .catch(() => {
-        setMessage('Failed to update account.');
+        setMessage('❌ Failed to update account.');
         setSaving(false);
       });
   };
 
   return (
     <Layout>
-      <div style={{ maxWidth: 400, margin: '2rem auto', background: '#fff', padding: 24, borderRadius: 8 }}>
-        <h2>Edit Account Information</h2>
+      <div style={styles.container}>
+        <h2 style={styles.heading}>Edit Account</h2>
         {loading ? (
-          <p>Loading...</p>
+          <p style={styles.loading}>Loading...</p>
         ) : (
-          <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: 16 }}>
-              <label>Name:</label>
+          <form onSubmit={handleSubmit} style={styles.form}>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Name</label>
               <input
                 type="text"
-                name="name"
-                value={form.name}
+                name="username"
+                value={form.username}
                 onChange={handleChange}
-                style={{ width: '100%', padding: 8, marginTop: 4 }}
+                style={styles.input}
                 required
               />
             </div>
-            <div style={{ marginBottom: 16 }}>
-              <label>Email:</label>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Email</label>
               <input
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                style={{ width: '100%', padding: 8, marginTop: 4 }}
+                style={styles.input}
                 required
               />
             </div>
-            <div style={{ marginBottom: 16 }}>
-              <label>Phone:</label>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Phone</label>
               <input
                 type="text"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                style={{ width: '100%', padding: 8, marginTop: 4 }}
+                style={styles.input}
               />
             </div>
-            <button type="submit" disabled={saving} style={{ padding: '8px 24px' }}>
-              {saving ? 'Saving...' : 'Save'}
+            <button type="submit" disabled={saving} style={styles.button}>
+              {saving ? 'Saving...' : 'Save Changes'}
             </button>
-            {message && <p style={{ marginTop: 16 }}>{message}</p>}
+            {message && <p style={styles.message}>{message}</p>}
           </form>
         )}
       </div>
     </Layout>
   );
 }
+
+const styles = {
+  container: {
+    maxWidth: '500px',
+    margin: '3rem auto',
+    padding: '2rem',
+    backgroundColor: '#ffffff',
+    borderRadius: '12px',
+    boxShadow: '0 0 15px rgba(0,0,0,0.1)',
+  },
+  heading: {
+    textAlign: 'center',
+    marginBottom: '2rem',
+    color: '#2c3e50',
+  },
+  loading: {
+    textAlign: 'center',
+    fontSize: '1rem',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  formGroup: {
+    marginBottom: '1.5rem',
+  },
+  label: {
+    marginBottom: '0.5rem',
+    display: 'block',
+    fontWeight: '500',
+    color: '#34495e',
+  },
+  input: {
+    width: '100%',
+    padding: '10px 14px',
+    fontSize: '1rem',
+    borderRadius: '6px',
+    border: '1px solid #ccc',
+    outline: 'none',
+    transition: 'border 0.3s ease',
+  },
+  button: {
+    padding: '12px',
+    backgroundColor: '#4fa3f7',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '6px',
+    fontWeight: 'bold',
+    fontSize: '1rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  },
+  message: {
+    marginTop: '1rem',
+    textAlign: 'center',
+    fontSize: '0.95rem',
+    color: '#2ecc71',
+  },
+};
 
 export default EditAccount;

@@ -1,4 +1,5 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'; // Changed BrowserRouter to HashRouter
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import VironNotice from './pages/VironNotice';
@@ -10,25 +11,84 @@ import WhySaveClub from './pages/WhySaveClub';
 import FAQ from './pages/FAQ';
 import EarningsDisclaimers from './pages/EarningsDisclaimers';
 import ExpectationsOfViron from './pages/ExpectationsOfViron';
-import './App.css'; // Assuming you have some global styles
+import './App.css';
 import Login from './pages/Login';
 
 function App() {
+  const token = localStorage.getItem('token');
+    const isAdmin = localStorage.getItem('isAdmin') === '1';
+
+
   return (
     <Router>
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={!isAdmin?<VironNotice />:<UserList/>} />
         <Route path="/home" element={<Home />} />
-        {/* Add more routes as needed */}
-        <Route path='/dashboard' element={<VironNotice />} />
-        <Route path='/admin/userlist' element={<UserList />} />
-        <Route path='/edit-account' element={<EditAccount />} />
-        <Route path="/mlm-qualifications" element={<MLMCompanyQualifications />} />
-        <Route path="/why-save-club" element={<WhySaveClub />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/earnings-disclaimers" element={<EarningsDisclaimers />} />
-        <Route path="/expectations-of-viron" element={<ExpectationsOfViron />} />
+        <Route
+          path='/dashboard'
+          element={
+            <ProtectedRoute>
+              <VironNotice />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/admin/userlist'
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <UserList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/edit-account'
+          element={
+            <ProtectedRoute>
+              <EditAccount />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mlm-qualifications"
+          element={
+            <ProtectedRoute>
+              <MLMCompanyQualifications />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/why-save-club"
+          element={
+            <ProtectedRoute>
+              <WhySaveClub />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/faq"
+          element={
+            <ProtectedRoute>
+              <FAQ />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/earnings-disclaimers"
+          element={
+            <ProtectedRoute>
+              <EarningsDisclaimers />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expectations-of-viron"
+          element={
+            <ProtectedRoute>
+              <ExpectationsOfViron />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

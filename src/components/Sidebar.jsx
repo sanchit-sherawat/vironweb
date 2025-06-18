@@ -1,40 +1,81 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
+import { FaTachometerAlt, FaUsers, FaQuestionCircle, FaSignOutAlt, FaCog, FaChartLine } from 'react-icons/fa';
 
 function Sidebar() {
+  const isAdmin = localStorage.getItem('isAdmin') === '1';
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('username');
+    navigate('/login');
+  };
+
   return (
     <aside className="sidebar">
-      <ul>
-        <li>
-          <NavLink to="/dashboard" activeClassName="active">Dashboard</NavLink>
+      {/* <div className="sidebar-header">
+        <h2>VIRON</h2>
+      </div> */}
+      <ul className="sidebar-menu">
+         {isAdmin ?<><li>
+            <NavLink to="/admin/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
+              <FaUsers /> <span>User List</span>
+            </NavLink>
+          </li>
+           <li>
+          <button className="logout-btn" onClick={handleLogout}>
+            <FaSignOutAlt /> <span>Logout</span>
+          </button>
         </li>
-        <li>
-          <NavLink to="/home" activeClassName="active">Home</NavLink>
+          
+          </>:<> 
+          <li>
+          <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaTachometerAlt /> <span>Dashboard</span>
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/admin/userlist" activeClassName="active">User List</NavLink>
-        </li>
-    
        
-         <li>
-          <NavLink to="/mlm-qualifications" activeClassName="active">MLM Company Qualifications</NavLink>
+        <li>
+          <NavLink to="/mlm-qualifications" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaChartLine /> <span>MLM Qualifications</span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/why-save-club" activeClassName="active">Why SAVE CLUB (“SC”) is chosen</NavLink>
-        </li>
-         <li>
-          <NavLink to="/faq" activeClassName="active">Frequently Asked Questions (FAQ)</NavLink>
-        </li>
-        <li>
-          <NavLink to="/earnings-disclaimers" activeClassName="active">Earnings Disclaimers</NavLink>
-        </li>
-         <li>
-          <NavLink to="/expectations-of-viron" activeClassName="active">Expectations of VIRON</NavLink>
+          <NavLink to="/why-save-club" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaCog /> <span>Why SAVE CLUB</span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/edit-account" activeClassName="active">Edit Account Information</NavLink>
+          <NavLink to="/faq" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaQuestionCircle /> <span>FAQ</span>
+          </NavLink>
         </li>
-         
+        <li>
+          <NavLink to="/earnings-disclaimers" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaChartLine /> <span>Earnings Disclaimers</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/expectations-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaChartLine /> <span>Expectations of VIRON</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/edit-account" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaCog /> <span>Edit Account</span>
+          </NavLink>
+        </li>
+        <li>
+          <button className="logout-btn" onClick={handleLogout}>
+            <FaSignOutAlt /> <span>Logout</span>
+          </button>
+        </li>
+          </>
+          
+        }
+        
       </ul>
     </aside>
   );
