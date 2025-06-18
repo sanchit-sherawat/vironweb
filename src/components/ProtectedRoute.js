@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 
   if (!token) {
     // Not logged in
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/loginPage" replace />;
   }
 
   if (adminOnly && !isAdmin) {

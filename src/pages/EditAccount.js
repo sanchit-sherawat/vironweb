@@ -4,7 +4,9 @@ import {API_BASE_URL} from './config';
 
 function EditAccount() {
   const [form, setForm] = useState({
-    name: '',
+    username: '',
+    fname: '',
+    lname: '',
     email: '',
     phone: '',
   });
@@ -23,6 +25,8 @@ function EditAccount() {
       .then(data => {
         setForm({
           username: data.user_name || '',
+          fname: data.first_name || '',
+          lname: data.last_name || '',
           email: data.email || '',
           phone: data.phone_number || '',
         });
@@ -68,11 +72,34 @@ function EditAccount() {
         ) : (
           <form onSubmit={handleSubmit} style={styles.form}>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Name</label>
+              <label style={styles.label}>Username</label>
               <input
                 type="text"
                 name="username"
                 value={form.username}
+                onChange={handleChange}
+                style={styles.input}
+                required
+                disabled
+              />
+            </div>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>First Name</label>
+              <input
+                type="text"
+                name="fname"
+                value={form.fname}
+                onChange={handleChange}
+                style={styles.input}
+                required
+              />
+            </div>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Last Name</label>
+              <input
+                type="text"
+                name="lname"
+                value={form.lname}
                 onChange={handleChange}
                 style={styles.input}
                 required
@@ -87,6 +114,7 @@ function EditAccount() {
                 onChange={handleChange}
                 style={styles.input}
                 required
+                disabled
               />
             </div>
             <div style={styles.formGroup}>

@@ -4,13 +4,14 @@ import { FaTachometerAlt, FaUsers, FaQuestionCircle, FaSignOutAlt, FaCog, FaChar
 
 function Sidebar() {
   const isAdmin = localStorage.getItem('isAdmin') === '1';
+  let username = localStorage.getItem('username');
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('username');
-    navigate('/login');
+    navigate('/loginPage');
   };
 
   return (
@@ -39,13 +40,13 @@ function Sidebar() {
 
         <li> 
           <NavLink to="/username" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaTachometerAlt /> <span>VIRON Username:</span>
+            <FaTachometerAlt /> <span>VIRON Username: {username}</span>
           </NavLink>
         </li>
 
         <li>
           <NavLink to="/referranl" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaTachometerAlt /> <span>VIRON Referral Link:</span>
+            <FaTachometerAlt /> <span>VIRON Referral Link: VIRON.NETWORK/{username}</span>
           </NavLink>
         </li>
 

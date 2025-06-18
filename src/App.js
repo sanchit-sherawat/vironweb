@@ -15,6 +15,8 @@ import CorePerspectiveOfViron from './pages/CorePerspectiveOfViron';
 import ForgotPassword from './pages/ForgotPassword';
 import './App.css';
 import Login from './pages/Login';
+import LoginPage from './pages/LoginPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -24,7 +26,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/login' element={<Login />} />
+        {/* <Route path='/login' element={<Login />} /> */}
+        <Route path='/loginPage' element={<LoginPage />} />
         <Route path="/" element={!isAdmin?<VironNotice />:<UserList/>} />
         <Route path="/home" element={<Home />} />
         <Route
@@ -99,12 +102,20 @@ function App() {
             </CorePerspectiveOfViron>
           }
         />
-        <Route
+        {/* <Route
           path="/forgot-password"
           element={
             <ForgotPassword>
               <ExpectationsOfViron />
             </ForgotPassword>
+          }
+        /> */}
+        <Route
+          path="/forgotPassword"
+          element={
+            <ForgotPasswordPage>
+              <ExpectationsOfViron />
+            </ForgotPasswordPage>
           }
         />
       </Routes>

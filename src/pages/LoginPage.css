@@ -1,0 +1,431 @@
+/* General Body and Container Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; /* Light grey background for the page */
+    color: #333;
+  }
+  
+  .login-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Header Styles */
+  .main-header {
+    background-color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .logo img {
+    height: 80px; /* Adjust as needed */
+    width: auto;
+  }
+  
+  .main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .main-nav li {
+    margin-right: 25px;
+  }
+  
+  .main-nav a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .main-nav a:hover {
+    color: #007bff; /* Blue for hover */
+  }
+  
+  .auth-buttons .button {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .registration-button {
+    background-color: #dc3545; /* Red */
+    color: #fff;
+  }
+  
+  .registration-button:hover {
+    background-color: #c82333; /* Darker red */
+  }
+  
+  .login-button {
+    background-color: #007bff; /* Blue */
+    color: #fff;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3; /* Darker blue */
+  }
+  
+  /* Page Title Area */
+  .page-title-area {
+    background-image: url('http://viron.network:3000/assets/img/banner/inner-banner.jpg'); /* Replace with your actual background image if needed */
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    image-rendering: auto;
+  }
+  
+  .page-title-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay */
+  }
+  
+  .page-title-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .page-title-content h2 {
+    font-size: 3em;
+    margin: 0;
+  }
+  
+  /* Login Area */
+  .login-area {
+    padding: 50px 0 100px; /* Adjust padding as needed */
+    flex-grow: 1; /* Allows the login area to expand and push the footer down */
+  }
+  
+  .login-form-action {
+    background-color: #fff;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .section-title h2 {
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .section-title h2:last-of-type {
+    font-size: 1.5em;
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .form-control::placeholder {
+    color: #aaa;
+  }
+  
+  .login-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+  }
+  
+  .remember-me input[type="checkbox"] {
+    margin-right: 8px;
+  }
+  
+  .remember-me label {
+    color: #555;
+  }
+  
+  .forgot-password-link {
+    text-align: right; /* Adjusted to align with the original image */
+    margin-top: -15px; /* Pull it up a bit to be next to remember me */
+  }
+  
+  .forgot-password-link a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-password-link a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  .submit-button {
+    background-color: #dc3545; /* Red */
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .submit-button:hover {
+    background-color: #c82333; /* Darker red */
+  }
+  
+  .submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .login-error {
+    color: #dc3545;
+    margin-top: 15px;
+    font-size: 0.9em;
+  }
+  
+  /* Footer Styles */
+  .main-footer {
+    background-color: #ffffff; /* white */
+    color: #000000; /* Optional: ensure text is visible */
+    padding-top: 70px;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px 30px;
+  }
+  .black-text {
+    color: black !important;
+  }
+  
+  .nav-link {
+    color: black !important;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+  }
+  
+  .footer-section.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-section.logo-section img {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-section ul li a:hover {
+    color: #007bff;
+  }
+  
+  .footer-section.access-section .footer-button {
+    display: block;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .login-footer-button {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .login-footer-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-footer-button {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .register-footer-button:hover {
+    background-color: #c82333;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-icons li a {
+    font-size: 1.5em;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons li a:hover {
+    color: #007bff;
+  }
+  
+  .footer-bottom-area {
+    background-color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 1px solid #444;
+  }
+  
+  .footer-bottom-area .copy-right {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: #ccc;
+  }
+  
+  .footer-bottom-area .copy-right p {
+    margin: 5px 0;
+  }
+  
+  .footer-bottom-area .copy-right a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-bottom-area .copy-right a:hover {
+    color: #66b3ff;
+    text-decoration: underline;
+  }
+  
+  /* Go Top Button */
+  .go-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .go-top:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Adjustments (Basic) */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .main-nav ul {
+      flex-direction: column;
+      margin-top: 15px;
+    }
+  
+    .main-nav li {
+      margin: 0 0 10px 0;
+    }
+  
+    .auth-buttons {
+      margin-top: 15px;
+    }
+  
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .footer-section {
+      min-width: unset;
+    }
+  
+    .footer-section.logo-section {
+      margin-bottom: 20px;
+    }
+  
+    .social-icons {
+      justify-content: center;
+    }
+  
+    .login-action {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .forgot-password-link {
+      text-align: left;
+      margin-top: 10px;
+    }
+  }
