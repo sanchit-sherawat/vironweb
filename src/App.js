@@ -12,6 +12,7 @@ import FAQ from './pages/FAQ';
 import EarningsDisclaimers from './pages/EarningsDisclaimers';
 import ExpectationsOfViron from './pages/ExpectationsOfViron';
 import CorePerspectiveOfViron from './pages/CorePerspectiveOfViron';
+import ForgotPassword from './pages/ForgotPassword';
 import './App.css';
 import Login from './pages/Login';
 
@@ -96,6 +97,14 @@ function App() {
             <CorePerspectiveOfViron>
               <ExpectationsOfViron />
             </CorePerspectiveOfViron>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <ForgotPassword>
+              <ExpectationsOfViron />
+            </ForgotPassword>
           }
         />
       </Routes>
