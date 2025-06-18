@@ -1,43 +1,105 @@
-/* UserList.css */
+/* Container */
 .userlist-container {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
+  padding: 32px;
+  background-color: #f7f9fc;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
 .userlist-heading {
-  font-size: 26px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
   color: #2c3e50;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
 }
 
+/* AG Grid */
 .ag-theme-alpine {
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-}
-
-.ag-header-cell-label {
-  font-weight: 600;
-  color: #34495e;
-}
-
-.ag-cell {
+  border-radius: 12px;
   font-size: 14px;
-  color: #2c3e50;
+  background-color: white;
+  padding: 10px;
 }
 
-button.confirm-btn {
-  padding: 6px 12px;
+.ag-root-wrapper {
+  border-radius: 12px !important;
+}
+
+/* Buttons */
+.view-btn, .confirm-btn, .close-btn {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-btn {
   background-color: #3498db;
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
 }
 
-button.confirm-btn:hover {
+.view-btn:hover {
   background-color: #2980b9;
+}
+
+.confirm-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #27ae60;
+}
+
+.close-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.close-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Popup Box */
+.popup-content {
+  background-color: #ffffff;
+  padding: 30px 24px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-content h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.popup-content p {
+  font-size: 14px;
+  margin: 10px 0;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
