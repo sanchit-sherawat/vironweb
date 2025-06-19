@@ -223,9 +223,6 @@ hr {
 
 @media (min-width: 768px) {
   .container { max-width: 720px; }
-  .text-tab, .text-tab1, .text-tab2, .text-tab3, .text-tab4 {
-    margin-left: 0px;
-  }
 }
 
 @media (min-width: 992px) {
