@@ -49,9 +49,23 @@
 .text-red {
   color: #D00000;
 }
+
 .text-highlighted{
   background-color: yellow;
 }
+
+.img-center {
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-logo-center {
+    width: 280px;
+    margin-bottom: 10px;
+}
+
 .text-tab{
   margin-left:40px;
 }
@@ -87,9 +101,11 @@ ul>li, ol>li{
 .pb-1 {
   padding-bottom: 1px;
 }
+
 .pb-40 {
   padding-bottom: 40px;
 }
+
 .pb-25 {
   padding-bottom: 25px;
 }

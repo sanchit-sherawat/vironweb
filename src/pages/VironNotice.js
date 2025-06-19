@@ -60,19 +60,20 @@ function VironNotice() {
             <div className='container'>
                 <div className="row">
                     <div className='col'>
-                        <div style={{ padding: '2rem' }}  className="text-center">
-                            <h2 className="text-blue">MEMBER CENTER</h2>
-                            <p className='text-red text-center'>:::</p>
+                        <div style={{ paddingTop: '2rem' }}  className="text-center">
+                            <img src='/assets/viron-logo.svg' alt="Viron Logo" className="img-logo-center" />
+                            <h2 className='pb-25'>MEMBER CENTER</h2>
+                            <p className='text-red text-center'><strong>:::</strong></p>
                             <h3 className='text-red'><strong><u>CRITICAL NOTICES & INSTRUCTIONS.</u></strong></h3>
                         </div>
                         <div>
                             <h3 className='text-red text-center'><strong>NOTICE 1: </strong></h3>
                             <p>The following simple instructions are to help you set up your <strong><u>VIRON Home-Business (&ldquo;VHB&rdquo;)</u></strong> and guide you through making a payment correctly, the first time. <strong className='text-red'>This will only take a few minutes, and once you complete this ONE-TIME process, your VHB will be fully automated.</strong></p>
                             <p>By the way, we understand your frustrations from the lack of success in this industry. We want you to know that you have come to the right place, and at the best time in the industry. <span className='text-blue'>Please also understand that you are now entering a 100% performance-guaranteed environment. <strong>*VIRON is self-governed.</strong></span> This means that after you have engaged and have settled your payment with VIRON, your funds will be placed in our ESCROW ACCOUNT. At each step of the process, for your convenience and benefit, we will precisely follow the instructions described and act on your behalf. </p>
-                            <p><strong><em>&ldquo;People Fail&hellip;Systems Prevail&rdquo;</em></strong>. In the world that we live in, no one can guarantee you perfection. However, we genuinely believe and have utmost confidence <strong>that your VIRON Home-Business can give you the best chance for success.</strong> <u className='text-red'>VIRON is to be by your side long term. For your success, VIRON means serious business. Please read everything carefully to ensure you have the correct expectations.</u></p>
+                            <p className='pb-40'><strong><em>&ldquo;People Fail&hellip;Systems Prevail&rdquo;</em></strong>. In the world that we live in, no one can guarantee you perfection. However, we genuinely believe and have utmost confidence <strong>that your VIRON Home-Business can give you the best chance for success.</strong> <u className='text-red'>VIRON is to be by your side long term. For your success, VIRON means serious business. Please read everything carefully to ensure you have the correct expectations.</u></p>
                             <h3 className='text-red text-center'><strong>NOTICE 2: </strong></h3>
                             <p className='text-center'>The qualified, third-party MLM company that is integrated with VIRON systems is: &ldquo;<strong>SAVE CLUB</strong>&rdquo; (<strong>SC</strong>). <em>*Their information and details are located in the left column of this page, under &ldquo;Information &amp; Resources&rdquo;. </em><strong>NOTICE: Although SC has been integrated with VIRON systems, please note that VIRON and SC (a third-party company) are <u>separate entities</u>.</strong></p>
-                            <p className='text-center'>:::</p>
+                            <p className='text-center pb-40'><strong>:::</strong></p>
                             <h3 className='text-red text-center'><strong>NOTICE 3: </strong></h3>
                             <p className='text-red text-center'>Know your business costs. The itemized cost and details of your <strong><u>VIRON Home-Business (&ldquo;VHB&rdquo;)</u></strong> is as follows:</p>
                             <ul>
@@ -84,13 +85,13 @@ function VironNotice() {
                             <p className='text-red'><strong>TOTAL COST DURING PRE-LAUNCH</strong>:</p>
                             <p className='text-red'>Above totals $499.00 + $20 crypto transaction fee = <strong>$<u>519.00</u></strong></p>
                             <p className='text-center pb-40'><strong>NOTE: </strong>If the cryptocurrency value drops while we are processing your transaction and setting up your account, it may cause a stall in the process. In this case, you will be contacted to provide the difference. <strong><em>*To avoid the risk of this inconvenience, the &ldquo;crypto transaction fee&rdquo; will also help cover the typical fluctuations in the crypto market for you.</em></strong></p>
-                            <p className='text-center'>:::</p>
+                            <p className='text-center'><strong>:::</strong></p>
                             <h3 className='text-red text-center'><strong>PAYMENT. </strong></h3>
                             <p className='text-center text-blue'>FYI: *STRIPE payment method, coming soon.</p>
                             <p className='text-center text-blue'>&amp;</p>
                             <p className='text-center text-blue pb-25'>*Automated Crypto-Currency Payment Processing by TYGA-Pay, coming soon.</p>
-                            <p className='text-center'>:::</p>
-                            <p>During Pre-Launch, we are <u>manually</u> accepting cryptocurrency payments:</p>
+                            <p className='text-center'><strong>:::</strong></p>
+                            <p className='text-center'>During Pre-Launch, we are <u>manually</u> accepting cryptocurrency payments:</p>
                             <p className='text-center'>Bitcoin (<strong>BTC</strong>),<br/>Ethereum (<strong>ETH</strong>),<br/><strong>USDT</strong> (<em>Tron Network</em>).</p>
                             <p className='text-center text-red'>To complete your <strong>VIRON Home-Business</strong> (&ldquo;<strong>VHB</strong>&rdquo;),<br/>please send your Cryptocurrency payment to:</p>
                             <hr/>
@@ -98,17 +99,17 @@ function VironNotice() {
                             <strong>Cryptocurrency Wallets</strong><br/>
                             <strong><em>(Bitcoin (BTC) is the preferred payment method)</em>:</strong></p>
                             <hr/>
-                            <img className='text-center' src="assets/bitcoin-qr.png" alt="bitcoin-qr"></img>
+                            <img className='img-center' src="assets/bitcoin-qr.png" alt="bitcoin-qr"></img>
                             <p className='text-center'><strong>BitCoin (BTC):</strong></p>
                             <p className='text-center pb-25'>1E92bqvm6JQ2DYAkHzjpdjRSWFDzx2dqk7</p>
                             <p className='text-center'><strong>Ethereum (ETH): </strong></p>
                             <p className='text-center pb-25'>0x0E83379C21dc46B6e989A316a07E503733cc53c8</p>
                             <p className='text-center'><strong>USDT (Tron) Network: </strong></p>
                             <p className='text-center pb-40'>TEtVu6h7Fr6u8KCLXac8ywZqgdrguPzS4Q</p>
-                            <p className='text-center'>:::</p>
+                            <p className='text-center'><strong>:::</strong></p>
                             <p className='text-center text-red'>When you make your manual crypto payment, please make sure to copy your<br />Crypto Transaction ID #. Then paste or enter it in the corresponding field below:</p>
-                            <div style={{ marginTop: '2rem' }}>
-                                <p><strong>Please enter your crypto transaction ID:</strong></p>
+                            <div style={{ marginTop: '2rem', marginBottom: '4rem' }}>
+                                <p className='text-center'><strong>Please enter your crypto transaction ID:</strong></p>
                                 <form className="crypto-form" onSubmit={handleSubmit}>
                                     <div className="form-group">
                                         <label htmlFor="btc_txn">BTC Blockchain Transaction ID:</label>
