@@ -110,6 +110,10 @@ ul>li, ol>li{
   padding-bottom: 25px;
 }
 
+.pb-20 {
+  padding-bottom: 20px;
+}
+
 hr {
     margin-top: 2rem;
     margin-bottom: 2rem;
