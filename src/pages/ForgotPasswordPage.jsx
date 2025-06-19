@@ -98,7 +98,7 @@ function ForgotPasswordPage() {
                     </nav>
                     <div className="auth-buttons">
                         <a href="http://viron.network:3000/register" className="button registration-button">Registration</a>
-                        <a href="http://viron.network:3000/login" className="button login-button">Login</a>
+                        <a href="http://148.113.201.173:4000/#/loginPage" className="button login-button">Login</a>
                     </div>
                 </div>
             </header>
@@ -107,7 +107,7 @@ function ForgotPasswordPage() {
             <section className="page-title-area">
                 <div className="container">
                     <div className="page-title-content">
-                        <h2>Forgot password</h2>
+                        <h2>Forgot Password</h2>
                     </div>
                 </div>
             </section>
@@ -219,7 +219,7 @@ function ForgotPasswordPage() {
                     <div className="footer-section access-section">
                         <h3 class="black-text">Access</h3>
                         <ul>
-                            <li><a href="http://viron.network:3000/login" className="footer-button login-footer-button">Login</a></li>
+                            <li><a href="http://148.113.201.173:4000/#/loginPage" className="footer-button login-footer-button">Login</a></li>
                             <li><a href="http://viron.network:3000/register" className="footer-button register-footer-button">Register</a></li>
                         </ul>
                     </div>
