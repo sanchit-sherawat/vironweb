@@ -98,8 +98,8 @@ hr {
   font-weight: 600;
   text-transform: uppercase;
   margin: 15px 0 5px 5px!important;
-  color: #cfcfcf;
-  border-bottom: #cfcfcf 1px dotted;
+  color:#000;
+  border-bottom: #545454 1px dotted;
   padding-bottom: 10px;
   border-top: 0px;
 }
