@@ -49,7 +49,9 @@
 .text-red {
   color: #D00000;
 }
-
+.text-highlighted{
+  background-color: yellow;
+}
 .text-tab{
   margin-left:40px;
 }
@@ -84,6 +86,12 @@ ul>li, ol>li{
 
 .pb-1 {
   padding-bottom: 1px;
+}
+.pb-40 {
+  padding-bottom: 40px;
+}
+.pb-25 {
+  padding-bottom: 25px;
 }
 
 hr {
