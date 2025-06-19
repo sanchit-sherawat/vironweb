@@ -108,7 +108,7 @@ function VironNotice() {
                             <p className='text-center pb-40'>TEtVu6h7Fr6u8KCLXac8ywZqgdrguPzS4Q</p>
                             <p className='text-center'><strong>:::</strong></p>
                             <p className='text-center text-red'>When you make your manual crypto payment, please make sure to copy your<br />Crypto Transaction ID #. Then paste or enter it in the corresponding field below:</p>
-                            <div style={{ marginTop: '2rem', marginBottom: '4rem' }}>
+                            <div style={{ marginTop: '4rem', marginBottom: '4rem' }}>
                                 <p className='text-center'><strong>Please enter your crypto transaction ID:</strong></p>
                                 <form className="crypto-form" onSubmit={handleSubmit}>
                                     <div className="form-group">
