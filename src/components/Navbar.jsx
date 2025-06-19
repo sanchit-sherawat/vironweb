@@ -12,7 +12,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-left">
         <img src='/assets/viron-logo.svg' alt="Logo" className="logo" />
-        <h2>Viron Network</h2>
+        <h2>VIRON NETWORK</h2>
       </div>
       <div onClick={()=>onpenEditPage()}  className="navbar-right">
         <p style={{padding:"10px"}}>@{username}</p>

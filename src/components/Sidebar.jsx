@@ -49,7 +49,7 @@ function Sidebar() {
             <FaTachometerAlt /> <span>Your VIRON Referral Link: VIRON.NETWORK/{username}</span>
           </NavLink>
         </li>
-
+        <li>&nbsp;</li>
         <li className="menu-group-title" style={{ textAlign:'center'}}>INFORMATION & RESOURCES:</li>
         <li>
           <NavLink to="/expectations-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
@@ -61,6 +61,7 @@ function Sidebar() {
             <FaChartLine /> <span>Core Perspective of VIRON</span>
           </NavLink>
         </li>
+        <li>&nbsp;</li>
         <li>
           <NavLink to="/mlm-qualifications" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaChartLine /> <span>MLM Qualifications</span>
@@ -71,6 +72,7 @@ function Sidebar() {
             <FaCog /> <span>Why SAVE CLUB</span>
           </NavLink>
         </li>
+        <li>&nbsp;</li>
         <li>
           <NavLink to="/faq" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaQuestionCircle /> <span>FAQ</span>
@@ -81,7 +83,7 @@ function Sidebar() {
             <FaChartLine /> <span>Earnings Disclaimers</span>
           </NavLink>
         </li>
-        
+        <li>&nbsp;</li>
         <li>
           <NavLink to="/edit-account" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaCog /> <span>Edit Account</span>
