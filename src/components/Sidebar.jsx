@@ -50,7 +50,7 @@ function Sidebar() {
           </NavLink>
         </li>
 
-        <li className="menu-group-title">INFORMATION & RESOURCES:</li>
+        <li className="menu-group-title" style={{ textAlign:'center'}}>INFORMATION & RESOURCES:</li>
         <li>
           <NavLink to="/expectations-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaChartLine /> <span>Expectations of VIRON</span>
