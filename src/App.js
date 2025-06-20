@@ -28,9 +28,11 @@ function App() {
     <Router basename="/member">
       <Routes>
         {/* <Route path='/login' element={<Login />} /> */}
+        <Route path='/' element={<LoginPage />} />
+
         <Route path='/loginPage' element={<LoginPage />} />
-        <Route path="/" element={!isAdmin?<VironNotice />:<UserList/>} />
-        <Route path="/home" element={<Home />} />
+        {/* <Route path="/" element={!isAdmin?<VironNotice />:<UserList/>} /> */}
+        {/* <Route path="/home" element={<Home />} /> */}
         <Route
           path='/dashboard'
           element={
