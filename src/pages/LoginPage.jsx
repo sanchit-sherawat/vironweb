@@ -92,7 +92,7 @@ function LoginPage() {
                     </nav>
                     <div className="auth-buttons">
                         <a href="http://viron.network:3000/register" className="button registration-button">Registration</a>
-                        <a href="http://148.113.201.173:4000/#/loginPage" className="button login-button">Login</a>
+                        <a href="https://viron.network/member/#/loginPage" className="button login-button">Login</a>
                     </div>
                 </div>
             </header>
@@ -201,7 +201,7 @@ function LoginPage() {
                     <div className="footer-section access-section">
                         <h3 class="black-text">Access</h3>
                         <ul>
-                            <li><a href="http://148.113.201.173:4000/#/loginPage" className="footer-button login-footer-button">Login</a></li>
+                            <li><a href="https://viron.network/member/#/loginPage" className="footer-button login-footer-button">Login</a></li>
                             <li><a href="http://viron.network:3000/register" className="footer-button register-footer-button">Register</a></li>
                         </ul>
                     </div>

@@ -59,7 +59,7 @@ function VironNotice() {
         <Layout>
             <div className="notice-container">
                 <div style={{ textAlign: "center", marginBottom: '2rem' }}>
-                <img src='/assets/viron-logo.svg' alt="Viron Logo" className="logo1" />
+                <img src='/member/assets/viron-logo.svg' alt="Viron Logo" className="logo1" />
                 </div>
 
                 <h1 className="member-title">MEMBER <span className="underline">CENTER</span></h1>

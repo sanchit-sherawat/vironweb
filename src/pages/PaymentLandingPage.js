@@ -7,7 +7,7 @@ export default function PaymentLandingPage() {
     <Layout>
     <div className="landing-container">
          <div style={{ paddingTop: '2rem' }} className="text-center">
-                            <img src='/assets/viron-logo.svg' alt="Viron Logo" className="img-logo-center" />
+                            <img src='/member/assets/viron-logo.svg' alt="Viron Logo" className="img-logo-center" />
                             <h2 className='pb-25'>NOTICE</h2>
                           
                         </div>
