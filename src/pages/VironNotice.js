@@ -82,7 +82,7 @@ function VironNotice() {
                                 <li><strong>VIRON Annual Registration Fee</strong> <del>$149.95</del> (waived during this pre-launch).</li>
                                 <li><strong>VIRON Direct Referrals (DRs)</strong> $195 each x2 = <del>$390</del> <span className='text-red'>(<u>reduced to only $199 total during this Pre-Launch</u>).</span> <em>*This limited pricing is subject to change without notice and in accordance with market demand. NOTE: There is a limit of 2 DRs per member, because you will only need 2 DRs to qualify for all commissions and bonuses per the SC Compensation Plan. <strong>STRONG NOTE: Each DR will bring forth a subsequent DR that will be placed under them, and so forth. <span className='text-highlighted'><u>Ensuring your downline grows with PAYING members, ongoing!</u></span> </strong></em></li>
                             </ul>
-                            <p className='text-red text-tab pb-20'><strong>TOTAL COST DURING PRE-LAUNCH</strong>:<br/>Above totals $499.00 + $20 crypto transaction fee = <strong>$<u>519.00</u></strong></p>
+                            <h2 className='text-red text-tab pb-20'><strong>TOTAL COST DURING PRE-LAUNCH</strong>:<br/>Above totals $499.00 + $20 crypto transaction fee = <strong>$<u>519.00</u></strong></h2>
                             <p className='text-center pb-40'><strong>NOTE: </strong>If the cryptocurrency value drops while we are processing your transaction and setting up your account, it may cause a stall in the process. In this case, you will be contacted to provide the difference. <strong><em>*To avoid the risk of this inconvenience, the &ldquo;crypto transaction fee&rdquo; will also help cover the typical fluctuations in the crypto market for you.</em></strong></p>
                             <p className='text-center'><strong>:::</strong></p>
                             <h3 className='text-red text-center'><strong>PAYMENT. </strong></h3>
@@ -107,21 +107,20 @@ function VironNotice() {
                             <p className='text-center'><strong>:::</strong></p>
                             <p className='text-center text-red'>When you make your manual crypto payment, please make sure to copy your<br />Crypto Transaction ID #. Then paste or enter it in the corresponding field below:</p>
                             <div style={{ marginTop: '4rem', marginBottom: '4rem' }}>
-                                <p className='text-center'><strong>Please enter your crypto transaction ID:</strong></p>
                                 <form className="crypto-form" onSubmit={handleSubmit}>
                                     <div className="form-group">
-                                        <label htmlFor="btc_txn">BTC Blockchain Transaction ID:</label>
-                                        <input type="text" id="btc_txn" name="btc_txn" value={formData.btc_txn} onChange={handleChange}  placeholder="Enter your BTC transaction ID" />
+                                        <label htmlFor="btc_txn">BTC Blockchain Transaction ID#</label>
+                                        <input type="text" id="btc_txn" name="btc_txn" value={formData.btc_txn} onChange={handleChange}  placeholder="Enter your BTC Blockchain Transaction ID#" />
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="eth_txn">ETH Blockchain Transaction ID:</label>
-                                        <input type="text" id="eth_txn" name="eth_txn" value={formData.eth_txn} onChange={handleChange} placeholder="Enter your ETH transaction ID" />
+                                        <label htmlFor="eth_txn">ETH Blockchain Transaction ID#</label>
+                                        <input type="text" id="eth_txn" name="eth_txn" value={formData.eth_txn} onChange={handleChange} placeholder="Enter your ETH Blockchain Transaction ID#" />
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="usdt_txn">USDT (Tron) Blockchain Transaction ID:</label>
-                                        <input type="text" id="usdt_txn" name="usdt_txn" value={formData.usdt_txn} onChange={handleChange} placeholder="Enter your USDT transaction ID" />
+                                        <label htmlFor="usdt_txn">USDT (Tron) Blockchain Transaction ID#</label>
+                                        <input type="text" id="usdt_txn" name="usdt_txn" value={formData.usdt_txn} onChange={handleChange} placeholder="Enter your USDT (Tron) Blockchain Transaction ID#" />
                                     </div>
 
                                     <button type="submit" className="submit-button">SUBMIT</button>

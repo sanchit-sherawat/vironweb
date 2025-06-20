@@ -39,13 +39,13 @@ function Sidebar() {
         </li>
 
         <li> 
-          <NavLink to="/username" className={({ isActive }) => isActive ? 'active' : ''}>
+          <NavLink to="#" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaTachometerAlt /> <span>Your VIRON Username: {username}</span>
           </NavLink>
         </li>
 
         <li>
-          <NavLink to="/referranl" className={({ isActive }) => isActive ? 'active' : ''}>
+          <NavLink to="#" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaTachometerAlt /> <span>Your VIRON Referral Link: VIRON.NETWORK/{username}</span>
           </NavLink>
         </li>
@@ -64,18 +64,18 @@ function Sidebar() {
         <li>&nbsp;</li>
         <li>
           <NavLink to="/mlm-qualifications" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaChartLine /> <span>MLM Qualifications</span>
+            <FaChartLine /> <span>MLM Company Qualifications</span>
           </NavLink>
         </li>
         <li>
           <NavLink to="/why-save-club" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaCog /> <span>Why SAVE CLUB</span>
+            <FaCog /> <span>Why SAVE CLUB (“SC”) is Qualified</span>
           </NavLink>
         </li>
         <li>&nbsp;</li>
         <li>
           <NavLink to="/faq" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaQuestionCircle /> <span>FAQ</span>
+            <FaQuestionCircle /> <span>Frequently Asked Questions (FAQ)</span>
           </NavLink>
         </li>
         <li>
@@ -86,7 +86,7 @@ function Sidebar() {
         <li>&nbsp;</li>
         <li>
           <NavLink to="/edit-account" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaCog /> <span>Edit Account</span>
+            <FaCog /> <span>Edit Your Account Information</span>
           </NavLink>
         </li>
         <li>
