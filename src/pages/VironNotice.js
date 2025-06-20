@@ -96,7 +96,7 @@ function VironNotice() {
                 <div className="row">
                     <div className='col'>
                         <div style={{ paddingTop: '2rem' }} className="text-center">
-                            <img src='/member/assets/viron-logo.svg' alt="Viron Logo" className="img-logo-center" />
+                            <img src='https://viron.network/member/assets/viron-logo.svg' alt="Viron Logo" className="img-logo-center" />
                             <h2 className='pb-25'>MEMBER CENTER</h2>
                             <p className='text-red text-center'><strong>:::</strong></p>
                             <h3 className='text-red'><strong><u>CRITICAL NOTICES & INSTRUCTIONS.</u></strong></h3>
