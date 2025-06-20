@@ -25,7 +25,7 @@ function App() {
 
 
   return (
-    <Router>
+    <Router basename="/member">
       <Routes>
         {/* <Route path='/login' element={<Login />} /> */}
         <Route path='/loginPage' element={<LoginPage />} />
