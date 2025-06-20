@@ -99,7 +99,7 @@ function FAQ() {
       question: "If I have my own LEADs, can VIRON call them for me?",
       answer: (
         <>
-          <p>VIRON&rsquo;s&nbsp;<a href="http://VIRON.NETWORK.com/faq"><strong><em>Dynamic Traffic Channels (&ldquo;DTC&rdquo;)</em></strong></a>&nbsp;does all the hard work to generate Leads, Contacts, and Traffic for you, automatically. Therefore, we do NOT need your Leads. <strong><u>Again, with VIRON, you no longer need to sell, sponsor, or recruit</u></strong>.</p>
+          <p>VIRON&rsquo;s&nbsp;<a href="https://VIRON.NETWORK.com/faq"><strong><em>Dynamic Traffic Channels (&ldquo;DTC&rdquo;)</em></strong></a>&nbsp;does all the hard work to generate Leads, Contacts, and Traffic for you, automatically. Therefore, we do NOT need your Leads. <strong><u>Again, with VIRON, you no longer need to sell, sponsor, or recruit</u></strong>.</p>
         </>
       )
     },

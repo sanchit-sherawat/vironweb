@@ -69,35 +69,35 @@ function ForgotPasswordPage() {
             <header className="main-header">
                 <div className="header-content">
                     <Link to="/" className="logo">
-                        <img src="http://viron.network:3000/assets/img/viron-logo.svg" alt="Viron Network Advisor" />
+                        <img src="https://viron.network/assets/img/viron-logo.svg" alt="Viron Network Advisor" />
                     </Link>
                     <nav className="main-nav">
                         <ul>
                             <li>
-                                <a href="http://viron.network:3000/index.html" className="nav-link">Home</a>
+                                <a href="https://viron.network/index.html" className="nav-link">Home</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/works" className="nav-link">How It Works</a>
+                                <a href="https://viron.network/works" className="nav-link">How It Works</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/about" className="nav-link">About Us</a>
+                                <a href="https://viron.network/about" className="nav-link">About Us</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/team" className="nav-link">Meet Our Team</a>
+                                <a href="https://viron.network/team" className="nav-link">Meet Our Team</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/mission" className="nav-link">Our Mission</a>
+                                <a href="https://viron.network/mission" className="nav-link">Our Mission</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/testimonials" className="nav-link">Testimonial</a>
+                                <a href="https://viron.network/testimonials" className="nav-link">Testimonial</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/contact" className="nav-link">Contact Us</a>
+                                <a href="https://viron.network/contact" className="nav-link">Contact Us</a>
                             </li>
                         </ul>
                     </nav>
                     <div className="auth-buttons">
-                        <a href="http://viron.network:3000/register" className="button registration-button">Registration</a>
+                        <a href="https://viron.network/register" className="button registration-button">Registration</a>
                         <a href="https://viron.network/member/loginPage" className="button login-button">Login</a>
                     </div>
                 </div>
@@ -186,32 +186,32 @@ function ForgotPasswordPage() {
             <footer className="main-footer">
                 <div className="container footer-content">
                     <div className="footer-section logo-section">
-                        <img src="http://viron.network:3000/assets/img/viron-logo-footer.svg" alt="VIRON.NETWORK" />
+                        <img src="https://viron.network/assets/img/viron-logo-footer.svg" alt="VIRON.NETWORK" />
                     </div>
 
                     <div className="footer-section navigation-section">
                         <h3 class="black-text">Navigation</h3>
                         <ul>
                             <li>
-                                <a href="http://viron.network:3000/index.html" className="nav-link">Home</a>
+                                <a href="https://viron.network/index.html" className="nav-link">Home</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/works" className="nav-link">How It Works</a>
+                                <a href="https://viron.network/works" className="nav-link">How It Works</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/about" className="nav-link">About Us</a>
+                                <a href="https://viron.network/about" className="nav-link">About Us</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/team" className="nav-link">Meet Our Team</a>
+                                <a href="https://viron.network/team" className="nav-link">Meet Our Team</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/mission" className="nav-link">Our Mission</a>
+                                <a href="https://viron.network/mission" className="nav-link">Our Mission</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/testimonials" className="nav-link">Testimonial</a>
+                                <a href="https://viron.network/testimonials" className="nav-link">Testimonial</a>
                             </li>
                             <li>
-                                <a href="http://viron.network:3000/contact" className="nav-link">Contact Us</a>
+                                <a href="https://viron.network/contact" className="nav-link">Contact Us</a>
                             </li>
                         </ul>
                     </div>
@@ -220,7 +220,7 @@ function ForgotPasswordPage() {
                         <h3 class="black-text">Access</h3>
                         <ul>
                             <li><a href="https://viron.network/member/loginPage" className="footer-button login-footer-button">Login</a></li>
-                            <li><a href="http://viron.network:3000/register" className="footer-button register-footer-button">Register</a></li>
+                            <li><a href="https://viron.network/register" className="footer-button register-footer-button">Register</a></li>
                         </ul>
                     </div>
 

@@ -84,7 +84,7 @@ body {
   
   /* Page Title Area */
   .page-title-area {
-    background-image: url('http://viron.network:3000/assets/img/banner/inner-banner.jpg'); /* Replace with your actual background image if needed */
+    background-image: url('https://viron.network/assets/img/banner/inner-banner.jpg'); /* Replace with your actual background image if needed */
     background-size: cover;
     background-position: center;
     padding: 80px 0;
