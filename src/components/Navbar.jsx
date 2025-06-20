@@ -4,8 +4,8 @@ import './Navbar.css';
 function Navbar() {
   let username = localStorage.getItem('username');
   let onpenEditPage =()=>{
-    // http://localhost:3002/#/edit-account
-    window.location.href = "https://viron.network/member/#/edit-account";
+    // http://localhost:3002/edit-account
+    window.location.href = "https://viron.network/member/edit-account";
 
   }
   return (
