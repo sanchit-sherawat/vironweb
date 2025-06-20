@@ -224,6 +224,7 @@ const TransactionPopup = ({
 
   const isPaid = transaction && currentUser?.is_confirmation === 1;
 
+
   // Find the referred user if user_refer_id is set
   const referredUser = allUsers?.find(u => u.id === currentUser?.user_refer_id);
   // alert("referredUser: " + JSON.stringify(referredUser)); 
@@ -231,9 +232,18 @@ const TransactionPopup = ({
   return (
     <div className="popup-overlay">
       <div className="popup-content">
+
         <h3>Transaction Details</h3>
-        <p><strong>Type:</strong> {transaction?.type || "—"}</p>
-        <p><strong>Value:</strong> {transaction?.value || "—"}</p>
+        <p><strong>Transaction Type:</strong> {transaction?.type || "—"}</p>
+        <p><strong>Transaction ID#:</strong> {transaction?.value || "—"}</p>
+        <p>
+          <strong>Transaction Time/Date:</strong>{' '}
+          {transaction?.created_at
+            ? new Date(transaction.created_at).toLocaleString()
+            : '—'}
+        </p>
+
+
         {isPaid && (
           <div className="referral-section">
             <h4 className="referral-title">Designated Sponsor (DS) Assigned</h4>
@@ -269,7 +279,7 @@ const TransactionPopup = ({
                   >
                     <option value="">Select Designated Sponsor</option>
                     {allUsers
-                      .filter(u =>(u.id !== currentUser.id&& u.is_confirmation === 1))
+                      .filter(u => (u.id !== currentUser.id && u.is_confirmation === 1))
                       .map(u => (
                         <option key={u.id} value={u.id}>
                           {u.user_name} ({u.email})
@@ -290,7 +300,7 @@ const TransactionPopup = ({
         )}
         <div style={{ marginTop: 20 }}>
           {canConfirm && (
-            <button className="confirm-btn" onClick={onConfirm}>Confirm</button>
+            <button className="confirm-btn" onClick={onConfirm}>Payment Confirmed</button>
           )}
           <button className="close-btn" onClick={onClose} style={{ marginLeft: 10 }}>Close</button>
         </div>

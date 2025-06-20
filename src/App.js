@@ -17,6 +17,7 @@ import './App.css';
 import Login from './pages/Login';
 import LoginPage from './pages/LoginPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import PaymentLandingPage from './pages/PaymentLandingPage';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -37,6 +38,10 @@ function App() {
               <VironNotice />
             </ProtectedRoute>
           }
+        />
+        <Route
+         path='/paymentlandingpage'
+         element={<PaymentLandingPage />}
         />
         <Route
           path='/admin/userlist'

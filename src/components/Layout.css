@@ -4,7 +4,7 @@
 }
 
 .sidebar {
-  width: 220px;
+  width: 290px;
   height: calc(100vh - 60px); /* full height minus navbar */
   position: fixed;
   top: 60px;
@@ -12,7 +12,7 @@
 }
 
 .content {
-  margin-left: 220px;
+  margin-left: 280px;
   padding: 20px;
   width: calc(100% - 220px);
 }
