@@ -43,11 +43,11 @@
 }
 
 .text-blue{
-  color: #0000B3;
+  color: #0000B3!important;
 }
 
 .text-red {
-  color: #D00000;
+  color: #D00000!important;
 }
 
 .text-highlighted{
@@ -114,6 +114,22 @@ ul>li, ol>li{
   padding-bottom: 20px;
 }
 
+.pb-10 {
+  padding-bottom: 10px;
+}
+
+.pb-0 {
+  padding: 0px;
+}
+
+.mt-0{
+  margin-top: 0px;
+}
+
+.mb-0{
+  margin-bottom: 0px;
+}
+
 hr {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -122,14 +138,51 @@ hr {
 }
 
 .menu-group-title {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
   margin: 15px 0 5px 5px!important;
-  color:#000;
+  color:#0000B3;
   border-bottom: #545454 1px dotted;
   padding-bottom: 10px;
   border-top: 0px;
+  text-align: center;
+}
+
+.btn{
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff!important;
+  background-color: #D00000;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #b00000;
+}
+
+.roman-list {
+  list-style: none; 
+  counter-reset: roman; 
+}
+
+.roman-list li {
+  counter-increment: roman;
+  position: relative;
+  margin-bottom: 0;
+  padding-left: 2em; 
+}
+
+.roman-list li::before {
+  content: "(" counter(roman, lower-roman) "." ")";  
+  position: absolute;
+  left: 0;
+  color: #D00000;
+  font-weight: bold;
 }
 
 /* FAQ Accordion Styles */

@@ -20,7 +20,7 @@ body {
   }
   
   .header-content {
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -46,13 +46,14 @@ body {
   
   .main-nav a {
     text-decoration: none;
-    color: #555;
+    color: #000000;
     font-weight: 600;
     transition: color 0.3s ease;
+    text-transform: uppercase;
   }
   
   .main-nav a:hover {
-    color: #007bff; /* Blue for hover */
+    color: #0000B3; /* Blue for hover */
   }
   
   .auth-buttons .button {
@@ -219,7 +220,7 @@ body {
   }
   
   .footer-content {
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -227,10 +228,6 @@ body {
     padding: 0 20px 30px;
   }
   .black-text {
-    color: black !important;
-  }
-  
-  .nav-link {
     color: black !important;
   }
   

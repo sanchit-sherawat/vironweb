@@ -131,10 +131,10 @@
   background-color: #0056b3;
 }
 .transaction-form-container {
-  margin: 4rem auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  padding: 0rem;
 }
 
 .crypto-form {
