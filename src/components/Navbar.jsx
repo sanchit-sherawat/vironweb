@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src='https://viron.network/member/assets/viron-logo.svg' alt="Logo" className="logo" />
+        <img src='https://viron.network/assets/img/viron-logo.svg' alt="Logo" className="logo" />
         <h2>Viron Network</h2>
       </div>
       <div onClick={()=>onpenEditPage()}  className="navbar-right">
