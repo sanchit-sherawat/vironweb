@@ -12,6 +12,15 @@
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
   transition: width 0.3s ease;
 }
+.not-clickable {
+  display: flex;
+  align-items: center;
+  color: #555;
+  padding: 8px 16px;
+  cursor: default;
+  opacity: 0.8;
+  text-decoration: none;
+}
 
 .sidebar-header {
   text-align: center;

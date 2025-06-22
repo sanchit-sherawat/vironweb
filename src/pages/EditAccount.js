@@ -5,10 +5,10 @@ import {API_BASE_URL} from './config';
 function EditAccount() {
   const [form, setForm] = useState({
     username: '',
-    fname: '',
-    lname: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -25,10 +25,10 @@ function EditAccount() {
       .then(data => {
         setForm({
           username: data.user_name || '',
-          fname: data.first_name || '',
-          lname: data.last_name || '',
+          firstName: data.first_name || '',
+          lastName: data.last_name || '',
           email: data.email || '',
-          phone: data.phone_number || '',
+          phoneNumber: data.phone_number || '',
         });
         setLoading(false);
       })
@@ -42,6 +42,7 @@ function EditAccount() {
   const handleSubmit = e => {
     e.preventDefault();
     setSaving(true);
+    console.log('Submitting form:', form);
     setMessage('');
     const token = localStorage.getItem('token');
     fetch(`${API_BASE_URL}/profile`, {
@@ -87,8 +88,8 @@ function EditAccount() {
               <label style={styles.label}>First Name</label>
               <input
                 type="text"
-                name="fname"
-                value={form.fname}
+                name="firstName"
+                value={form.firstName}
                 onChange={handleChange}
                 style={styles.input}
                 required
@@ -98,8 +99,8 @@ function EditAccount() {
               <label style={styles.label}>Last Name</label>
               <input
                 type="text"
-                name="lname"
-                value={form.lname}
+                name="lastName"
+                value={form.lastName}
                 onChange={handleChange}
                 style={styles.input}
                 required
@@ -121,8 +122,8 @@ function EditAccount() {
               <label style={styles.label}>Phone</label>
               <input
                 type="text"
-                name="phone"
-                value={form.phone}
+                name="phoneNumber"
+                value={form.phoneNumber}
                 onChange={handleChange}
                 style={styles.input}
               />

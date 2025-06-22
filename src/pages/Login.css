@@ -1,15 +1,23 @@
+/* Reset & Base */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
+  background-color: #f7f9fc;
 }
 
+/* Login Page Container */
 .login-page {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* Header */
 .login-header {
-  background: #d8f0ff;
-  padding: 3rem 0;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  padding: 3rem 1rem;
+  text-align: center;
 }
 
 .login-header h1 {
@@ -18,18 +26,22 @@ body {
   font-weight: 700;
 }
 
+/* Login Box */
 .login-box {
-  max-width: 400px;
+  background-color: white;
+  max-width: 420px;
+  width: 90%;
   margin: 2rem auto;
   padding: 2rem;
-  border: 1px solid #eee;
-  border-radius: 5px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .login-box h2 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 600;
   margin-bottom: 1.5rem;
+  color: #333;
 }
 
 .login-box input[type="text"],
@@ -38,40 +50,138 @@ body {
   padding: 0.75rem;
   margin-bottom: 1rem;
   font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s;
 }
 
+.login-box input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Options Row */
 .login-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.login-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .login-options a {
-  color: #53aaff;
+  color: #007bff;
   text-decoration: none;
 }
 
+.login-options a:hover {
+  text-decoration: underline;
+}
+
+/* Button */
 .login-box button {
   width: 100%;
-  padding: 0.8rem;
-  background: #d40000;
+  padding: 0.85rem;
+  background: #007bff;
   color: white;
   border: none;
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .login-box button:hover {
-  background: #bb0000;
+  background: #0056b3;
 }
-.forgot-login{
-  float: none!important;
-  margin-top: 15px;
+
+.login-error {
+  color: #d40000;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.forgot-login {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Navbar Styles (for enhancement) */
+.nav-area {
+  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+
+.navbar-brand img {
+  max-height: 40px;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-nav .nav-item {
+  display: inline-block;
+}
+
+.navbar-nav .nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .nav-others-option {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .default-btn {
+    width: 100%;
+    text-align: center;
+  }
 }

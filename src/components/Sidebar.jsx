@@ -39,13 +39,13 @@ function Sidebar() {
         </li>
 
         <li> 
-          <NavLink to="/username" className={({ isActive }) => isActive ? 'active' : ''}>
+          <NavLink  className="not-clickable">
             <FaTachometerAlt /> <span>Your VIRON Username:<br/>{username}</span>
           </NavLink>
         </li>
 
         <li>
-          <NavLink to="/referranl" className={({ isActive }) => isActive ? 'active' : ''}>
+          <NavLink className="not-clickable">
             <FaTachometerAlt /> <span>Your VIRON Referral Link:<br/> VIRON.NETWORK/{username}</span>
           </NavLink>
         </li>

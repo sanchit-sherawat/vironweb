@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import Layout from '../components/Layout';
 
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
+  import 'ag-grid-community/styles/ag-grid.css';
+  import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './UserList.css'; // <- Add this
 import { ADMIN_BASE_URL } from './config';
 import './TransactionPopup.css';
+import { FaTrash } from 'react-icons/fa';
 
 
 import { ModuleRegistry } from 'ag-grid-community';
@@ -30,6 +31,38 @@ function UserList() {
     setPopupCanConfirm(canConfirm);
     setPopupOpen(true);
   };
+
+  const handleDelete = async (userId) => {
+  if (!window.confirm('Are you sure you want to delete this user?')) return;
+  const token = localStorage.getItem('token');
+  try {
+    const response = await fetch(
+      `${ADMIN_BASE_URL}/adminapi/users/${userId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    if (response.ok) {
+      alert('User deleted successfully.');
+      setLoading(true);
+      fetch(`${ADMIN_BASE_URL}/adminapi/users`)
+        .then(res => res.json())
+        .then(data => {
+          setUsers(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    } else {
+      alert(result.message || 'Failed to delete user.');
+    }
+  } catch (err) {
+    alert('Network error. Please try again.');
+  }
+};
 
   const handleSaveRefer = async (referId) => {
     setSavingRefer(true);
@@ -115,7 +148,7 @@ function UserList() {
   }, []);
 
   const columnDefs = [
-    { headerName: "#", valueGetter: "node.rowIndex + 1", width: 80 },
+    { headerName: "User Name", field: "user_name", flex: 1},
     { headerName: "First Name", field: "first_name", flex: 1 },
     { headerName: "Last Name", field: "last_name", flex: 1 },
     { headerName: "Phone", field: "phone_number", flex: 1 },
@@ -143,21 +176,35 @@ function UserList() {
       cellRenderer: (params) => {
         const { transaction, id, is_confirmation } = params.data;
         return (
+          <>
           <button
             className="view-btn"
             onClick={() =>
-              params.context.handleView(
-                transaction,
-                id,
-                !!transaction && is_confirmation !== 1
-              )
-            }
-          >
-            View
-          </button>
+                params.context.handleView(
+                  transaction,
+                  id,
+                  !!transaction && is_confirmation !== 1
+                )
+              }
+            >
+              
+              View
+            </button>
+            {/* <h1> </h1> */}
+               <button
+          className="delete-btn"
+          style={{ marginLeft: 8 }}
+          onClick={() => params.context.handleDelete(id)}
+          title="Delete User"
+        >
+          <FaTrash />
+        </button>
+
+           
+          </>
         );
       },
-      width: 130,
+      width: 170,
     },
   ];
 
@@ -171,13 +218,15 @@ function UserList() {
         ) : (
           <div className="ag-theme-alpine" style={{ width: '100%' }}>
             <AgGridReact
+            theme="legacy"
               rowData={users}
               columnDefs={columnDefs}
               pagination={true}
-              paginationPageSize={15}
+              paginationPageSize={50}
               domLayout="autoHeight"
               context={{
                 handleView,
+                handleDelete,
               }}
             />
           </div>

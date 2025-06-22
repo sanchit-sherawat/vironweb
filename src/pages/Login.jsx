@@ -11,7 +11,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-    useEffect(() => {
+  useEffect(() => {
     //CSS
     const cssFiles = [
       'https://viron.network/assets/css/bootstrap.min.css',
@@ -101,7 +101,7 @@ function Login() {
         } else {
           localStorage.removeItem('username');
         }
-        
+
       }
     } catch (err) {
       setError('Network error. Please try again.');
@@ -112,87 +112,64 @@ function Login() {
   return (
     <div>
       {/* Loader */}
-      
+
 
       {/* START NAV AREA */}
-      <div className="nav-area">
-        <div className="navbar-area">
-          <div className="main-nav">
-            <nav className="navbar navbar-expand-md">
-              <div className="container">
-                <a className="navbar-brand" href="https://viron.network/index.html">
-                  <img src="https://viron.network/assets/img/viron-logo.svg" alt="Logo" />
-                </a>
+      <nav className="navbar navbar-expand-md">
+        <div className="container">
+          <a className="navbar-brand" href="https://viron.network/index.html">
+            <img src="https://viron.network/assets/img/viron-logo.svg" alt="Logo" />
+          </a>
 
-                <div className="collapse navbar-collapse mean-menu">
-                  <ul className="navbar-nav m-auto">
-                    <li className="nav-item">
-                      <a href="https://viron.network/index.html" className="nav-link">Home</a>
-                    </li>
-                    <li className="nav-item">
-                      <a href="https://viron.network/works" className="nav-link">How It Works</a>
-                    </li>
-                    <li className="nav-item">
-                      <a href="https://viron.network/about" className="nav-link">About Us</a>
-                    </li>
-                    <li className="nav-item">
-                      <a href="https://viron.network/team" className="nav-link">Meet Our Team</a>
-                    </li>
-                    <li className="nav-item">
-                      <a href="https://viron.network/mission" className="nav-link">Our Mission</a>
-                    </li>
-                    <li className="nav-item">
-                      <a href="https://viron.network/testimonials" className="nav-link">Testimonial</a>
-                    </li>
-                    <li className="nav-item">
-                      <a href="https://viron.network/contact" className="nav-link">Contact Us</a>
-                    </li>
-                  </ul>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-                  {/* Start Others Option */}
-                  <div className="nav-others-option desktop d-flex align-items-center">
-                    <a href="https://viron.network/register" className="default-btn icon menu-btn-style">
-                      Registration
-                    </a>&nbsp;
-                    <a href="https://viron.network/login" className="default-btn blue-btn icon menu-btn-style">
-                      Login
-                    </a>
-                  </div>
-                  {/* End Others Option */}
-                </div>
-              </div>
-            </nav>
-          </div>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav m-auto">
+              <li className="nav-item">
+                <a href="https://viron.network/index.html" className="nav-link">Home</a>
+              </li>
+              <li className="nav-item">
+                <a href="https://viron.network/works" className="nav-link">How It Works</a>
+              </li>
+              <li className="nav-item">
+                <a href="https://viron.network/about" className="nav-link">About Us</a>
+              </li>
+              <li className="nav-item">
+                <a href="https://viron.network/team" className="nav-link">Meet Our Team</a>
+              </li>
+              <li className="nav-item">
+                <a href="https://viron.network/mission" className="nav-link">Our Mission</a>
+              </li>
+              <li className="nav-item">
+                <a href="https://viron.network/testimonials" className="nav-link">Testimonial</a>
+              </li>
+              <li className="nav-item">
+                <a href="https://viron.network/contact" className="nav-link">Contact Us</a>
+              </li>
+            </ul>
 
-          {/* Menu For Mobile Device */}
-          <div className="mobile-nav">
-            <a href="index.html" className="logo">
-              <img src="https://viron.network/assets/img/viron-logo.svg" alt="Viron" />
-            </a>
-            {/* Start Others Option */}
-            <div className="container">
-              <div className="dot-menu">
-                <div className="inner">
-                  <div className="circle circle-one"></div>
-                  <div className="circle circle-two"></div>
-                  <div className="circle circle-three"></div>
-                </div>
-              </div>
-              <div className="container">
-                <div className="option-inner">
-                  <div className="nav-others-option d-flex align-items-center">
-                    <a href="https://viron.network/register" className="default-btn icon menu-btn-style">Registration</a>
-                  </div>
-                  <div className="nav-others-option d-flex align-items-center">
-                    <a href="https://viron.network/login" className="default-btn blue-btn icon menu-btn-style">Login</a>
-                  </div>
-                </div>
-              </div>
+            <div className="nav-others-option desktop d-flex align-items-center">
+              <a href="https://viron.network/register" className="default-btn icon menu-btn-style">
+                Registration
+              </a>&nbsp;
+              <a href="https://viron.network/login" className="default-btn blue-btn icon menu-btn-style">
+                Login
+              </a>
             </div>
-            {/* End Others Option */}
           </div>
         </div>
-      </div>
+      </nav>
+
       {/* END NAV AREA */}
 
       {/* START PAGE TITLE AREA */}
@@ -200,7 +177,7 @@ function Login() {
         <div className="container">
           <div className="page-title-content">
             <h2>Login</h2>
-            
+
           </div>
         </div>
       </div>
@@ -216,60 +193,60 @@ function Login() {
             </div>
             <form onSubmit={handleSubmit} data-aos="fade-up" data-aos-duration="1600">
               <div className="row">
-							<div className="col-12">
-								<div className="form-group">
-                  <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
-                  autoComplete="username"
-                />
-								</div>
-							</div>
-
-							<div className="col-12">
-								<div className="form-group">
-                  <input
-                  className="form-control"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  autoComplete="current-password"
-                />
-								</div>
-							</div>
-
-							<div className="col-12">
-								<div className="login-action">
-									<span className="log-rem">
-                     <input
-                    type="checkbox"
-                    id="remember"
-                    checked={remember}
-                    onChange={e => setRemember(e.target.checked)}
+                <div className="col-12">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Enter your username"
+                      value={username}
+                      onChange={e => setUsername(e.target.value)}
+                      autoComplete="username"
                     />
-										<label htmlFor="remember">Remember me!</label>
-									</span>
-									
-								</div>
-							</div>
-              {error && <div className="login-error">{error}</div>}
-							<div className="col-12">
-								<button className="default-btn btn-two" type="submit" disabled={loading}>
-                  {loading ? 'Logging in...' : 'LOG IN NOW'}
-								</button>
-							</div>
-              <div className="col-12">
-								<div className="login-action text-center">
-									<span className="forgot-login">
-										<Link to="/forgot-password">Forgot password?</Link>
-									</span>
-								</div>
-							</div>
-						</div>
+                  </div>
+                </div>
+
+                <div className="col-12">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      autoComplete="current-password"
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12">
+                  <div className="login-action">
+                    <span className="log-rem">
+                      <input
+                        type="checkbox"
+                        id="remember"
+                        checked={remember}
+                        onChange={e => setRemember(e.target.checked)}
+                      />
+                      <label htmlFor="remember">Remember me!</label>
+                    </span>
+
+                  </div>
+                </div>
+                {error && <div className="login-error">{error}</div>}
+                <div className="col-12">
+                  <button className="default-btn btn-two" type="submit" disabled={loading}>
+                    {loading ? 'Logging in...' : 'LOG IN NOW'}
+                  </button>
+                </div>
+                <div className="col-12">
+                  <div className="login-action text-center">
+                    <span className="forgot-login">
+                      <Link to="/forgot-password">Forgot password?</Link>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </form>
           </div>
         </div>
