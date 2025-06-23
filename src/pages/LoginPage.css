@@ -417,3 +417,45 @@ body {
       margin-top: 10px;
     }
   }
+
+
+/* Hamburger Icon Styles */
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #000;
+  margin-left: auto;
+}
+
+/* Responsive Nav - mobile toggle */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .main-nav {
+    display: none;
+    width: 100%;
+  }
+
+  body.nav-open .main-nav {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    margin-top: 15px;
+    align-items: center;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .auth-buttons .button {
+    margin: 5px 0;
+  }
+}

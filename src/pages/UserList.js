@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import Layout from '../components/Layout';
 
-  import 'ag-grid-community/styles/ag-grid.css';
-  import 'ag-grid-community/styles/ag-theme-alpine.css';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './UserList.css'; // <- Add this
 import { ADMIN_BASE_URL } from './config';
 import './TransactionPopup.css';
@@ -24,6 +24,12 @@ function UserList() {
   const [popupUserId, setPopupUserId] = useState(null);
   const [popupCanConfirm, setPopupCanConfirm] = useState(false);
   const [savingRefer, setSavingRefer] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const gridRef = React.useRef();
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
 
   const handleView = (transaction, userId, canConfirm) => {
     setPopupTransaction(transaction);
@@ -33,36 +39,36 @@ function UserList() {
   };
 
   const handleDelete = async (userId) => {
-  if (!window.confirm('Are you sure you want to delete this user?')) return;
-  const token = localStorage.getItem('token');
-  try {
-    const response = await fetch(
-      `${ADMIN_BASE_URL}/adminapi/users/${userId}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
+    if (!window.confirm('Are you sure you want to delete this user?')) return;
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(
+        `${ADMIN_BASE_URL}/adminapi/users/${userId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
+      const result = await response.json();
+      if (response.ok) {
+        alert('User deleted successfully.');
+        setLoading(true);
+        fetch(`${ADMIN_BASE_URL}/adminapi/users`)
+          .then(res => res.json())
+          .then(data => {
+            setUsers(data);
+            setLoading(false);
+          })
+          .catch(() => setLoading(false));
+      } else {
+        alert(result.message || 'Failed to delete user.');
       }
-    );
-    const result = await response.json();
-    if (response.ok) {
-      alert('User deleted successfully.');
-      setLoading(true);
-      fetch(`${ADMIN_BASE_URL}/adminapi/users`)
-        .then(res => res.json())
-        .then(data => {
-          setUsers(data);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    } else {
-      alert(result.message || 'Failed to delete user.');
+    } catch (err) {
+      alert('Network error. Please try again.');
     }
-  } catch (err) {
-    alert('Network error. Please try again.');
-  }
-};
+  };
 
   const handleSaveRefer = async (referId) => {
     setSavingRefer(true);
@@ -136,23 +142,111 @@ function UserList() {
   };
 
 
+  // useEffect(() => {
+  //   fetch(`${ADMIN_BASE_URL}/adminapi/users`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       setUsers(data);
+  //       setLoading(false);
+  //     })
+  //     .catch(() => setLoading(false));
+  // }, []);
   useEffect(() => {
     fetch(`${ADMIN_BASE_URL}/adminapi/users`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // alert("all users: " + JSON.stringify(data));
         setUsers(data);
+        setFilteredUsers(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+    if (!fromDate && !toDate) {
+      setFilteredUsers(users);
+      return;
+    }
+
+    const from = fromDate ? new Date(fromDate) : null;
+    const to = toDate ? new Date(toDate) : null;
+
+    const result = users.filter(user => {
+      if (!user.user_created_at) return false;
+      const createdDate = new Date(user.user_created_at);
+      if (from && createdDate <= from) return false;
+      if (to && createdDate >= to) return false;
+      return true;
+    });
+
+    setFilteredUsers(result);
+  }, [fromDate, toDate, users]);
+
+  const handleExportByDateRange = () => {
+    if (gridRef.current?.api) {
+      const csv = gridRef.current.api.getDataAsCsv({
+        onlySelected: false,
+        allColumns: true,
+      });
+
+      // Download manually
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute('download', 'users-list.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+
+
+
   const columnDefs = [
-    { headerName: "User Name", field: "user_name", flex: 1},
-    { headerName: "First Name", field: "first_name", flex: 1 },
-    { headerName: "Last Name", field: "last_name", flex: 1 },
-    { headerName: "Phone", field: "phone_number", flex: 1 },
-    { headerName: "Email", field: "email", flex: 1 },
+    { headerName: "User Name", field: "user_name", flex: 1, minWidth: 150 },
+    { headerName: "First Name", field: "first_name", flex: 1, minWidth: 150 },
+    { headerName: "Last Name", field: "last_name", flex: 1, minWidth: 150 },
+    { headerName: "Phone", field: "phone_number", flex: 1, minWidth: 150 },
+    { headerName: "Email", field: "email", flex: 1, minWidth: 150 },
+    {
+      headerName: "Created Date",
+      field: "user_created_at",
+      filter: "agDateColumnFilter",
+      sortable: true,
+      flex: 1,
+      valueFormatter: (params) =>
+        params.value ? new Date(params.value).toLocaleDateString() : "—",
+      filterParams: {
+        comparator: (filterLocalDateAtMidnight, cellValue) => {
+          const cellDate = new Date(cellValue);
+          const cellDateOnly = new Date(
+            cellDate.getFullYear(),
+            cellDate.getMonth(),
+            cellDate.getDate()
+          );
+          if (cellDateOnly < filterLocalDateAtMidnight) return -1;
+          if (cellDateOnly > filterLocalDateAtMidnight) return 1;
+          return 0;
+        },
+        browserDatePicker: true,
+      },
+      minWidth: 150
+    },
+{
+  headerName: "Referred By",
+  field: "user_refer_id",
+  flex: 1,
+  minWidth: 180,
+  valueGetter: params => {
+    // Find the user whose id matches user_refer_id
+    const allUsers = params.context?.allUsers || [];
+    const referredUser = allUsers.find(u => u.id === params.data.user_refer_id);
+    return referredUser ? referredUser.user_name : "";
+  }
+},
     {
       headerName: "Payment Status",
       field: "payment_status",
@@ -169,7 +263,8 @@ function UserList() {
         if (status === "Paid") return { color: "#43e97b", fontWeight: 700 };
         if (status === "Need Verify") return { color: "#ff9800", fontWeight: 700 };
         return { color: "#e53935", fontWeight: 700 };
-      }
+      },
+      minWidth: 150
     },
     {
       headerName: "Action",
@@ -177,9 +272,9 @@ function UserList() {
         const { transaction, id, is_confirmation } = params.data;
         return (
           <>
-          <button
-            className="view-btn"
-            onClick={() =>
+            <button
+              className="view-btn"
+              onClick={() =>
                 params.context.handleView(
                   transaction,
                   id,
@@ -187,20 +282,20 @@ function UserList() {
                 )
               }
             >
-              
+
               View
             </button>
             {/* <h1> </h1> */}
-               <button
-          className="delete-btn"
-          style={{ marginLeft: 8 }}
-          onClick={() => params.context.handleDelete(id)}
-          title="Delete User"
-        >
-          <FaTrash />
-        </button>
+            <button
+              className="delete-btn"
+              style={{ marginLeft: 8 }}
+              onClick={() => params.context.handleDelete(id)}
+              title="Delete User"
+            >
+              <FaTrash />
+            </button>
 
-           
+
           </>
         );
       },
@@ -217,17 +312,159 @@ function UserList() {
           <p>Loading...</p>
         ) : (
           <div className="ag-theme-alpine" style={{ width: '100%' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '1.5rem',
+                alignItems: 'flex-end',
+                justifyContent: 'space-between',
+                marginBottom: '24px',
+                fontFamily: 'Segoe UI, sans-serif',
+              }}
+            >
+              {/* Search Input */}
+              <div style={{ flexGrow: 1, maxWidth: 300 }}>
+                <label
+                  htmlFor="search"
+                  style={{
+                    display: 'block',
+                    marginBottom: 6,
+                    fontSize: 14,
+                    color: '#37474f',
+                    fontWeight: 600,
+                  }}
+                >
+                  Search
+                </label>
+                <input
+                  id="search"
+                  type="text"
+                  placeholder="Search"
+                  value={searchText}
+                  onChange={e => {
+                    setSearchText(e.target.value);
+                    if (gridRef.current?.api?.setQuickFilter) {
+                      gridRef.current.api.setQuickFilter(e.target.value);
+                    }
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '10px 14px',
+                    borderRadius: 6,
+                    border: '1.5px solid #90a4ae',
+                    fontSize: 15,
+                    outline: 'none',
+                  }}
+                />
+              </div>
+
+              {/* From Date */}
+              <div>
+                <label
+                  htmlFor="fromDate"
+                  style={{
+                    display: 'block',
+                    marginBottom: 6,
+                    fontSize: 14,
+                    color: '#37474f',
+                    fontWeight: 600,
+                  }}
+                >
+                  From
+                </label>
+                <input
+                  id="fromDate"
+                  type="date"
+                  value={fromDate}
+                  onChange={e => setFromDate(e.target.value)}
+                  style={{
+                    padding: '10px 14px',
+                    borderRadius: 6,
+                    border: '1.5px solid #90a4ae',
+                    fontSize: 15,
+                    width: 180,
+                    outline: 'none',
+                  }}
+                />
+              </div>
+
+              {/* To Date */}
+              <div>
+                <label
+                  htmlFor="toDate"
+                  style={{
+                    display: 'block',
+                    marginBottom: 6,
+                    fontSize: 14,
+                    color: '#37474f',
+                    fontWeight: 600,
+                  }}
+                >
+                  To
+                </label>
+                <input
+                  id="toDate"
+                  type="date"
+                  value={toDate}
+                  onChange={e => setToDate(e.target.value)}
+                  style={{
+                    padding: '10px 14px',
+                    borderRadius: 6,
+                    border: '1.5px solid #90a4ae',
+                    fontSize: 15,
+                    width: 180,
+                    outline: 'none',
+                  }}
+                />
+              </div>
+
+              {/* Export Button */}
+              <div>
+                <label style={{ display: 'block', marginBottom: 6, opacity: 0 }}>Export</label>
+                <button
+                  onClick={handleExportByDateRange}
+                  style={{
+                    padding: '11px 20px',
+                    backgroundColor: '#1976d2',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: 6,
+                    fontWeight: 600,
+                    fontSize: 15,
+                    cursor: 'pointer',
+                    width: 120,
+                  }}
+                >
+                  Export
+                </button>
+              </div>
+            </div>
+
+
+
             <AgGridReact
-            theme="legacy"
-              rowData={users}
+              ref={gridRef}
+              onGridReady={params => {
+                gridRef.current = params;
+              }}
+              quickFilterText={searchText}
+              theme="legacy"
+              rowData={filteredUsers}
               columnDefs={columnDefs}
               pagination={true}
+              animateRows={true}
               paginationPageSize={50}
+              suppressHorizontalScroll={false}
+
               domLayout="autoHeight"
               context={{
                 handleView,
                 handleDelete,
+                allUsers: users,
               }}
+
+
             />
           </div>
         )}
@@ -303,19 +540,19 @@ const TransactionPopup = ({
                 <div className="referral-card">
                   <div className="referral-field">
                     <span className="label">VIRON Username:</span>
-                    <span className="value">{referredUser.user_name}</span>
+                    <span className="value">{referredUser?.user_name}</span>
                   </div>
                   <div className="referral-field">
                     <span className="label">User Email:</span>
-                    <span className="value">{referredUser.email}</span>
+                    <span className="value">{referredUser?.email}</span>
                   </div>
                   <div className="referral-field">
                     <span className="label">First Name:</span>
-                    <span className="value">{referredUser.first_name}</span>
+                    <span className="value">{referredUser?.first_name}</span>
                   </div>
                   <div className="referral-field">
                     <span className="label">Last Name:</span>
-                    <span className="value">{referredUser.last_name}</span>
+                    <span className="value">{referredUser?.last_name}</span>
                   </div>
                 </div>
 

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css'; // Your custom CSS file
@@ -17,7 +18,6 @@ function LoginPage() {
         e.preventDefault();
         setError('');
 
-        // Simple validation
         if (!username || !password) {
             setError('Please enter both username and password.');
             return;
@@ -32,26 +32,18 @@ function LoginPage() {
             });
 
             const data = await response.json();
-            console.log("data",data);
-            
             if (!response.ok) {
                 setError(data.message || 'Login failed');
             } else {
-                // Optionally store token or user info here
-                if (response.ok) {
-                    localStorage.setItem('username', username);
-                    localStorage.setItem('token', data.token); // Assuming the API returns a token
-                    localStorage.setItem('userId', data.userId); // Assuming the API returns a user ID
-                    localStorage.setItem('isAdmin', data.isAdmin); // Assuming the API returns an isAdmin flag
-                    if (data.isAdmin === 1) {
-                        navigate('/admin/userlist');
-                    } else {
-                        navigate('/dashboard');
-                    }
+                localStorage.setItem('username', username);
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('userId', data.userId);
+                localStorage.setItem('isAdmin', data.isAdmin);
+                if (data.isAdmin === 1) {
+                    navigate('/admin/userlist');
                 } else {
-                    localStorage.removeItem('username');
+                    navigate('/dashboard');
                 }
-
             }
         } catch (err) {
             setError('Network error. Please try again.');
@@ -61,45 +53,35 @@ function LoginPage() {
 
     return (
         <div className="login-page-container">
-            {/* Header */}
             <header className="main-header">
                 <div className="header-content">
                     <Link to="/" className="logo">
                         <img src="https://viron.network/assets/img/viron-logo.svg" alt="Viron Network Advisor" />
                     </Link>
+
+                    <div className="hamburger" onClick={() => document.body.classList.toggle('nav-open')}>
+                        &#9776;
+                    </div>
+
                     <nav className="main-nav">
                         <ul>
-                            <li>
-                                <a href="https://viron.network/index.html" className="nav-link">Home</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/works" className="nav-link">How It Works</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/about" className="nav-link">About Us</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/team" className="nav-link">Meet Our Team</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/mission" className="nav-link">Our Mission</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/testimonials" className="nav-link">Testimonial</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/contact" className="nav-link">Contact Us</a>
-                            </li>
+                            <li><a href="https://viron.network/index.html">Home</a></li>
+                            <li><a href="https://viron.network/works">How It Works</a></li>
+                            <li><a href="https://viron.network/about">About Us</a></li>
+                            <li><a href="https://viron.network/team">Meet Our Team</a></li>
+                            <li><a href="https://viron.network/mission">Our Mission</a></li>
+                            <li><a href="https://viron.network/testimonials">Testimonial</a></li>
+                            <li><a href="https://viron.network/contact">Contact Us</a></li>
                         </ul>
                     </nav>
+
                     <div className="auth-buttons">
                         <a href="https://viron.network/register" className="button registration-button">Registration</a>
-                        <a href="https://viron.network/member/loginPage" className="button login-button">Login</a>
+                        {/* <a href="https://viron.network/member/loginPage" className="button login-button">Login</a> */}
                     </div>
                 </div>
             </header>
 
-            {/* Page Title Area */}
             <section className="page-title-area">
                 <div className="container">
                     <div className="page-title-content">
@@ -108,7 +90,6 @@ function LoginPage() {
                 </div>
             </section>
 
-            {/* Login Area */}
             <section className="user-area-style login-area">
                 <div className="container">
                     <div className="login-form-action">
@@ -118,47 +99,19 @@ function LoginPage() {
                         </div>
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    placeholder="Enter your username"
-                                    value={username}
-                                    onChange={e => setUsername(e.target.value)}
-                                    autoComplete="username"
-                                />
+                                <input className="form-control" type="text" placeholder="Enter your username" value={username} onChange={e => setUsername(e.target.value)} autoComplete="username" />
                             </div>
 
                             <div className="form-group" style={{ position: "relative" }}>
-                                <input
-                                    className="form-control"
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="Enter your password"
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
-                                    autoComplete="current-password"
-                                    />
-                                    <span
-                                    onClick={() => setShowPassword(prev => !prev)}
-                                    style={{
-                                        position: "absolute",
-                                        right: "20px",
-                                        top: "50%",
-                                        transform: "translateY(-50%)",
-                                        cursor: "pointer"
-                                    }}
-                                    >
+                                <input className="form-control" type={showPassword ? "text" : "password"} placeholder="Enter your password" value={password} onChange={e => setPassword(e.target.value)} autoComplete="current-password" />
+                                <span onClick={() => setShowPassword(prev => !prev)} style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}>
                                     {showPassword ? <FaEyeSlash /> : <FaEye />}
-                                    </span>
+                                </span>
                             </div>
 
                             <div className="login-action">
                                 <span className="remember-me">
-                                    <input
-                                        type="checkbox"
-                                        id="remember"
-                                        checked={remember}
-                                        onChange={e => setRemember(e.target.checked)}
-                                    />
+                                    <input type="checkbox" id="remember" checked={remember} onChange={e => setRemember(e.target.checked)} />
                                     <label htmlFor="remember">Remember me!</label>
                                 </span>
                             </div>
@@ -178,50 +131,32 @@ function LoginPage() {
                 </div>
             </section>
 
-            {/* Footer */}
             <footer className="main-footer">
                 <div className="container footer-content">
                     <div className="footer-section logo-section">
                         <img src="https://viron.network/assets/img/viron-logo-footer.svg" alt="VIRON.NETWORK" />
                     </div>
-
                     <div className="footer-section navigation-section">
-                        <h3 class="black-text">Navigation</h3>
+                        <h3 className="black-text">Navigation</h3>
                         <ul>
-                            <li>
-                                <a href="https://viron.network/index.html" className="nav-link">Home</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/works" className="nav-link">How It Works</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/about" className="nav-link">About Us</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/team" className="nav-link">Meet Our Team</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/mission" className="nav-link">Our Mission</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/testimonials" className="nav-link">Testimonial</a>
-                            </li>
-                            <li>
-                                <a href="https://viron.network/contact" className="nav-link">Contact Us</a>
-                            </li>
+                            <li><a href="https://viron.network/index.html" className="nav-link">Home</a></li>
+                            <li><a href="https://viron.network/works" className="nav-link">How It Works</a></li>
+                            <li><a href="https://viron.network/about" className="nav-link">About Us</a></li>
+                            <li><a href="https://viron.network/team" className="nav-link">Meet Our Team</a></li>
+                            <li><a href="https://viron.network/mission" className="nav-link">Our Mission</a></li>
+                            <li><a href="https://viron.network/testimonials" className="nav-link">Testimonial</a></li>
+                            <li><a href="https://viron.network/contact" className="nav-link">Contact Us</a></li>
                         </ul>
                     </div>
-
                     <div className="footer-section access-section">
-                        <h3 class="black-text">Access</h3>
+                        <h3 className="black-text">Access</h3>
                         <ul>
-                            <li><a href="https://viron.network/member/loginPage" className="footer-button login-footer-button">Login</a></li>
+                            {/* <li><a href="https://viron.network/member/loginPage" className="footer-button login-footer-button">Login</a></li> */}
                             <li><a href="https://viron.network/register" className="footer-button register-footer-button">Register</a></li>
                         </ul>
                     </div>
-
                     <div className="footer-section social-media-section">
-                        <h3 class="black-text">Social Media</h3>
+                        <h3 className="black-text">Social Media</h3>
                         <ul className="social-icons">
                             <li><a href="#"><i className="bx bxl-facebook"></i></a></li>
                             <li><a href="#"><i className="bx bxl-instagram"></i></a></li>
@@ -230,23 +165,20 @@ function LoginPage() {
                         </ul>
                     </div>
                 </div>
-
                 <div className="footer-bottom-area">
                     <div className="container copy-right">
-                        <p class="black-text">Copyright &copy; 2025 VIRON.NETWORK. All rights reserved.</p>
+                        <p className="black-text">Copyright &copy; 2025 VIRON.NETWORK. All rights reserved.</p>
                         <p>
-                        <a href="https://viron.network/faq.html"><b>FAQ</b></a> | <a href="https://viron.network/privacy-policy.html"><b>Privacy Policy</b></a> | <a href="https://viron.network/disclaimer.html"><b>Disclaimer</b></a> | <a href="https://viron.network/terms-of-use.html"><b>Terms of Use</b></a> | <a href="https://viron.network/service-agreement.html"><b>Service Agreement</b></a>
+                            <a href="https://viron.network/faq.html"><b>FAQ</b></a> | <a href="https://viron.network/privacy-policy.html"><b>Privacy Policy</b></a> | <a href="https://viron.network/disclaimer.html"><b>Disclaimer</b></a> | <a href="https://viron.network/terms-of-use.html"><b>Terms of Use</b></a> | <a href="https://viron.network/service-agreement.html"><b>Service Agreement</b></a>
                         </p>
                     </div>
                 </div>
             </footer>
 
-            {/* Go Top Button */}
             <div className="go-top">
                 <i className="bx bx-chevrons-up"></i>
             </div>
         </div>
-    
     );
 }
 
