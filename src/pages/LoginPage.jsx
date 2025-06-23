@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css'; // Your custom CSS file
 import { API_BASE_URL } from './config';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function LoginPage() {
+    const [showPassword, setShowPassword] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
@@ -126,15 +128,27 @@ function LoginPage() {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            <div className="form-group" style={{ position: "relative" }}>
                                 <input
                                     className="form-control"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     placeholder="Enter your password"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
                                     autoComplete="current-password"
-                                />
+                                    />
+                                    <span
+                                    onClick={() => setShowPassword(prev => !prev)}
+                                    style={{
+                                        position: "absolute",
+                                        right: "20px",
+                                        top: "50%",
+                                        transform: "translateY(-50%)",
+                                        cursor: "pointer"
+                                    }}
+                                    >
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                    </span>
                             </div>
 
                             <div className="login-action">
@@ -152,7 +166,7 @@ function LoginPage() {
                             <button className="submit-button" type="submit" disabled={loading}>
                                 {loading ? 'Logging in...' : 'LOG IN NOW'}
                             </button>
-                            <div className="col-12">
+                            <div className="col-12 text-center">
                                 <div className="login-action text-center">
                                     <span className="forgot-login">
                                         <Link to="/forgotPassword">Forgot password?</Link>
@@ -232,6 +246,7 @@ function LoginPage() {
                 <i className="bx bx-chevrons-up"></i>
             </div>
         </div>
+    
     );
 }
 

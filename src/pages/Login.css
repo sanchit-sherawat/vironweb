@@ -113,6 +113,8 @@ body {
 .forgot-login {
   text-align: center;
   margin-top: 1rem;
+      margin: 0 auto;
+    padding-top: 15px;
 }
 
 /* Navbar Styles (for enhancement) */
