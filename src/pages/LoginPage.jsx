@@ -136,10 +136,12 @@ function LoginPage() {
                     <div className="footer-section logo-section">
                         <img src="https://viron.network/assets/img/viron-logo-footer.svg" alt="VIRON.NETWORK" />
                     </div>
+                    <br></br>
+                     <div className="footer-columns">
                     <div className="footer-section navigation-section">
                         <h3 className="black-text">Navigation</h3>
                         <ul>
-                            <li><a href="https://viron.network/index.html" className="nav-link">Home</a></li>
+                            <li><a href="https://viron.network/home" className="nav-link">Home</a></li>
                             <li><a href="https://viron.network/works" className="nav-link">How It Works</a></li>
                             <li><a href="https://viron.network/about" className="nav-link">About Us</a></li>
                             <li><a href="https://viron.network/team" className="nav-link">Meet Our Team</a></li>
@@ -163,6 +165,7 @@ function LoginPage() {
                             <li><a href="#"><i className="bx bxl-youtube"></i></a></li>
                             <li><a href="#"><i className="bx bxl-twitter"></i></a></li>
                         </ul>
+                    </div>
                     </div>
                 </div>
                 <div className="footer-bottom-area">
