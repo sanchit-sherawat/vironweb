@@ -4,7 +4,7 @@
 }
 
 .sidebar {
-  width: 290px;
+  width: 325px;
   height: calc(100vh - 60px); /* full height minus navbar */
   position: fixed;
   top: 60px;

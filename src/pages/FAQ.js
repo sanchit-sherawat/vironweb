@@ -33,7 +33,7 @@ function FAQ() {
       answer: (
         <>
           <p><strong>Only VIRON members, under the VIRON umbrella, are qualified for VIRON services</strong>. <u>This is the standard system protocol</u>. If you are <u>outside</u> of the VIRON.NETWORK and umbrella, that would naturally create a conflict, and we would <u>not</u> be able to build your MLM business. <strong>To avoid this conflict, VIRON verifies all accounts before engaging with you. </strong></p>
-          <p>If said conflict applies to you, you can resolve it by opening a new account with VIRON’s chosen third-party MLM Company. <strong><em className="text-blue">This would be the same phenomenon as if you were to acquire an additional “McDonald’s” franchise in an arguably “better” location.</em></strong> The main difference is that your new account will have VIRON to build for you, whereas your other account does not. <strong><em className="text-blue">*Further down the road, after you get into profit, most likely, you will want more VIRON Home-Business (VHB) positions! </em></strong></p>
+          <p className='text-tab'>If said conflict applies to you, you can resolve it by opening a new account with VIRON’s chosen third-party MLM Company. <strong><em className="text-blue">This would be the same phenomenon as if you were to acquire an additional “McDonald’s” franchise in an arguably “better” location.</em></strong> The main difference is that your new account will have VIRON to build for you, whereas your other account does not. <strong><em className="text-blue">*Further down the road, after you get into profit, most likely, you will want more VIRON Home-Business (VHB) positions! </em></strong></p>
         </>
       )
     },
@@ -57,7 +57,7 @@ function FAQ() {
       question: "How does the VIRON system work?  How does VIRON MAKE ME MONEY?",
       answer: (
         <>
-          <p><strong>VIRON is a true Turn-Key, Home-Business SYSTEMIZED.</strong> <strong>VIRON will professionally do all the hard work for you. </strong>This is the game changer you (and everyone) have been waiting for. We are confident that VIRON can change your life soon after you fully engage with the powerful VIRON Home-Business (&ldquo;VHB&rdquo;). For further information, please visit the HOW IT WORKS page at: <strong><u>VIRON.NETWORK/HowItWorks</u></strong></p>
+          <p><strong>VIRON is a true Turn-Key, Home-Business SYSTEMIZED.</strong> <strong>VIRON will professionally do all the hard work for you. </strong>This is the game changer you (and everyone) have been waiting for. We are confident that VIRON can change your life soon after you fully engage with the powerful VIRON Home-Business (&ldquo;VHB&rdquo;). For further information, please visit the HOW IT WORKS page at: <strong className='text-highlighted'><u>VIRON.NETWORK/HowItWorks</u></strong></p>
         </>
       )
     },
@@ -126,9 +126,13 @@ function FAQ() {
     <Layout>
       <div className='container'>
         <div className="row">
-          <div className='col' style={{ padding: '2rem' }}>
-            
-            <div className="text-center" style={{ padding: '0px 20px', border: '2px solid #000', width: '45%', margin: '0 auto' }}>
+          <div className='col'>
+            <div style={{ paddingTop: '2rem' }} className="text-center">
+              <img src='https://viron.network/assets/img/viron-logo.svg' alt="Viron Logo" className="img-logo-center" />
+              <h2 className='mt-15 mb-0 text-red'>Frequently Asked Questions (F.A.Q.)</h2>
+              <p className='mt-0 pb-20'>Last Updated: 08 June 2025</p>
+            </div>
+            <div className="text-center mb-10" style={{ padding: '0px 20px', border: '2px solid #000', width: '45%', margin: '0 auto' }}>
               <p><strong>NOTE: General Questions are in font color: <em className="text-red">RED</em>.</strong><br /><strong>Answers or Comments are in font color: <em>BLACK</em> or <em className="text-blue">BLUE</em>.</strong></p>
             </div>
 
