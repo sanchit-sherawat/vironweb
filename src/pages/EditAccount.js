@@ -147,32 +147,6 @@ function EditAccount() {
                 </div>
 
                 <div style={styles.formGroup}>
-                  <label style={styles.label}>Country</label>
-                  <input
-                    type="text"
-                    name="country"
-                    value={form.country}
-                    onChange={handleChange}
-                    style={styles.input}
-                  />
-                </div>
-
-                <div style={styles.formGroup}>
-                  <label style={styles.label}>Province</label>
-                  <input
-                    type="text"
-                    name="province"
-                    value={form.province}
-                    onChange={handleChange}
-                    style={styles.input}
-                  />
-                </div>
-
-              
-              </div>
-
-              <div style={styles.col}>
-                <div style={styles.formGroup}>
                   <label style={styles.label}>Phone</label>
                   <input
                     type="text"
@@ -183,10 +157,24 @@ function EditAccount() {
                   />
                 </div>
 
-               
+                
 
+                
 
+              
+              </div>
 
+              <div style={styles.col}>
+                <div style={styles.formGroup}>
+                  <label style={styles.label}>Country</label>
+                  <input
+                    type="text"
+                    name="country"
+                    value={form.country}
+                    onChange={handleChange}
+                    style={styles.input}
+                  />
+                </div>
                 <div style={styles.formGroup}>
                   <label style={styles.label}>State</label>
                   <input
@@ -210,6 +198,17 @@ function EditAccount() {
                 </div>
 
                 <div style={styles.formGroup}>
+                  <label style={styles.label}>Province</label>
+                  <input
+                    type="text"
+                    name="province"
+                    value={form.province}
+                    onChange={handleChange}
+                    style={styles.input}
+                  />
+                </div>
+                
+                <div style={styles.formGroup}>
                   <label style={styles.label}>Zip Code</label>
                   <input
                     type="text"
@@ -220,7 +219,7 @@ function EditAccount() {
                   />
                 </div>
 
-
+                
               </div>
               
             </div>
