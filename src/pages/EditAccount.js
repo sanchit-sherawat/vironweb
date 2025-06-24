@@ -224,7 +224,12 @@ function EditAccount() {
               </div>
               
             </div>
-
+            <div>
+              <p>Please be aware that VIRON.NETWORK is a secured website and we value your privacy.</p>
+              <p>The requested data below is optional.</p>
+              <p>Your information is protected and will not be shared to outside third parties or anyone not associated with VIRON.NETWORK. The information collected is primarily used for &ldquo;KYC&rdquo; purposes and/or used to better serve your needs as a VIRON Member.</p>
+              <p>For example, your DOB is collected because we need to ensure you are at least age 18 to own and engage with VIRON. For individuals under 18, we will require the parents&rsquo; or legal guardians&rsquo; consent.</p>
+            </div>
             <div style={styles.formGroup}>
                  <div style={styles.formGroup}>
                   <label style={styles.label}>Your Date of Birth (DOB)</label>
