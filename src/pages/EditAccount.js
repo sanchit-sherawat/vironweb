@@ -156,12 +156,6 @@ function EditAccount() {
                     style={styles.input}
                   />
                 </div>
-
-                
-
-                
-
-              
               </div>
 
               <div style={styles.col}>
@@ -207,7 +201,7 @@ function EditAccount() {
                     style={styles.input}
                   />
                 </div>
-                
+
                 <div style={styles.formGroup}>
                   <label style={styles.label}>Zip Code</label>
                   <input
@@ -218,7 +212,6 @@ function EditAccount() {
                     style={styles.input}
                   />
                 </div>
-
                 
               </div>
               
