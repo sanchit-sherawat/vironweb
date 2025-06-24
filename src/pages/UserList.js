@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import Layout from '../components/Layout';
-
+import { FaUser, FaEnvelope, FaPhone, FaCalendarAlt } from "react-icons/fa";
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './UserList.css'; // <- Add this
 import { ADMIN_BASE_URL } from './config';
 import './TransactionPopup.css';
 import { FaTrash } from 'react-icons/fa';
+import CustomModal from './CustomModal';
 
 
 import { ModuleRegistry } from 'ag-grid-community';
@@ -29,7 +30,15 @@ function UserList() {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedRowData, setSelectedRowData] = useState(null);
 
+
+  const handleRowClick = (data) => {
+    debugger
+    setSelectedRowData(data);
+    setShowModal(true);
+  };
 
   const handleView = (transaction, userId, canConfirm) => {
     setPopupTransaction(transaction);
@@ -206,7 +215,23 @@ function UserList() {
 
 
   const columnDefs = [
-    { headerName: "User Name", field: "user_name", flex: 1, minWidth: 150 },
+    {
+      headerName: "User Name",
+      field: "user_name",
+      flex: 1,
+      minWidth: 150,
+      cellRenderer: (params) => {
+        return (
+          <div
+            onClick={(e) => {
+              handleRowClick(params.data);
+            }}
+          >
+            {params.value}
+          </div>
+        );
+      }
+    },
     { headerName: "First Name", field: "first_name", flex: 1, minWidth: 150 },
     { headerName: "Last Name", field: "last_name", flex: 1, minWidth: 150 },
     { headerName: "Phone", field: "phone_number", flex: 1, minWidth: 150 },
@@ -235,18 +260,18 @@ function UserList() {
       },
       minWidth: 150
     },
-{
-  headerName: "Referred By",
-  field: "user_refer_id",
-  flex: 1,
-  minWidth: 180,
-  valueGetter: params => {
-    // Find the user whose id matches user_refer_id
-    const allUsers = params.context?.allUsers || [];
-    const referredUser = allUsers.find(u => u.id === params.data.user_refer_id);
-    return referredUser ? referredUser.user_name : "";
-  }
-},
+    {
+      headerName: "Referred By",
+      field: "user_refer_id",
+      flex: 1,
+      minWidth: 180,
+      valueGetter: params => {
+        // Find the user whose id matches user_refer_id
+        const allUsers = params.context?.allUsers || [];
+        const referredUser = allUsers.find(u => u.id === params.data.user_refer_id);
+        return referredUser ? referredUser.user_name : "";
+      }
+    },
     {
       headerName: "Payment Status",
       field: "payment_status",
@@ -456,14 +481,15 @@ function UserList() {
               animateRows={true}
               paginationPageSize={50}
               suppressHorizontalScroll={false}
-
+              suppressRowClickSelection={true}
+              rowSelection="single"
               domLayout="autoHeight"
               context={{
                 handleView,
                 handleDelete,
                 allUsers: users,
               }}
-
+            //onRowClicked={(event) => handleRowClick(event.data)}
 
             />
           </div>
@@ -480,6 +506,11 @@ function UserList() {
           savingRefer={savingRefer}
         />
       </div>
+      <CustomModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        data={selectedRowData}
+      />
     </Layout>
   );
 
