@@ -119,7 +119,7 @@ function VironNotice() {
                             <p className='text-center text-blue pb-10'><strong>NOTE: </strong>If the cryptocurrency value drops while we are processing your transaction and setting up your account, it may cause a stall in the process. In this case, you will be contacted to provide the difference. <strong><em>*To avoid the risk of this inconvenience, the &ldquo;crypto transaction fee&rdquo; will also help cover the typical fluctuations in the crypto market for you.</em></strong></p>
                             <p className='text-center mb-0'><strong>:::</strong></p>
                             <h3 className='text-red text-center mt-0 paymentArea'><strong>PAYMENT AREA.</strong></h3>
-                            <p className='text-center pb-20 mt-0 mb-0'>During Pre-Launch, we are <u>manually</u> accepting cryptocurrency payments:<br />Bitcoin (<strong>BTC</strong>),<br />Ethereum (<strong>ETH</strong>),<br /><strong>USDT</strong> (<em>Tron Network</em>).</p>
+                            <p className='text-center pb-20 mt-0 mb-0'>During Pre-Launch, we are <u>directly</u> accepting cryptocurrency payments:<br />Bitcoin (<strong>BTC</strong>),<br />Ethereum (<strong>ETH</strong>),<br /><strong>USDT</strong> (<em>Tron Network</em>).</p>
                             <p className='text-center text-red mt-0 mb-0'>To complete your <strong>VIRON Home-Business</strong> (&ldquo;<strong>VHB</strong>&rdquo;),<br />please send your Cryptocurrency payment to:</p>
                             <hr className='mt-0'/>
                             <p className='text-center'><strong>VIRON.NETWORK ACCOUNTING</strong><br />
