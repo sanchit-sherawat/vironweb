@@ -6,7 +6,8 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { ADMIN_BASE_URL } from './config';
 import './UserList.css'
-import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa'; // Add FaEye, FaEyeSlash
+
 
 function MemberList() {
     const [users, setUsers] = useState([]);
@@ -14,6 +15,7 @@ function MemberList() {
     const [searchText, setSearchText] = useState('');
     const [editUser, setEditUser] = useState(null);
     const [showAddForm, setShowAddForm] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const [addForm, setAddForm] = useState({
         user_name: '',
@@ -188,195 +190,243 @@ function MemberList() {
         },
     ];
 
-    const inputField = (label, name, type, value, onChange, required = false) => (
+    // const inputField = (label, name, type, value, onChange, required = false) => (
+    //     <label>
+    //         {label}
+    //         <input
+    //             type={type}
+    //             name={name}
+    //             value={value}
+    //             onChange={onChange}
+    //             required={required}
+    //             style={inputStyle}
+    //         />
+    //     </label>
+    // );
+
+    const inputField = (label, name, type, value, onChange, required = false) => {
+        if (name === "password") {
+            return (
+                <label style={{ position: 'relative' }}>
+                    {label}
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        name={name}
+                        value={value}
+                        onChange={onChange}
+                        required={required}
+                        style={{ ...inputStyle}}
+                    />
+                    <span
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        style={{
+                            position: 'absolute',
+                            right: 10,
+                            top: '50%',
+                            // transform: 'translateY(-50%)',
+                            cursor: 'pointer',
+                            color: '#888',
+                            fontSize: 18,
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </span>
+                </label>
+            );
+        }
+         return (
+            <label>
+                {label}
+                <input
+                    type={type}
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    required={required}
+                    style={inputStyle}
+                />
+            </label>
+        );
+    }
+
+        return (
+            <Layout>
+                <div className="userlist-container" style={{ padding: 20 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h2>Internal User List</h2>
+                        <button onClick={() => setShowAddForm(true)} style={addBtnStyle}><FaPlus /> Add User</button>
+                    </div>
+
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        value={searchText}
+                        onChange={(e) => {
+                            setSearchText(e.target.value);
+                            if (gridRef.current && gridRef.current.setQuickFilter) {
+                                gridRef.current.setQuickFilter(e.target.value);
+                            }
+                        }}
+                        style={searchStyle}
+                    />
+
+                    <div className="ag-theme-alpine" style={{ width: '100%', maxWidth: 1100 }}>
+                        <AgGridReact
+                            ref={gridRef}
+                            rowData={users}
+                            quickFilterText={searchText}
+                            columnDefs={columnDefs}
+                            theme='legacy'
+                            pagination={true}
+                            paginationPageSize={50}
+                            animateRows={true}
+                            domLayout="autoHeight"
+                        />
+                    </div>
+
+                    {showAddForm && (
+                        <Modal onClose={() => setShowAddForm(false)} title="Add User" onSubmit={handleAddFormSubmit}>
+                            {inputField("Username", "user_name", "text", addForm.user_name, handleAddFormChange, true)}
+                            {inputField("First Name", "first_name", "text", addForm.first_name, handleAddFormChange, true)}
+                            {inputField("Last Name", "last_name", "text", addForm.last_name, handleAddFormChange, true)}
+                            {inputField("Phone Number", "phone_number", "text", addForm.phone_number, handleAddFormChange)}
+                            {inputField("Email", "email", "email", addForm.email, handleAddFormChange, true)}
+                            {inputField("Password", "password", "password", addForm.password, handleAddFormChange, true)}
+                            <RoleSelectField
+                                value={addForm.is_admin ? 'admin' : addForm.is_callcenter ? 'callcenter' : ''}
+                                onChange={({ is_admin, is_callcenter }) => setAddForm(prev => ({ ...prev, is_admin, is_callcenter }))}
+                            />
+                        </Modal>
+                    )}
+
+                    {editUser && (
+                        <Modal onClose={() => setEditUser(null)} title="Edit User" onSubmit={handleEditFormSubmit}>
+                            {inputField("Username", "user_name", "text", editForm.user_name, handleEditFormChange, true)}
+                            {inputField("First Name", "first_name", "text", editForm.first_name, handleEditFormChange, true)}
+                            {inputField("Last Name", "last_name", "text", editForm.last_name, handleEditFormChange, true)}
+                            {inputField("Phone Number", "phone_number", "text", editForm.phone_number, handleEditFormChange)}
+                            {inputField("Email", "email", "email", editForm.email, handleEditFormChange, true)}
+                            <RoleSelectField
+                                value={editForm.is_admin ? 'admin' : editForm.is_callcenter ? 'callcenter' : ''}
+                                onChange={({ is_admin, is_callcenter }) => setEditForm(prev => ({ ...prev, is_admin, is_callcenter }))}
+                            />
+                        </Modal>
+                    )}
+                </div>
+            </Layout>
+        );
+    }
+
+    const Modal = ({ children, onClose, title, onSubmit }) => (
+        <div style={modalOverlay} onClick={onClose}>
+            <form onClick={(e) => e.stopPropagation()} onSubmit={onSubmit} style={modalBox}>
+                <h3>{title}</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>{children}</div>
+                <div style={{ display: 'flex', gap: 12, marginTop: 18 }}>
+                    <button type="submit" style={submitButtonStyle('#1976d2', '#fff')}>Submit</button>
+                    <button type="button" onClick={onClose} style={submitButtonStyle('#e0e0e0', '#333')}>Cancel</button>
+                </div>
+            </form>
+        </div>
+    );
+
+    const RoleSelectField = ({ value, onChange }) => (
         <label>
-            {label}
-            <input
-                type={type}
-                name={name}
+            Role
+            <select
                 value={value}
-                onChange={onChange}
-                required={required}
+                onChange={(e) => {
+                    const selected = e.target.value;
+                    onChange({
+                        is_admin: selected === 'admin' ? 1 : 0,
+                        is_callcenter: selected === 'callcenter' ? 1 : 0,
+                    });
+                }}
+                required
                 style={inputStyle}
-            />
+            >
+                <option value="">Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="callcenter">Callcenter</option>
+            </select>
         </label>
     );
 
-    return (
-        <Layout>
-            <div className="userlist-container" style={{ padding: 20 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h2>Internal User List</h2>
-                    <button onClick={() => setShowAddForm(true)} style={addBtnStyle}><FaPlus /> Add User</button>
-                </div>
+    const inputStyle = {
+        width: '100%',
+        padding: 8,
+        borderRadius: 6,
+        border: '1.5px solid #90a4ae',
+    };
 
-                <input
-                    type="text"
-                    placeholder="Search"
-                    value={searchText}
-                    onChange={(e) => {
-                        setSearchText(e.target.value);
-                        if (gridRef.current && gridRef.current.setQuickFilter) {
-                            gridRef.current.setQuickFilter(e.target.value);
-                        }
-                    }}
-                    style={searchStyle}
-                />
+    const submitButtonStyle = (bg, color) => ({
+        padding: '10px 24px',
+        backgroundColor: bg,
+        color,
+        border: 'none',
+        borderRadius: 6,
+        fontWeight: 600,
+        fontSize: 15,
+        cursor: 'pointer',
+    });
 
-                <div className="ag-theme-alpine" style={{ width: '100%', maxWidth: 1100 }}>
-                    <AgGridReact
-                        ref={gridRef}
-                        rowData={users}
-                        quickFilterText={searchText}
-                        columnDefs={columnDefs}
-                        theme='legacy'
-                        pagination={true}
-                        paginationPageSize={50}
-                        animateRows={true}
-                        domLayout="autoHeight"
-                    />
-                </div>
+    const addBtnStyle = {
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        background: '#1976d2',
+        color: '#fff',
+        border: 'none',
+        borderRadius: 6,
+        padding: '10px 18px',
+        fontWeight: 600,
+        fontSize: 15,
+        cursor: 'pointer',
+    };
 
-                {showAddForm && (
-                    <Modal onClose={() => setShowAddForm(false)} title="Add User" onSubmit={handleAddFormSubmit}>
-                        {inputField("Username", "user_name", "text", addForm.user_name, handleAddFormChange, true)}
-                        {inputField("First Name", "first_name", "text", addForm.first_name, handleAddFormChange, true)}
-                        {inputField("Last Name", "last_name", "text", addForm.last_name, handleAddFormChange, true)}
-                        {inputField("Phone Number", "phone_number", "text", addForm.phone_number, handleAddFormChange)}
-                        {inputField("Email", "email", "email", addForm.email, handleAddFormChange, true)}
-                        {inputField("Password", "password", "password", addForm.password, handleAddFormChange, true)}
-                        <RoleSelectField
-                            value={addForm.is_admin ? 'admin' : addForm.is_callcenter ? 'callcenter' : ''}
-                            onChange={({ is_admin, is_callcenter }) => setAddForm(prev => ({ ...prev, is_admin, is_callcenter }))}
-                        />
-                    </Modal>
-                )}
+    const iconBtnStyle = (color) => ({
+        background: 'none',
+        border: 'none',
+        color,
+        cursor: 'pointer',
+        fontSize: '16px',
+    });
 
-                {editUser && (
-                    <Modal onClose={() => setEditUser(null)} title="Edit User" onSubmit={handleEditFormSubmit}>
-                        {inputField("Username", "user_name", "text", editForm.user_name, handleEditFormChange, true)}
-                        {inputField("First Name", "first_name", "text", editForm.first_name, handleEditFormChange, true)}
-                        {inputField("Last Name", "last_name", "text", editForm.last_name, handleEditFormChange, true)}
-                        {inputField("Phone Number", "phone_number", "text", editForm.phone_number, handleEditFormChange)}
-                        {inputField("Email", "email", "email", editForm.email, handleEditFormChange, true)}
-                        <RoleSelectField
-                            value={editForm.is_admin ? 'admin' : editForm.is_callcenter ? 'callcenter' : ''}
-                            onChange={({ is_admin, is_callcenter }) => setEditForm(prev => ({ ...prev, is_admin, is_callcenter }))}
-                        />
-                    </Modal>
-                )}
-            </div>
-        </Layout>
-    );
-}
+    const searchStyle = {
+        maxWidth: 300,
+        margin: '16px 0',
+        padding: '10px 14px',
+        borderRadius: 6,
+        border: '1.5px solid #90a4ae',
+        fontSize: 15,
+    };
 
-const Modal = ({ children, onClose, title, onSubmit }) => (
-    <div style={modalOverlay} onClick={onClose}>
-        <form onClick={(e) => e.stopPropagation()} onSubmit={onSubmit} style={modalBox}>
-            <h3>{title}</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>{children}</div>
-            <div style={{ display: 'flex', gap: 12, marginTop: 18 }}>
-                <button type="submit" style={submitButtonStyle('#1976d2', '#fff')}>Submit</button>
-                <button type="button" onClick={onClose} style={submitButtonStyle('#e0e0e0', '#333')}>Cancel</button>
-            </div>
-        </form>
-    </div>
-);
+    const modalOverlay = {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        background: 'rgba(0,0,0,0.3)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 9999,
+    };
 
-const RoleSelectField = ({ value, onChange }) => (
-    <label>
-        Role
-        <select
-            value={value}
-            onChange={(e) => {
-                const selected = e.target.value;
-                onChange({
-                    is_admin: selected === 'admin' ? 1 : 0,
-                    is_callcenter: selected === 'callcenter' ? 1 : 0,
-                });
-            }}
-            required
-            style={inputStyle}
-        >
-            <option value="">Select Role</option>
-            <option value="admin">Admin</option>
-            <option value="callcenter">Callcenter</option>
-        </select>
-    </label>
-);
+    const modalBox = {
+        background: '#fff',
+        padding: 32,
+        borderRadius: 10,
+        minWidth: 350,
+        maxWidth: 400,
+        width: '90%',
+        boxShadow: '0 8px 32px rgba(44,62,80,0.18)',
+        display: 'flex',
+        flexDirection: 'column',
+    };
 
-const inputStyle = {
-    width: '100%',
-    padding: 8,
-    borderRadius: 6,
-    border: '1.5px solid #90a4ae',
-};
-
-const submitButtonStyle = (bg, color) => ({
-    padding: '10px 24px',
-    backgroundColor: bg,
-    color,
-    border: 'none',
-    borderRadius: 6,
-    fontWeight: 600,
-    fontSize: 15,
-    cursor: 'pointer',
-});
-
-const addBtnStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    background: '#1976d2',
-    color: '#fff',
-    border: 'none',
-    borderRadius: 6,
-    padding: '10px 18px',
-    fontWeight: 600,
-    fontSize: 15,
-    cursor: 'pointer',
-};
-
-const iconBtnStyle = (color) => ({
-    background: 'none',
-    border: 'none',
-    color,
-    cursor: 'pointer',
-    fontSize: '16px',
-});
-
-const searchStyle = {
-    maxWidth: 300,
-    margin: '16px 0',
-    padding: '10px 14px',
-    borderRadius: 6,
-    border: '1.5px solid #90a4ae',
-    fontSize: 15,
-};
-
-const modalOverlay = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100vw',
-    height: '100vh',
-    background: 'rgba(0,0,0,0.3)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 9999,
-};
-
-const modalBox = {
-    background: '#fff',
-    padding: 32,
-    borderRadius: 10,
-    minWidth: 350,
-    maxWidth: 400,
-    width: '90%',
-    boxShadow: '0 8px 32px rgba(44,62,80,0.18)',
-    display: 'flex',
-    flexDirection: 'column',
-};
-
-export default MemberList;
+    export default MemberList;

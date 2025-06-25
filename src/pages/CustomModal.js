@@ -26,7 +26,7 @@ const CustomModal = ({ show, onClose, data }) => {
               <div className="modal-item"><label><FaEnvelope /> Email:</label> <span>{formatValue(data.email)}</span></div>
               <div className="modal-item"><label><FaPhone /> Phone:</label> <span>{formatValue(data.phone_number)}</span></div>
               <div className="modal-item"><label><FaCalendarAlt /> Created At:</label> <span>{new Date(data.user_created_at).toLocaleString()}</span></div>
-              <div className="modal-item"><label><FaBirthdayCake /> DOB:</label> <span>{formatValue(data.dob)}</span></div>
+              <div className="modal-item"><label><FaBirthdayCake /> DOB:</label> <span>{new Date(data.dob).toLocaleString()}</span></div>
               <div className="modal-item"><label><FaMapMarkerAlt /> Country:</label> <span>{formatValue(data.country)}</span></div>
               <div className="modal-item"><label>🏙️ State:</label> <span>{formatValue(data.state)}</span></div>
               <div className="modal-item"><label>🏠 Province:</label> <span>{formatValue(data.province)}</span></div>

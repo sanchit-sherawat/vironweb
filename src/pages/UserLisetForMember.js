@@ -214,27 +214,27 @@ function UserLisetForMember() {
             },
             minWidth: 150
         },
-        {
-            headerName: "Action",
-            cellRenderer: (params) => {
-                const { transaction, id, is_confirmation } = params.data;
-                return (
-                    <button
-                        className="view-btn"
-                        onClick={() =>
-                            params.context.handleView(
-                                transaction,
-                                id,
-                                !!transaction && is_confirmation !== 1
-                            )
-                        }
-                    >
-                        View
-                    </button>
-                );
-            },
-            width: 120,
-        },
+        // {
+        //     headerName: "Action",
+        //     cellRenderer: (params) => {
+        //         const { transaction, id, is_confirmation } = params.data;
+        //         return (
+        //             <button
+        //                 className="view-btn"
+        //                 onClick={() =>
+        //                     params.context.handleView(
+        //                         transaction,
+        //                         id,
+        //                         !!transaction && is_confirmation !== 1
+        //                     )
+        //                 }
+        //             >
+        //                 View
+        //             </button>
+        //         );
+        //     },
+        //     width: 120,
+        // },
     ];
 
     return (
@@ -352,7 +352,7 @@ function UserLisetForMember() {
                             </div>
 
                             {/* Export Button */}
-                            <div>
+                            {/* <div>
                                 <label style={{ display: 'block', marginBottom: 6, opacity: 0 }}>Export</label>
                                 <button
                                     onClick={handleExportByDateRange}
@@ -370,7 +370,7 @@ function UserLisetForMember() {
                                 >
                                     Export
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                         <AgGridReact
                             ref={gridRef}

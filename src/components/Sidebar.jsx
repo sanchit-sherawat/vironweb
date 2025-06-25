@@ -81,7 +81,7 @@ function Sidebar() {
             <FaDotCircle /> <span>Core Perspective of VIRON</span>
           </NavLink>
         </li>
-        <li>&nbsp;</li>
+        
         <li className="menu-group-title">MLM COMPANY INFORMATION:</li>
         <li>
           <NavLink to="/mlm-qualifications" className={({ isActive }) => isActive ? 'active' : ''}>
@@ -93,7 +93,7 @@ function Sidebar() {
             <FaDotCircle /> <span>Why SAVE CLUB (“SC”) is Qualified</span>
           </NavLink>
         </li>
-        <li>&nbsp;</li>
+        {/* <li>&nbsp;</li> */}
         <li>
           <NavLink to="/faq" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaQuestionCircle /> <span>Frequently Asked Questions (FAQ)</span>
@@ -104,7 +104,7 @@ function Sidebar() {
             <FaDotCircle /> <span>Earnings Disclaimers</span>
           </NavLink>
         </li>
-        <li>&nbsp;</li>
+        {/* <li>&nbsp;</li> */}
         <li>
           <NavLink to="/edit-account" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaCog /> <span><strong style={{fontSize:'16px'}}>Edit Your Account Information</strong></span>
