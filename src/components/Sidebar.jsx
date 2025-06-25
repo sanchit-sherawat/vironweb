@@ -82,6 +82,7 @@ function Sidebar() {
           </NavLink>
         </li>
         <li>&nbsp;</li>
+        <li className="menu-group-title">MLM COMPANY INFORMATION:</li>
         <li>
           <NavLink to="/mlm-qualifications" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaDotCircle /> <span>MLM Company Qualifications</span>
