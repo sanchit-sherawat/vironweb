@@ -109,7 +109,7 @@ function Sidebar() {
             <FaCog /> <span><strong style={{fontSize:'16px'}}>Edit Your Account Information</strong></span>
           </NavLink>
         </li>
-        <li>
+        <li className='text-center'>
           <button className="logout-btn" onClick={handleLogout}>
             <FaSignOutAlt /> <span>Logout</span>
           </button>

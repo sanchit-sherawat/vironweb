@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css'; // Your custom CSS file
 import { API_BASE_URL } from './config';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function ForgotPasswordPage() {
+    const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -135,23 +137,29 @@ function ForgotPasswordPage() {
                             <div className="form-group">
                                 <input
                                     className="form-control"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     placeholder="Enter your password"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
                                     autoComplete="current-password"
                                 />
+                                <span onClick={() => setShowPassword(prev => !prev)} style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}>
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </span>
                             </div>
                             
                             <div className="form-group">
                                 <input
                                     className="form-control"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     placeholder="Enter your confirm password"
                                     value={confirmPassword}
                                     onChange={e => setConfirmPassword(e.target.value)}
                                     autoComplete="current-password"
                                 />
+                                <span onClick={() => setShowPassword(prev => !prev)} style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}>
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </span>
                             </div>
                 
 

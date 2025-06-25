@@ -75,7 +75,7 @@
 }
 
 .sidebar-menu .logout-btn{
-    background-color: #007bff;
+    background-color: #0000B3;
     border: none;
     border-radius: 8px;
     color: #fff;
@@ -84,6 +84,8 @@
     font-weight: 500;
     padding: 12px 24px;
     transition: background-color .3s ease;
+    margin: 40px 15px;
+    width: 90%;
 }
 .sidebar-menu .logout-btn:hover {
     background-color: #0056b3;
