@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function ForgotPasswordPage() {
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -134,7 +135,7 @@ function ForgotPasswordPage() {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            <div className="form-group" style={{ position: "relative" }}>
                                 <input
                                     className="form-control"
                                     type={showPassword ? "text" : "password"}
@@ -148,17 +149,17 @@ function ForgotPasswordPage() {
                                 </span>
                             </div>
                             
-                            <div className="form-group">
+                            <div className="form-group" style={{ position: "relative" }}>
                                 <input
                                     className="form-control"
-                                    type={showPassword ? "text" : "password"}
+                                    type={showConfirmPassword ? "text" : "password"}
                                     placeholder="Enter your confirm password"
                                     value={confirmPassword}
                                     onChange={e => setConfirmPassword(e.target.value)}
                                     autoComplete="current-password"
                                 />
-                                <span onClick={() => setShowPassword(prev => !prev)} style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}>
-                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                <span onClick={() => setShowConfirmPassword(prev => !prev)} style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}>
+                                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                                 </span>
                             </div>
                 
