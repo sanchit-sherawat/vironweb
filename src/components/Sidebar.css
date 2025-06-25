@@ -41,8 +41,7 @@
   margin: 0;
 }
 
-.sidebar-menu a,
-.logout-btn {
+.sidebar-menu a {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -59,8 +58,7 @@
   font-size: 0.95rem;
 }
 
-.sidebar-menu a:hover,
-.logout-btn:hover {
+.sidebar-menu a:hover {
   background-color: #6499aa;
   padding-left: 20px;
   border-left: 4px solid #8bd4ec;
@@ -74,6 +72,21 @@
 
 .logout-btn {
   font-family: inherit;
+}
+
+.sidebar-menu .logout-btn{
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 24px;
+    transition: background-color .3s ease;
+}
+.sidebar-menu .logout-btn:hover {
+    background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
