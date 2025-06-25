@@ -18,6 +18,8 @@ import Login from './pages/Login';
 import LoginPage from './pages/LoginPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import PaymentLandingPage from './pages/PaymentLandingPage';
+import MemberList from './pages/MemberList';
+import UserLisetForMember from './pages/UserLisetForMember';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -50,6 +52,22 @@ function App() {
           element={
             <ProtectedRoute adminOnly={true}>
               <UserList />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path='/admin/memberlist'
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <MemberList />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path='/userlist'
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <UserLisetForMember />
             </ProtectedRoute>
           }
         />

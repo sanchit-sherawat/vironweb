@@ -39,8 +39,11 @@ function LoginPage() {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('userId', data.userId);
                 localStorage.setItem('isAdmin', data.isAdmin);
+                localStorage.setItem('isCallCenter', data.iscallcenter || '0');
                 if (data.isAdmin === 1) {
                     navigate('/admin/userlist');
+                } else if (data.iscallcenter === 1) {
+                    navigate('/userlist');
                 } else {
                     navigate('/dashboard');
                 }

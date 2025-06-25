@@ -182,13 +182,26 @@ function UserList() {
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
 
+    
     const result = users.filter(user => {
-      if (!user.user_created_at) return false;
-      const createdDate = new Date(user.user_created_at);
-      if (from && createdDate <= from) return false;
-      if (to && createdDate >= to) return false;
-      return true;
-    });
+            if (!user.user_created_at) return false;
+
+            const createdDate = new Date(user.user_created_at);
+
+            if (from) {
+                const fromStart = new Date(from);
+                fromStart.setHours(0, 0, 0, 0);
+                if (createdDate < fromStart) return false;
+            }
+
+            if (to) {
+                const toEnd = new Date(to);
+                toEnd.setHours(23, 59, 59, 999);
+                if (createdDate > toEnd) return false;
+            }
+
+            return true;
+        });
 
     setFilteredUsers(result);
   }, [fromDate, toDate, users]);
@@ -215,23 +228,28 @@ function UserList() {
 
 
   const columnDefs = [
-    {
-      headerName: "User Name",
-      field: "user_name",
-      flex: 1,
-      minWidth: 150,
-      cellRenderer: (params) => {
-        return (
-          <div
-            onClick={(e) => {
-              handleRowClick(params.data);
-            }}
-          >
-            {params.value}
-          </div>
-        );
-      }
-    },
+     {
+            headerName: "User Name",
+            field: "user_name",
+            flex: 1,
+            minWidth: 150,
+            cellRenderer: (params) => {
+                return (
+                    <span
+                        onClick={() => handleRowClick(params.data)}
+                        style={{
+                            color: '#1976d2',
+                            textDecoration: 'underline',
+                            cursor: 'pointer',
+                            fontWeight: 500,
+                        }}
+                        title="View Details"
+                    >
+                        {params.value}
+                    </span>
+                );
+            }
+        },
     { headerName: "First Name", field: "first_name", flex: 1, minWidth: 150 },
     { headerName: "Last Name", field: "last_name", flex: 1, minWidth: 150 },
     { headerName: "Phone", field: "phone_number", flex: 1, minWidth: 150 },

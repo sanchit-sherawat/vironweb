@@ -4,6 +4,8 @@ import { FaTachometerAlt, FaUsers, FaSignOutAlt, FaQuestionCircle, FaCog, FaDotC
 
 function Sidebar() {
   const isAdmin = localStorage.getItem('isAdmin') === '1';
+  const iscallcenter = localStorage.getItem('isCallCenter') === '1';
+  // const isAdmin = true; // For testing purposes, you can set this to true
   let username = localStorage.getItem('username');
   const navigate = useNavigate();
 
@@ -20,9 +22,15 @@ function Sidebar() {
         <h2>VIRON</h2>
       </div> */}
       <ul className="sidebar-menu">
+       
          {isAdmin ?<><li>
             <NavLink to="/admin/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
               <FaUsers /> <span>User List</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/admin/memberlist" className={({ isActive }) => isActive ? 'active' : ''}>
+              <FaUsers /> <span>Internal User List</span>
             </NavLink>
           </li>
            <li>
@@ -32,6 +40,18 @@ function Sidebar() {
         </li>
           
           </>:<> 
+          {iscallcenter ? <>
+         <li className="menu-group-title">
+            <NavLink to="/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
+              <FaUsers /> <span>User List</span>
+            </NavLink>
+          </li>
+          <li className="menu-group-title">
+          <button className="logout-btn" onClick={handleLogout}>
+            <FaSignOutAlt /> <span>Logout</span>
+          </button>
+        </li>
+          </>:<>
         <li className="menu-group-title">
           <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaTachometerAlt /> <span>Dashboard</span>
@@ -94,6 +114,8 @@ function Sidebar() {
             <FaSignOutAlt /> <span>Logout</span>
           </button>
         </li>
+          </>
+          }
           </>
           
         }
