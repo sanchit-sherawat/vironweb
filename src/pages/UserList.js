@@ -37,6 +37,7 @@ function UserList() {
 
 
   const handleRowClick = (data) => {
+    debugger
     setSelectedRowData(data);
     setShowModal(true);
   };

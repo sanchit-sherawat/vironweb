@@ -2,7 +2,7 @@ import React from "react";
 import "./CustomModal.css";
 import {
   FaUser, FaEnvelope, FaPhone, FaCalendarAlt, FaMapMarkerAlt,
-  FaBirthdayCake, FaHome, FaMoneyBill, FaDog, FaInfoCircle, FaTimes
+  FaBirthdayCake, FaMoneyBill, FaDog, FaInfoCircle, FaTimes
 } from "react-icons/fa";
 
 const CustomModal = ({ show, onClose, data }) => {
@@ -34,8 +34,12 @@ const CustomModal = ({ show, onClose, data }) => {
               <div className="modal-item"><label>🏘️ Home Status:</label> <span>{formatValue(data.homestatus)}</span></div>
               <div className="modal-item"><label><FaMoneyBill /> Income:</label> <span>{formatValue(data.householdincome)}</span></div>
               <div className="modal-item"><label>💼 Employment:</label> <span>{formatValue(data.employmentstatus)}</span></div>
+              <div className="modal-item"><label>💼 Social Media:</label> <span>{formatValue(data.socialMedia)}</span></div>
               <div className="modal-item"><label><FaDog /> Pet Status:</label> <span>{formatValue(data.petstatus)}</span></div>
               <div className="modal-item"><label><FaInfoCircle /> Feedback:</label> <span>{formatValue(data.feedback)}</span></div>
+              <div className="modal-item"><label><FaInfoCircle /> Trasaction Id:</label> <span>{formatValue(data.transaction?.id)}</span></div>
+              <div className="modal-item"><label><FaInfoCircle /> Transaction Key:</label> <span>{formatValue(data.transaction?.key)}</span></div>
+              <div className="modal-item"><label><FaCalendarAlt /> Transaction Time/Date:</label> <span>{formatValue(data.transaction)}</span></div>
             </div>
           ) : (
             <p>No data available.</p>
