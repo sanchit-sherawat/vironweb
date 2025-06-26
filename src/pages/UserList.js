@@ -9,6 +9,9 @@ import { ADMIN_BASE_URL } from './config';
 import './TransactionPopup.css';
 import { FaTrash } from 'react-icons/fa';
 import CustomModal from './CustomModal';
+import { toast } from 'react-toastify';
+import { FiCopy } from 'react-icons/fi';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import { ModuleRegistry } from 'ag-grid-community';
@@ -182,26 +185,26 @@ function UserList() {
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
 
-    
+
     const result = users.filter(user => {
-            if (!user.user_created_at) return false;
+      if (!user.user_created_at) return false;
 
-            const createdDate = new Date(user.user_created_at);
+      const createdDate = new Date(user.user_created_at);
 
-            if (from) {
-                const fromStart = new Date(from);
-                fromStart.setHours(0, 0, 0, 0);
-                if (createdDate < fromStart) return false;
-            }
+      if (from) {
+        const fromStart = new Date(from);
+        fromStart.setHours(0, 0, 0, 0);
+        if (createdDate < fromStart) return false;
+      }
 
-            if (to) {
-                const toEnd = new Date(to);
-                toEnd.setHours(23, 59, 59, 999);
-                if (createdDate > toEnd) return false;
-            }
+      if (to) {
+        const toEnd = new Date(to);
+        toEnd.setHours(23, 59, 59, 999);
+        if (createdDate > toEnd) return false;
+      }
 
-            return true;
-        });
+      return true;
+    });
 
     setFilteredUsers(result);
   }, [fromDate, toDate, users]);
@@ -224,36 +227,92 @@ function UserList() {
     }
   };
 
-
-
-
   const columnDefs = [
-     {
-            headerName: "User Name",
-            field: "user_name",
-            flex: 1,
-            minWidth: 150,
-            cellRenderer: (params) => {
-                return (
-                    <span
-                        onClick={() => handleRowClick(params.data)}
-                        style={{
-                            color: '#1976d2',
-                            textDecoration: 'underline',
-                            cursor: 'pointer',
-                            fontWeight: 500,
-                        }}
-                        title="View Details"
-                    >
-                        {params.value}
-                    </span>
-                );
-            }
-        },
+    {
+      headerName: "User Name",
+      field: "user_name",
+      flex: 1,
+      minWidth: 150,
+      cellRenderer: (params) => {
+        return (
+          <span
+            onClick={() => handleRowClick(params.data)}
+            style={{
+              color: '#1976d2',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              fontWeight: 500,
+            }}
+            title="View Details"
+          >
+            {params.value}
+          </span>
+        );
+      }
+    },
     { headerName: "First Name", field: "first_name", flex: 1, minWidth: 150 },
     { headerName: "Last Name", field: "last_name", flex: 1, minWidth: 150 },
-    { headerName: "Phone", field: "phone_number", flex: 1, minWidth: 150 },
-    { headerName: "Email", field: "email", flex: 1, minWidth: 150 },
+    {
+      headerName: "Phone",
+      field: "phone_number",
+      flex: 1,
+      minWidth: 150,
+      cellRenderer: (params) => {
+        const handleCopy = () => {
+          navigator.clipboard.writeText(params.value);
+          toast.success("Copied to clipboard!");
+        };
+
+        return (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <span>{params.value}</span>
+            <button
+              onClick={handleCopy}
+              style={{
+                marginLeft: "8px",
+                cursor: "pointer",
+                border: "none",
+                background: "none"
+              }}
+              title='Copy'
+            >
+              <FiCopy size={15} color="#333" />
+            </button>
+          </div>
+        );
+      }
+
+    },
+    {
+      headerName: "Email",
+      field: "email",
+      flex: 1,
+      minWidth: 250,
+      cellRenderer: (params) => {
+        const handleCopy = () => {
+          navigator.clipboard.writeText(params.value);
+          toast.success("Copied to clipboard!");
+        };
+
+        return (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <span>{params.value}</span>
+            <button
+              onClick={handleCopy}
+              style={{
+                marginLeft: "8px",
+                cursor: "pointer",
+                border: "none",
+                background: "none"
+              }}
+              title='Copy'
+            >
+              <FiCopy size={15} color="#333" />
+            </button>
+          </div>
+        );
+      }
+    },
     {
       headerName: "Created Date",
       field: "user_created_at",
