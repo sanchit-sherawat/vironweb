@@ -91,6 +91,11 @@
     background-color: #0056b3;
 }
 
+.sidebar-menu li.p-line {
+    border-bottom: 1px dotted #545454;
+    margin: 15px 0px;
+} 
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;

@@ -93,7 +93,7 @@ function Sidebar() {
             <FaDotCircle /> <span>Why SAVE CLUB (“SC”) is Qualified</span>
           </NavLink>
         </li>
-        <li>&nbsp;</li>
+        <li className='p-line'></li>
         <li>
           <NavLink to="/faq" className={({ isActive }) => isActive ? 'active' : ''}>
             <FaQuestionCircle /> <span>Frequently Asked Questions (FAQ)</span>
