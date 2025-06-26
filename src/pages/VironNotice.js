@@ -97,7 +97,7 @@ function VironNotice() {
                     <div className='col'>
                         <div style={{ paddingTop: '2rem' }} className="text-center">
                             <img src='https://viron.network/assets/img/viron-logo.svg' alt="Viron Logo" className="img-logo-center" />
-                            <h2 className='mtb-15' style={{fontSize:'3em'}}>MEMBER CENTER</h2>
+                            <h2 className='mtb-15' style={{fontSize:'2.55em'}}>MEMBER CENTER</h2>
                             <h3 className='text-red mt-0'><strong><u>CRITICAL NOTICES & INSTRUCTIONS.</u></strong></h3>
                         </div>
                         <div>
@@ -115,14 +115,14 @@ function VironNotice() {
                                 <li><strong>VIRON Annual Registration Fee</strong> <del>$149.95</del> (waived during pre-launch).</li>
                                 <li><strong>VIRON Direct Referrals (DRs)</strong> $195 each x2 = <del>$390</del> <span className='text-red'><strong>(<u>reduced to only $199 total during this Pre-Launch</u>).</strong></span> <em>*This limited pricing is subject to change without notice and in accordance with market demand. NOTE: There is a limit of 2 DRs per member, because you will only need 2 DRs to qualify for all commissions and bonuses per the SC Compensation Plan. <strong>STRONG NOTE: Each DR will bring forth a subsequent DR that will be placed under them, and so forth. <span className='text-highlighted'><u>Ensuring your downline grows with PAYING members, ongoing!</u></span> </strong></em></li>
                             </ul>
-                            <h2 className='text-red text-tab pb-20 mt-0'><strong>TOTAL COST DURING PRE-LAUNCH</strong>:<br />Above totals $499.00 + $20 crypto transaction fee = <strong>$<u>519.00</u></strong></h2>
+                            <h2 className='text-red text-tab pb-10 mt-0'><strong>TOTAL COST DURING PRE-LAUNCH</strong>:<br />Above totals $499.00 + $20 crypto transaction fee = <strong>$<u>519.00</u></strong></h2>
                             <p className='text-center text-blue pb-10'><strong>NOTE: </strong>If the cryptocurrency value drops while we are processing your transaction and setting up your account, it may cause a stall in the process. In this case, you will be contacted to provide the difference. <strong><em>*To avoid the risk of this inconvenience, the &ldquo;crypto transaction fee&rdquo; will also help cover the typical fluctuations in the crypto market for you.</em></strong></p>
                             <p className='text-center mb-0'><strong>:::</strong></p>
                             <h3 className='text-red text-center mt-0 paymentArea'><strong>PAYMENT AREA.</strong></h3>
                             <p className='text-center pb-20 mt-0 mb-0'>During Pre-Launch, we are <u>directly</u> accepting cryptocurrency payments:<br />Bitcoin (<strong>BTC</strong>),<br />Ethereum (<strong>ETH</strong>),<br /><strong>USDT</strong> (<em>Tron Network</em>).</p>
                             <p className='text-center text-red mt-0 mb-0'>To complete your <strong>VIRON Home-Business</strong> (&ldquo;<strong>VHB</strong>&rdquo;),<br />please send your Cryptocurrency payment to:</p>
                             <hr className='mt-0'/>
-                            <p className='text-center'><strong>VIRON.NETWORK ACCOUNTING</strong><br />
+                            <p className='text-center text-blue'><strong>VIRON.NETWORK ACCOUNTING</strong><br />
                                 <strong>Cryptocurrency Wallets</strong><br />
                                 <strong><em>(Bitcoin (BTC) is the preferred payment method)</em>:</strong></p>
                             <hr className='mb-0'/>
