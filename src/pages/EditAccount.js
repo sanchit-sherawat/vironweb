@@ -90,7 +90,7 @@ function EditAccount() {
   return (
     <Layout>
       <div style={styles.container}>
-        <h2 style={styles.heading}>Edit Account</h2>
+        <h2 style={styles.heading}>Edit Your Account Information</h2>
         {loading ? (
           <p style={styles.loading}>Loading...</p>
         ) : (
@@ -217,7 +217,7 @@ function EditAccount() {
               
             </div>
             <div>
-              <p>Please be aware that VIRON.NETWORK is a secured website and we value your privacy.</p>
+              <p><strong>VIRON.NETWORK is a secured website and we value your privacy.</strong></p>
               <p>The requested data below is optional.</p>
               <p>Your information is protected and will not be shared to outside third parties or anyone not associated with VIRON.NETWORK. The information collected is primarily used for &ldquo;KYC&rdquo; purposes and/or used to better serve your needs as a VIRON Member.</p>
               <p>For example, your DOB is collected because we need to ensure you are at least age 18 to own and engage with VIRON. For individuals under 18, we will require the parents&rsquo; or legal guardians&rsquo; consent.</p>
@@ -261,7 +261,7 @@ function EditAccount() {
             </div>
 
             <div style={styles.formGroup}>
-              <label style={styles.label}>Are you employed or are you retired?</label>
+              <label style={styles.label}>Are you employed, self-employed, or are you retired?</label>
               <div>
                 <label style={{ marginRight: 16 }}>
                   <input
@@ -273,6 +273,17 @@ function EditAccount() {
                     style={{ marginRight: 6 }}
                   />
                   Employed
+                </label>
+                <label style={{ marginRight: 16 }}>
+                  <input
+                    type="radio"
+                    name="employmentStatus"
+                    value="Self-Employed"
+                    checked={form.employmentStatus === "Self-Employed"}
+                    onChange={handleChange}
+                    style={{ marginRight: 6 }}
+                  />
+                  Self-Employed
                 </label>
                 <label>
                   <input
@@ -296,6 +307,7 @@ function EditAccount() {
                 value={form.householdIncome}
                 onChange={handleChange}
                 style={styles.input}
+                placeholder='Please give estimate of your household income here.'
               />
             </div>
             <div style={styles.formGroup}>
@@ -327,7 +339,7 @@ function EditAccount() {
             </div>
 
             <div style={styles.formGroup}>
-              <label style={styles.label}>YOUR COMMENT OR FEEDBACK</label>
+              <label style={styles.label}><strong>YOUR COMMENT OR FEEDBACK IS MUCH APPRECIATED</strong></label>
               <textarea
                 name="fedback"
                 value={form.fedback}
