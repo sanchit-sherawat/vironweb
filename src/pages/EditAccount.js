@@ -18,6 +18,7 @@ function EditAccount() {
     homeStatus: '',
     employmentStatus: '',
     householdIncome: '',
+    socialMedia:'',
     petStatus: '',
     fedback: '',
   });
@@ -310,6 +311,19 @@ function EditAccount() {
                 placeholder='Please give estimate of your household income here.'
               />
             </div>
+
+            <div style={styles.formGroup}>
+              <label style={styles.label}>What is your favorite Social Media platform (Facebook, X, Tik Tok, etc.). Please specify:</label>
+              <input
+                type="text"
+                name="socialMedia"
+                value={form.socialMedia}
+                onChange={handleChange}
+                style={styles.input}
+              />
+            </div>
+
+            
             <div style={styles.formGroup}>
               <label style={styles.label}>Do you have a pet?</label>
               <div>
