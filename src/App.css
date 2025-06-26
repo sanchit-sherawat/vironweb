@@ -94,6 +94,10 @@ ul>li, ol>li{
   padding-top: 20px;
 }
 
+.pt-10 {
+  padding-top: 10px;
+}
+
 .pt-50 {
   padding-top: 50px;
 }
@@ -113,11 +117,17 @@ ul>li, ol>li{
 .pb-20 {
   padding-bottom: 20px;
 }
+
 .pb-12 {
   padding-bottom: 12.5px;
 }
+
 .pb-10 {
   padding-bottom: 10px;
+}
+
+.pb-5 {
+  padding-bottom: 5px;
 }
 
 .pb-0 {
@@ -131,6 +141,10 @@ ul>li, ol>li{
 
 .mt-0{
   margin-top: 0px;
+}
+
+.mt-10{
+  margin-top: 10px;
 }
 
 .mb-0{
