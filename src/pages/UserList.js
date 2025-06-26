@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import Layout from '../components/Layout';
-import { FaUser, FaEnvelope, FaPhone, FaCalendarAlt } from "react-icons/fa";
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './UserList.css'; // <- Add this
@@ -38,7 +37,6 @@ function UserList() {
 
 
   const handleRowClick = (data) => {
-    debugger
     setSelectedRowData(data);
     setShowModal(true);
   };
