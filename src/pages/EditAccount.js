@@ -429,6 +429,7 @@ const styles = {
     fontSize: '1rem',
     transition: 'border 0.3s ease',
     outline: 'none',
+    fontFamily: 'monospace',
   },
   button: {
     marginTop: '2rem',
