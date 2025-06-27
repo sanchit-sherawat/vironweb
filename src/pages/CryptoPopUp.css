@@ -76,9 +76,16 @@
   width: 480px;
   margin: 1rem 0;
 }
+
 .modal-content .text-left {
   text-align: left;
 }
+
+.custom-number-list {
+  list-style: none;
+}
+
+
 .modal-close {
   position: absolute;
   top: 14px;
