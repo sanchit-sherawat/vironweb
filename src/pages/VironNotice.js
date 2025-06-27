@@ -181,7 +181,7 @@ function VironNotice() {
                             
                             <p className='text-center mt-0 pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpenPayment(true)}><u>NEED HELP WITH CRYPTO PAYMENT?  CLICK HERE</u></a></p>
                             <CryptoPaymentModal isOpen={isModalPaymentOpen} onClose={() => setModalOpenPayment(false)} />
-                            <p className='text-center pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpen(true)}><u>CRYPTO PAYMENT PREFERRED - WHY? CLICK HEREtext-blue</u></a></p>
+                            <p className='text-center pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpen(true)}><u>CRYPTO PAYMENT PREFERRED - WHY? CLICK HERE</u></a></p>
                             <CryptoModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
                             
                             <p className='text-center text-blue mt-0'>FYI: *STRIPE payment method, coming soon.</p>
