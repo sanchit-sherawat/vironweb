@@ -3,6 +3,7 @@ import './VironNotice.css';
 import { React,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CryptoModal from './CryptoPopUp';
+import CryptoPaymentModal from './CryptoPaymentPopUp';
 
 // import Logo from '../../public/assets/';// Pl   ace your VIRON logo in the same folder
 import { API_BASE_URL } from './config';
@@ -17,6 +18,7 @@ function VironNotice() {
         usdt_txn: ''
     });
     const [isModalOpen, setModalOpen] = useState(false);
+    const [isModalPaymentOpen, setModalOpenPayment] = useState(false);
     const submitSingleTxn = async (data) => {
   try {
     const token = localStorage.getItem('token');
@@ -176,17 +178,12 @@ function VironNotice() {
                             </div>
 
                             <p className='pb-40'><strong className='text-red'>FINAL NOTE: </strong>Once you have completed the above instructions and have sent in your crypto payment, <u>we will notify you accordingly</u>. When your VIRON Home-Business is confirmed, you can relax, sit back, and watch your business grow.</p>
-                            <div className="text-center flex flex-col items-center justify-center">
-                            <a
-                            className="text-blue-600 underline cursor-pointer font-medium mb-4"
-                            onClick={() => setModalOpen(true)}
-                            >
-                            NEED HELP WITH CRYPTO PAYMENT? CLICK HERE
-                            </a>
-                        </div>
-
-                        {/* Properly outside the <p> tag */}
-                        <CryptoModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+                            
+                            <p className='text-center mt-0 pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpenPayment(true)}><u>NEED HELP WITH CRYPTO PAYMENT?  CLICK HERE</u></a></p>
+                            <CryptoPaymentModal isOpen={isModalPaymentOpen} onClose={() => setModalOpenPayment(false)} />
+                            <p className='text-center pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpen(true)}><u>CRYPTO PAYMENT PREFERRED - WHY? CLICK HEREtext-blue</u></a></p>
+                            <CryptoModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+                            
                             <p className='text-center text-blue mt-0'>FYI: *STRIPE payment method, coming soon.</p>
                             <p className='text-center text-blue'>&amp;</p>
                             <p className='text-center text-blue pb-25'>*Automated Crypto-Currency Payment Processing by TYGA-Pay, coming soon.</p>

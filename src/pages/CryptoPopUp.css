@@ -8,7 +8,7 @@
   z-index: 9999;
 }
 .modal-highlight {
-  color: #c20000; /* Viron red */
+  color: #D00000; /* Viron red */
   font-weight: bold;
 }
 .article-heading {
@@ -46,7 +46,7 @@
 .modal-title {
   font-size: 1.9rem;
   font-weight: bold;
-  color: #c20000;
+  color: #D00000;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
 }
@@ -63,6 +63,22 @@
   margin-bottom: 1rem;
 }
 
+.modal-content img.exodus{
+  max-width: 100%;
+  width: 180px;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.modal-content img.buysell{
+  max-width: 100%;
+  height: auto;
+  width: 480px;
+  margin: 1rem 0;
+}
+.modal-content .text-left {
+  text-align: left;
+}
 .modal-close {
   position: absolute;
   top: 14px;
@@ -76,7 +92,7 @@
 }
 
 .modal-close:hover {
-  color: #c20000;
+  color: #D00000;
 }
 
 
