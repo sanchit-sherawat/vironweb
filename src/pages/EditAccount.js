@@ -318,6 +318,7 @@ function EditAccount() {
               <input
                 type="text"
                 name="socialMedia"
+                maxLength={200}
                 value={form.socialMedia}
                 onChange={handleChange}
                 style={styles.input}
@@ -358,6 +359,7 @@ function EditAccount() {
               <textarea
                 name="fedback"
                 value={form.fedback}
+                maxLength={500}
                 onChange={handleChange}
                 style={{ ...styles.input, height: 80 }}
                 placeholder='*Please share, how is your experience with VIRON so far, and/or please share how VIRON can serve you better.'
