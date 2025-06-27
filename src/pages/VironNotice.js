@@ -179,11 +179,11 @@ function VironNotice() {
                                 </div>
                             </div>
 
-                            <p className='pb-40'><strong className='text-red'>FINAL NOTE: </strong>Once you have completed the above instructions and have sent in your crypto payment, <u>we will notify you accordingly</u>. When your VIRON Home-Business is confirmed, you can relax, sit back, and watch your business grow.</p>
+                            <p className='pb-20'><strong className='text-red'>FINAL NOTE: </strong>Once you have completed the above instructions and have sent in your crypto payment, <u>we will notify you accordingly</u>. When your VIRON Home-Business is confirmed, you can relax, sit back, and watch your business grow.</p>
                             
-                            <p className='text-center mt-0 pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpenPayment(true)}><u>NEED HELP WITH CRYPTO PAYMENT?  CLICK HERE</u></a></p>
+                            <p className='text-center text-red mt-0 pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpenPayment(true)}><strong><u>NEED HELP WITH CRYPTO PAYMENT?  CLICK HERE</u></strong></a></p>
                             <CryptoPaymentModal isOpen={isModalPaymentOpen} onClose={() => setModalOpenPayment(false)} />
-                            <p className='text-center pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpen(true)}><u>CRYPTO PAYMENT PREFERRED - WHY? CLICK HERE</u></a></p>
+                            <p className='text-center text-red pb-10'><a style={{cursor:'pointer'}} onClick={() => setModalOpen(true)}><u><strong>CRYPTO PAYMENT PREFERRED - WHY? CLICK HERE</strong></u></a></p>
                             <CryptoModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
                             
                             <p className='text-center text-blue mt-0'>FYI: *STRIPE payment method, coming soon.</p>
