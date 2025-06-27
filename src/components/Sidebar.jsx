@@ -65,10 +65,22 @@ function Sidebar() {
         </li>
 
         <li>
-          <NavLink className="not-clickable">
-            <FaTachometerAlt /> <span>Your VIRON Referral Link:<br/> VIRON.NETWORK/{username}</span>
-          </NavLink>
-        </li>
+  <NavLink className="not-clickable">
+    <FaTachometerAlt />{" "}
+    <span>
+      Your VIRON Referral Link:<br />
+      <a
+        href={`https://viron.network/${username}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#1976d2", textDecoration: "underline" }}
+      >
+        viron.network/{username}
+      </a>
+    </span>
+  </NavLink>
+</li>
+
         <li>&nbsp;</li>
         <li className="menu-group-title">INFORMATION & RESOURCES:</li>
         <li>

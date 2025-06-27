@@ -53,6 +53,7 @@ function EditAccount() {
           householdIncome: data.householdincome || '',
           petStatus: data.petstatus || '',
           fedback: data.feedback || '',
+          socialMedia: data.socialMedia || '',
         });
         setLoading(false);
       })

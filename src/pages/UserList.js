@@ -235,7 +235,7 @@ function UserList() {
       cellRenderer: (params) => {
         return (
           <span
-            onClick={() => handleRowClick(params.data)}
+            onClick={() => handleRowClick(params?.data)}
             style={{
               color: '#1976d2',
               textDecoration: 'underline',

@@ -37,9 +37,11 @@ const CustomModal = ({ show, onClose, data }) => {
               <div className="modal-item"><label>💼 Social Media:</label> <span>{formatValue(data.socialMedia)}</span></div>
               <div className="modal-item"><label><FaDog /> Pet Status:</label> <span>{formatValue(data.petstatus)}</span></div>
               <div className="modal-item"><label><FaInfoCircle /> Feedback:</label> <span>{formatValue(data.feedback)}</span></div>
-              <div className="modal-item"><label><FaInfoCircle /> Trasaction Id:</label> <span>{formatValue(data.transaction?.id)}</span></div>
-              <div className="modal-item"><label><FaInfoCircle /> Transaction Key:</label> <span>{formatValue(data.transaction?.key)}</span></div>
-              <div className="modal-item"><label><FaCalendarAlt /> Transaction Time/Date:</label> <span>{formatValue(data.transaction)}</span></div>
+              <div className="modal-item"><label><FaInfoCircle /> Trasaction type:</label> <span>{formatValue(data?.transaction?.type)}</span></div>
+              <div className="modal-item"><label><FaInfoCircle /> Transaction value:</label> <span>{formatValue(data?.transaction?.value)}</span></div>
+              <div className="modal-item"><label><FaCalendarAlt /> Transaction Time/Date:</label> <span>   {data?.transaction?.created_at
+            ? new Date(data?.transaction.created_at).toLocaleString()
+            : '—'}</span></div>
             </div>
           ) : (
             <p>No data available.</p>
