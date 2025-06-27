@@ -65,13 +65,13 @@ function Sidebar() {
         </li>
 
         <li>
-          <NavLink href={`https://viron.network/${username}`} target="_blank" rel="noopener noreferrer" style={{ color: "#1976d2", textDecoration: "underline" }}>
+          <a href={`https://viron.network/${username}`} target="_blank" rel="noopener noreferrer" style={{ color: "#1976d2", textDecoration: "underline" }}>
             <FaTachometerAlt />
             <span>
               Your VIRON Referral Link:<br />
               viron.network/{username}
             </span>
-          </NavLink>
+          </a>
         </li>
 
         <li>&nbsp;</li>
