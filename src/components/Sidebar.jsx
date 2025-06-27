@@ -65,7 +65,7 @@ function Sidebar() {
         </li>
 
         <li>
-          <a href={`https://viron.network/${username}`} target="_blank" rel="noopener noreferrer" style={{ color: "#1976d2", textDecoration: "underline" }}>
+          <a href={`https://viron.network/${username}`} target="_blank" rel="noopener noreferrer">
             <FaTachometerAlt />
             <span>
               Your VIRON Referral Link:<br />
