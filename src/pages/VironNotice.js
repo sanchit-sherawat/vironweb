@@ -4,6 +4,7 @@ import { React,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CryptoModal from './CryptoPopUp';
 import CryptoPaymentModal from './CryptoPaymentPopUp';
+import PreLaunchModal from './PreLaunchPopup';
 
 // import Logo from '../../public/assets/';// Pl   ace your VIRON logo in the same folder
 import { API_BASE_URL } from './config';
@@ -19,6 +20,7 @@ function VironNotice() {
     });
     const [isModalOpen, setModalOpen] = useState(false);
     const [isModalPaymentOpen, setModalOpenPayment] = useState(false);
+    const [isModalPreLaunchOpen, setModalOpenPreLaunch] = useState(false);
     const submitSingleTxn = async (data) => {
   try {
     const token = localStorage.getItem('token');
@@ -118,7 +120,7 @@ function VironNotice() {
                                 </strong>. *For your convenience, after you make full payment to VIRON, we will <u>correctly</u> set up your account with SC. Furthermore, to ensure your Turn-Key experience and to ensure you are in the correct position within the VIRON matrix, always allow VIRON professionals to handle your account setup. <strong>It is <u>not</u> recommended for anyone to set-up their accounts directly with SC.</strong> <span className='text-blue'>*EXTREME VALUE: Please note that with this annual payment to SC, you will gain access to the SC product and enjoy its associated savings.</span> <span className='text-highlighted'>NOTE: <u>The <strong>SAVINGS</strong> alone from your daily regular spending can exceed the entire cost of your VIRON Home-Business</u>!</span></li>
                                 <li><strong>VIRON One-Time Registration</strong> <strong>Fee</strong> <del>$39.95</del> (waived during pre-launch).</li>
                                 <li><strong>VIRON Annual Registration Fee</strong> <del>$149.95</del> (waived during pre-launch).</li>
-                                <li><strong>VIRON Direct Referrals (DRs)</strong> $195 each x2 = <del>$390</del> <span className='text-red'><strong>(<u>reduced to only $199 total during Pre-Launch</u>).</strong></span> <em>*This limited pricing is subject to change without notice and in accordance with market demand. NOTE: There is a limit of 2 DRs per member, because you will only need 2 DRs to qualify for all commissions and bonuses per the SC Compensation Plan. </em></li>
+                                <li><strong>VIRON Direct Referrals (DRs)</strong> $195 each x2 = <del>$390</del> <span className='text-red'><strong>(<a style={{cursor:'pointer'}} onClick={() => setModalOpenPreLaunch(true)}><u>reduced to only $199 total during Pre-Launch</u></a>).</strong></span><PreLaunchModal isOpen={isModalPreLaunchOpen} onClose={() => setModalOpenPreLaunch(false)} /> <em>*This limited pricing is subject to change without notice and in accordance with market demand. NOTE: There is a limit of 2 DRs per member, because you will only need 2 DRs to qualify for all commissions and bonuses per the SC Compensation Plan. </em></li>
                             </ul>
                             <h2 className='text-red text-tab pb-5 mt-10'><strong>TOTAL COST DURING PRE-LAUNCH</strong>:<br />Above totals $499.00 + $20 crypto transaction fee = <strong>$<u>519.00</u></strong></h2>
                             <p className='text-center text-blue pb-10'><strong>NOTE: </strong>If the cryptocurrency value drops while we are processing your transaction and setting up your account, it may cause a stall in the process. In this case, you will be contacted to provide the difference. <strong><em>*To avoid the risk of this inconvenience, the &ldquo;crypto transaction fee&rdquo; will also help cover the typical fluctuations in the crypto market for you.</em></strong></p>
