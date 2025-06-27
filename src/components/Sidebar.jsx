@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
-import { FaTachometerAlt, FaUsers, FaSignOutAlt, FaQuestionCircle, FaCog, FaDotCircle } from 'react-icons/fa';
+import { FaTachometerAlt, FaUsers, FaSignOutAlt, FaQuestionCircle, FaCog, FaDotCircle, FaUser, FaExternalLinkAlt } from 'react-icons/fa';
 
 function Sidebar() {
   const isAdmin = localStorage.getItem('isAdmin') === '1';
@@ -58,15 +58,15 @@ function Sidebar() {
           </NavLink>
         </li>
 
-        <li> 
-          <NavLink  className="not-clickable">
-            <FaTachometerAlt /> <span>Your VIRON Username:<br/>{username}</span>
-          </NavLink>
+        <li className="disabled-link">
+          <div className="menu-item">
+            <FaUser /> <span>Your VIRON Username:<br />{username}</span>
+          </div>
         </li>
 
         <li>
           <a href={`https://viron.network/${username}`} target="_blank" rel="noopener noreferrer">
-            <FaTachometerAlt />
+            <FaExternalLinkAlt />
             <span>
               Your VIRON Referral Link:<br />
               viron.network/{username}

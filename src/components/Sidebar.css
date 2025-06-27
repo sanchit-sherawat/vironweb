@@ -96,6 +96,20 @@
     margin: 15px 0px;
 } 
 
+.disabled-link .menu-item {
+  display: flex;
+  gap:12px;
+  align-items: center;
+  color: #000;
+  padding: 10px;
+  cursor: default;
+}
+
+.disabled-link .menu-item:hover {
+  background-color: transparent; /* no hover effect */
+}
+
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
