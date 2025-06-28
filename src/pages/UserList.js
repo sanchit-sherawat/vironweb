@@ -34,6 +34,7 @@ function UserList() {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
+  // Inside TransactionPopup component
 
 
   const handleRowClick = (data) => {
@@ -371,20 +372,52 @@ function UserList() {
       headerName: "Action",
       cellRenderer: (params) => {
         const { transaction, id, is_confirmation } = params.data;
+        let paymentStatus = "Not Paid";
+        if (transaction && is_confirmation === 1) paymentStatus = "Paid";
+        else if (transaction && is_confirmation !== 1) paymentStatus = "Need Verify";
+
+        let btnText = "View";
+        let btnColor = "#1976d2";
+        let disabled = false;
+
+        if (paymentStatus === "Paid") {
+          btnText = "Assign DS";
+          btnColor = "#43e97b";
+        } else if (paymentStatus === "Need Verify") {
+          btnText = "Verify";
+          btnColor = "#ff9800";
+        } else {
+          btnText = "Not Paid";
+          btnColor = "#e53935";
+          disabled = true;
+        }
         return (
           <>
             <button
               className="view-btn"
+              style={{
+                background: btnColor,
+                width: "120px",
+                color: "#fff",
+                border: "none",
+                borderRadius: 6,
+                padding: "7px 18px",
+                fontWeight: 600,
+                fontSize: 15,
+                cursor: disabled ? "not-allowed" : "pointer",
+                opacity: disabled ? 0.7 : 1,
+              }}
               onClick={() =>
+                !disabled &&
                 params.context.handleView(
                   transaction,
                   id,
                   !!transaction && is_confirmation !== 1
                 )
               }
+              disabled={disabled}
             >
-
-              View
+              {btnText}
             </button>
             {/* <h1> </h1> */}
             <button
@@ -400,7 +433,7 @@ function UserList() {
           </>
         );
       },
-      width: 170,
+      width: 230,
     },
   ];
 
@@ -607,10 +640,15 @@ const TransactionPopup = ({
   savingRefer,
 }) => {
   const [selectedReferId, setSelectedReferId] = useState('');
+  const [editMode, setEditMode] = useState(false);
+
   // alert("currentUser: " + JSON.stringify(allUsers));
 
   useEffect(() => {
     setSelectedReferId('');
+    if (!open) {
+      setEditMode(false);
+    }
   }, [open]);
 
   if (!open) return null;
@@ -623,6 +661,7 @@ const TransactionPopup = ({
   // alert("referredUser: " + JSON.stringify(referredUser)); 
 
   return (
+    
     <div className="popup-overlay">
       <div className="popup-content">
 
@@ -643,7 +682,7 @@ const TransactionPopup = ({
             <div style={{ marginTop: 20 }}>
 
               {/* <h4>Referred By</h4> */}
-              {currentUser?.user_refer_id ? (
+              {currentUser?.user_refer_id && !editMode ? (
                 <div className="referral-card">
                   <div className="referral-field">
                     <span className="label">VIRON Username:</span>
@@ -661,8 +700,25 @@ const TransactionPopup = ({
                     <span className="label">Last Name:</span>
                     <span className="value">{referredUser?.last_name}</span>
                   </div>
+                  <button
+                    style={{
+                      background: "#43e97b",
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: 6,
+                      padding: "7px 18px",
+                      fontWeight: 600,
+                      fontSize: 15,
+                      cursor: "pointer",
+                      // opacity: disabled ? 0.7 : 1,
+                    }}
+                    className="edit-btn"
+                    // style={}
+                    onClick={() => setEditMode(true)}
+                  >
+                    Edit
+                  </button>
                 </div>
-
               ) : (
                 <>
                   <select
@@ -686,6 +742,15 @@ const TransactionPopup = ({
                   >
                     {savingRefer ? "Saving..." : "Save Designated Sponsor"}
                   </button>
+                  {currentUser?.user_refer_id && (
+                    <button
+                      className="close-btn"
+                      style={{ marginLeft: 10 }}
+                      onClick={() => setEditMode(false)}
+                    >
+                      Cancel
+                    </button>
+                  )}
                 </>
               )}
             </div>
