@@ -229,6 +229,15 @@ function UserList() {
 
   const columnDefs = [
     {
+  headerName: "Member ID",
+  field: "id",
+  flex: 1,
+  minWidth: 130,
+  cellStyle: { textAlign: 'center' },
+  valueFormatter: params => params.value ? params.value.toString().padStart(3, '0') : '',
+},
+    
+    {
       headerName: "User Name",
       field: "user_name",
       flex: 1,
@@ -667,7 +676,50 @@ const TransactionPopup = ({
 
         <h3>Transaction Details</h3>
         <p><strong>Transaction Type:</strong> {transaction?.type || "—"}</p>
-        <p><strong>Transaction ID#:</strong> {transaction?.value || "—"}</p>
+        <div style={{
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: 8,
+  maxWidth: 800, // or your popup width
+  flexWrap: 'wrap'
+}}>
+  <strong style={{ minWidth: 140 }}>Transaction ID#:</strong>
+  <span
+    style={{
+      fontFamily: 'monospace',
+      fontSize: 16,
+      marginRight: 8,
+      maxWidth: 720,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      display: 'inline-block',
+      wordBreak: 'break-all',
+      verticalAlign: 'middle'
+    }}
+    title={transaction?.value}
+  >
+    {transaction?.value || "—"}
+  </span>
+  {transaction?.value && (
+    <button
+      onClick={() => {
+        navigator.clipboard.writeText(transaction.value);
+        toast.success("Transaction ID copied!");
+      }}
+      style={{
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: 0,
+        marginLeft: 4,
+      }}
+      title="Copy Transaction ID"
+    >
+      <FiCopy size={16} color="#1976d2" />
+    </button>
+  )}
+</div>
         <p>
           <strong>Transaction Time/Date:</strong>{' '}
           {transaction?.created_at

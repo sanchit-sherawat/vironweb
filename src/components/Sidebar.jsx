@@ -99,7 +99,7 @@ function Sidebar() {
         </li>
         <li className="disabled-link">
           <div className="menu-item">
-            <MdOutlinePayments /> <span>Your VIRON Home-Business (VHB) account status: {paymentStatus}</span>
+            <MdOutlinePayments /> <span>Your VIRON Home-Business (VHB) Account Status: {paymentStatus}</span>
           </div>
         </li>
         <li className="disabled-link">

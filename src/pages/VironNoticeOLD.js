@@ -40,7 +40,8 @@ function VironNotice() {
 
         const result = await res.json();
         if (res.ok) {
-            alert('Payment submitted successfully!');
+            alert(`Your crypto payment has been submitted!
+/n Please click OK to view an important NOTIFICATION.`);
             setFormData({
                 user_id: '',
                 btc_txn: '',
