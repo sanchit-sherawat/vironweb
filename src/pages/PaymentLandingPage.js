@@ -17,7 +17,7 @@ export default function PaymentLandingPage() {
         <p><strong className='text-red'>STRONG EMPHASIS:</strong> Your VIRON position is currently <u>secure and locked per your Time/Date Stamp</u>. Until the Pre-Launch is over, your funds are placed in our ESCROW account. <span className='text-highlighted'>Your funds are only drawn when the following steps are completed:</span></p>
         <ol className='roman-list'>
           <li>You are correctly placed with the third-party MLM company: <strong>SAVE CLUB (&ldquo;<u className='text-blue'>SC</u>&rdquo;)</strong>.</li>
-          <li>Your <strong>VIRON DRs</strong> purchased are placed into your <strong><u className='text-blue'>SC</u></strong></li>
+          <li>Your <strong>VIRON DRs</strong> purchased are placed into your <strong><u className='text-blue'>SC</u></strong> account</li>
         </ol>
         <p><strong className='text-red'>*Please be advised that VIRON continues to invest ongoing professional efforts and resources even before the completion of the above steps for you. <u>Please exercise patience during our Pre-Launch</u>. </strong>We will be with you every step of the way.</p>
         <p className='text-blue text-center mb-0'><strong>VIRON TELEGRAM CHANNEL:</strong></p>
@@ -29,7 +29,6 @@ export default function PaymentLandingPage() {
         <p className='text-blue'><strong><u>JUST IN CASE YOU CANNOT GET BACK TO THIS PAGE</u></strong>, our system has also sent you an Email notification containing the same information that is on this page. *When checking your email, please don&rsquo;t forget to check your spam folder as well.</p>
         <hr/>
         <p className='text-center'><strong><em>Welcome to the Evolution of Network Marketing!</em></strong></p>
-        <p className='text-center'><a href='http://localhost:3000/member/loginPage' target='_blank' rel='noopener noreferrer' className='btn'>LOGIN to VIRON.NETWORK</a></p>
         <p className='text-center'><strong><em>-The VIRON Administration</em></strong></p>
     </div>
     </Layout>
