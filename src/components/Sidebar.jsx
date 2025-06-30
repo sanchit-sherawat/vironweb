@@ -1,13 +1,23 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import { FaTachometerAlt, FaUsers, FaSignOutAlt, FaQuestionCircle, FaCog, FaDotCircle, FaUser, FaExternalLinkAlt } from 'react-icons/fa';
+import { MdOutlinePayments } from "react-icons/md";
+import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../pages/config';
 
 function Sidebar() {
   const isAdmin = localStorage.getItem('isAdmin') === '1';
   const iscallcenter = localStorage.getItem('isCallCenter') === '1';
-  // const isAdmin = true; // For testing purposes, you can set this to true
+  // const isAdmin = true; // For testing purposes, y
+  // ou can set this to true
   let username = localStorage.getItem('username');
+  let userId = localStorage.getItem('userId');
   const navigate = useNavigate();
+  const [paymentStatus, setPaymentStatus] = useState('');
+  const [referFullName, setReferFullName] = useState('');
+  const [referUserName, setReferUserName] = useState('');
+  const [loading, setLoading] = useState(true);
+  
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -15,6 +25,20 @@ function Sidebar() {
     localStorage.removeItem('username');
     navigate('/loginPage');
   };
+
+    useEffect(() => {
+    fetch(`${API_BASE_URL}/user-payment-status/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.paymentStatus) {
+          setPaymentStatus(data.paymentStatus);
+          setReferFullName(data.referFullName);
+          setReferUserName(data.referUserName);
+        }
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [userId]);
 
   return (
     <aside className="sidebar">
@@ -72,6 +96,16 @@ function Sidebar() {
               viron.network/{username}
             </span>
           </a>
+        </li>
+        <li className="disabled-link">
+          <div className="menu-item">
+            <MdOutlinePayments /> <span>Your VIRON Home-Business (VHB) account status: {paymentStatus}</span>
+          </div>
+        </li>
+        <li className="disabled-link">
+          <div className="menu-item">
+            <FaUser /> <span>Your DESIGNATED SPONSOR (DS) Username: {referUserName}</span>
+          </div>
         </li>
 
         <li>&nbsp;</li>
