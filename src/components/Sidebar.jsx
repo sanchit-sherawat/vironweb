@@ -17,7 +17,7 @@ function Sidebar() {
   const [referFullName, setReferFullName] = useState('');
   const [referUserName, setReferUserName] = useState('');
   const [loading, setLoading] = useState(true);
-  
+
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -26,7 +26,7 @@ function Sidebar() {
     navigate('/loginPage');
   };
 
-    useEffect(() => {
+  useEffect(() => {
     fetch(`${API_BASE_URL}/user-payment-status/${userId}`)
       .then(res => res.json())
       .then(data => {
@@ -46,120 +46,138 @@ function Sidebar() {
         <h2>VIRON</h2>
       </div> */}
       <ul className="sidebar-menu">
-       
-         {isAdmin ?<><li>
-            <NavLink to="/admin/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
-              <FaUsers /> <span>User List</span>
-            </NavLink>
-          </li>
+
+        {isAdmin ? <><li>
+          <NavLink to="/admin/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
+            <FaUsers /> <span>User List</span>
+          </NavLink>
+        </li>
           <li>
             <NavLink to="/admin/memberlist" className={({ isActive }) => isActive ? 'active' : ''}>
               <FaUsers /> <span>Internal User List</span>
             </NavLink>
           </li>
-           <li>
-          <button className="logout-btn" onClick={handleLogout}>
-            <FaSignOutAlt /> <span>Logout</span>
-          </button>
-        </li>
-          
-          </>:<> 
-          {iscallcenter ? <>
-         <li className="menu-group-title">
-            <NavLink to="/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
-              <FaUsers /> <span>User List</span>
-            </NavLink>
+          <li>
+            <button className="logout-btn" onClick={handleLogout}>
+              <FaSignOutAlt /> <span>Logout</span>
+            </button>
           </li>
-          <li className="menu-group-title">
-          <button className="logout-btn" onClick={handleLogout}>
-            <FaSignOutAlt /> <span>Logout</span>
-          </button>
-        </li>
-          </>:<>
-        <li className="menu-group-title">
-          <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaTachometerAlt /> <span>Dashboard</span>
-          </NavLink>
-        </li>
 
-        <li className="disabled-link">
-          <div className="menu-item">
-            <FaUser /> <span>Your VIRON Username:<br />{username}</span>
-          </div>
-        </li>
+        </> : <>
+          {iscallcenter ? <>
+            <li className="menu-group-title">
+              <NavLink to="/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaUsers /> <span>User List</span>
+              </NavLink>
+            </li>
+            <li className="menu-group-title">
+              <button className="logout-btn" onClick={handleLogout}>
+                <FaSignOutAlt /> <span>Logout</span>
+              </button>
+            </li>
+          </> : <>
+            <li className="menu-group-title">
+              <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaTachometerAlt /> <span>Dashboard</span>
+              </NavLink>
+            </li>
 
-        <li>
-          <a href={`https://viron.network/${username}`} target="_blank" rel="noopener noreferrer">
-            <FaExternalLinkAlt />
-            <span>
-              Your VIRON Referral Link:<br />
-              viron.network/{username}
-            </span>
-          </a>
-        </li>
-        <li className="disabled-link">
-          <div className="menu-item">
-            <MdOutlinePayments /> <span>Your VIRON Home-Business (VHB) Account Status: {paymentStatus}</span>
-          </div>
-        </li>
-        <li className="disabled-link">
-          <div className="menu-item">
-            <FaUser /> <span>Your DESIGNATED SPONSOR (DS) Username: {referUserName}</span>
-          </div>
-        </li>
+            <li className="disabled-link">
+              <div className="menu-item">
+                <FaUser /> <span>Your VIRON Username:<br />{username}</span>
+              </div>
+            </li>
 
-        <li>&nbsp;</li>
-        <li className="menu-group-title">INFORMATION & RESOURCES:</li>
-        <li>
-          <NavLink to="/expectations-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaDotCircle /> <span>EXPECTATIONS of VIRON</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/core-perspective-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaDotCircle /> <span>Core Perspective of VIRON</span>
-          </NavLink>
-        </li>
-        
-        <li className="menu-group-title">MLM COMPANY INFORMATION:</li>
-        <li>
-          <NavLink to="/mlm-qualifications" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaDotCircle /> <span>MLM Company Qualifications</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/why-save-club" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaDotCircle /> <span>Why SAVE CLUB (“SC”) is Qualified</span>
-          </NavLink>
-        </li>
-        <li className='p-line'></li>
-        <li>
-          <NavLink to="/faq" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaQuestionCircle /> <span>Frequently Asked Questions (FAQ)</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/earnings-disclaimers" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaDotCircle /> <span>Earnings Disclaimers</span>
-          </NavLink>
-        </li>
-        <li>&nbsp;</li>
-        <li>
-          <NavLink to="/edit-account" className={({ isActive }) => isActive ? 'active' : ''}>
-            <FaCog /> <span><strong style={{fontSize:'16px'}}>Edit Your Account Information</strong></span>
-          </NavLink>
-        </li>
-        <li className='text-center'>
-          <button className="logout-btn" onClick={handleLogout}>
-            <FaSignOutAlt /> <span>Logout</span>
-          </button>
-        </li>
+            <li>
+              <a href={`https://viron.network/${username}`} target="_blank" rel="noopener noreferrer">
+                <FaExternalLinkAlt />
+                <span>
+                  Your VIRON Referral Link:<br />
+                  viron.network/{username}
+                </span>
+              </a>
+            </li>
+            <li className="disabled-link">
+              <div className="menu-item">
+                <MdOutlinePayments />
+                <span>
+                  Your VIRON Home-Business (VHB) Account Status:{" "}
+                  <span
+                    style={{
+                      color:
+                        paymentStatus === "Paid"
+                          ? "green"
+                          : paymentStatus === "Not Paid"
+                            ? "red"
+                            : paymentStatus === "Verification Pending"
+                              ? "yellow"
+                              : "black",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {paymentStatus}
+                  </span>
+                </span>
+              </div>
+            </li>
+            <li className="disabled-link">
+              <div className="menu-item">
+                <FaUser /> <span>Your DESIGNATED SPONSOR (DS) Username: {referUserName}</span>
+              </div>
+            </li>
+
+            <li>&nbsp;</li>
+            <li className="menu-group-title">INFORMATION & RESOURCES:</li>
+            <li>
+              <NavLink to="/expectations-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaDotCircle /> <span>EXPECTATIONS of VIRON</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/core-perspective-of-viron" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaDotCircle /> <span>Core Perspective of VIRON</span>
+              </NavLink>
+            </li>
+
+            <li className="menu-group-title">MLM COMPANY INFORMATION:</li>
+            <li>
+              <NavLink to="/mlm-qualifications" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaDotCircle /> <span>MLM Company Qualifications</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/why-save-club" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaDotCircle /> <span>Why SAVE CLUB (“SC”) is Qualified</span>
+              </NavLink>
+            </li>
+            <li className='p-line'></li>
+            <li>
+              <NavLink to="/faq" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaQuestionCircle /> <span>Frequently Asked Questions (FAQ)</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/earnings-disclaimers" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaDotCircle /> <span>Earnings Disclaimers</span>
+              </NavLink>
+            </li>
+            <li>&nbsp;</li>
+            <li>
+              <NavLink to="/edit-account" className={({ isActive }) => isActive ? 'active' : ''}>
+                <FaCog /> <span><strong style={{ fontSize: '16px' }}>Edit Your Account Information</strong></span>
+              </NavLink>
+            </li>
+            <li className='text-center'>
+              <button className="logout-btn" onClick={handleLogout}>
+                <FaSignOutAlt /> <span>Logout</span>
+              </button>
+            </li>
           </>
           }
-          </>
-          
+        </>
+
         }
-        
+
       </ul>
     </aside>
   );
