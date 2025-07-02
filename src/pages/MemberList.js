@@ -232,7 +232,7 @@ function MemberList() {
                         role="button"
                         aria-label={showPassword ? "Hide password" : "Show password"}
                     >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        {showPassword ? <FaEye /> : <FaEyeSlash />}
                     </span>
                 </label>
             );

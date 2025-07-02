@@ -145,7 +145,7 @@ function ForgotPasswordPage() {
                                     autoComplete="current-password"
                                 />
                                 <span onClick={() => setShowPassword(prev => !prev)} style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}>
-                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                    {showPassword ? <FaEye /> : <FaEyeSlash />}
                                 </span>
                             </div>
                             
@@ -159,7 +159,7 @@ function ForgotPasswordPage() {
                                     autoComplete="current-password"
                                 />
                                 <span onClick={() => setShowConfirmPassword(prev => !prev)} style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}>
-                                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                                    {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
                                 </span>
                             </div>
                 

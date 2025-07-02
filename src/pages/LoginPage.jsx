@@ -108,7 +108,7 @@ function LoginPage() {
                             <div className="form-group" style={{ position: "relative" }}>
                                 <input className="form-control" type={showPassword ? "text" : "password"} placeholder="Enter your password" value={password} onChange={e => setPassword(e.target.value)} autoComplete="current-password" />
                                 <span onClick={() => setShowPassword(prev => !prev)} style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}>
-                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                    {showPassword ? <FaEye /> : <FaEyeSlash />}
                                 </span>
                             </div>
 

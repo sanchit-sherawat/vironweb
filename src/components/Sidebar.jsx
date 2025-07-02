@@ -110,7 +110,7 @@ function Sidebar() {
                           : paymentStatus === "Not Paid"
                             ? "red"
                             : paymentStatus === "Verification Pending"
-                              ? "yellow"
+                              ? "#8b5d0e"
                               : "black",
                       fontWeight: "bold",
                     }}

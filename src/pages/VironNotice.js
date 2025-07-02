@@ -141,7 +141,8 @@ function VironNotice() {
                             <p className='text-center'><strong>USDT (Tron) Network: </strong></p>
                             <p className='text-center pb-10 mb-0'>TEtVu6h7Fr6u8KCLXac8ywZqgdrguPzS4Q</p>
                             <p className='text-center mt-0'><strong>:::</strong></p>
-                            <p className='text-center text-red'><strong>When you make your manual crypto payment, please make sure to copy your<br />Crypto Transaction ID #. Then paste or enter it in the corresponding field below:</strong></p>
+                            <p className='text-center text-red'><strong>NOTE: When you make your manual crypto payment, please make sure to copy your Crypto <u>Transaction ID #</u>. Then paste or enter it in the corresponding field below.</strong></p>
+                            <p className='text-center text-red'><strong>FURTHER NOTE: If you&rsquo;re using the Exodus crypto wallet, please input your <u>VIRON Username</u> (into the Exodus: Transaction / "Memo/Note" field) <u>to help us locate and identify your payment as quickly as possible</u>.</strong></p>
                             <div className="transaction-form-container pb-25">
                                 <div className="crypto-form">
                                     {[
