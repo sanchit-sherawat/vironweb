@@ -229,14 +229,14 @@ function UserList() {
 
   const columnDefs = [
     {
-  headerName: "Member ID",
-  field: "id",
-  flex: 1,
-  minWidth: 130,
-  cellStyle: { textAlign: 'center' },
-  valueFormatter: params => params.value ? params.value.toString().padStart(3, '0') : '',
-},
-    
+      headerName: "Member ID",
+      field: "id",
+      flex: 1,
+      minWidth: 130,
+      cellStyle: { textAlign: 'center' },
+      valueFormatter: params => params.value ? params.value.toString().padStart(3, '0') : '',
+    },
+
     {
       headerName: "User Name",
       field: "user_name",
@@ -356,6 +356,18 @@ function UserList() {
         const allUsers = params.context?.allUsers || [];
         const referredUser = allUsers.find(u => u.id === params.data.user_refer_id);
         return referredUser ? referredUser.user_name : "";
+      }
+    },
+     {
+      headerName: "DS Sponsor",
+      field: "ds_id",
+      flex: 1,
+      minWidth: 180,
+      valueGetter: params => {
+        // Find the user whose id matches ds_id
+        const allUsers = params.context?.allUsers || [];
+        const dsUser = allUsers.find(u => u.id === params.data.ds_id);
+        return dsUser ? dsUser.user_name : "";
       }
     },
     {
@@ -666,60 +678,81 @@ const TransactionPopup = ({
 
 
   // Find the referred user if user_refer_id is set
-  const referredUser = allUsers?.find(u => u.id === currentUser?.user_refer_id);
+  const referredUser = allUsers?.find(u => u.id === currentUser?.ds_id);
   // alert("referredUser: " + JSON.stringify(referredUser)); 
 
   return (
-    
+
     <div className="popup-overlay">
       <div className="popup-content">
+        <div className="referral-section">
+          <h4 className="referral-title">User Information</h4>
+          <div className="referral-details">
+            <div className="referral-field">
+              <span className="label">VIRON Username:</span>
+              <span className="value">{currentUser?.user_name}</span>
+            </div>
+            {/* <div className="referral-field">
+              <span className="label">User Email:</span>
+              <span className="value">{currentUser?.email}</span>
+            </div> */}
+            <div className="referral-field">
+              <span className="label">First Name:</span>
+              <span className="value">{currentUser?.first_name}</span>
+            </div>
+            <div className="referral-field">
+              <span className="label">Last Name:</span>
+              <span className="value">{currentUser?.last_name}</span>
+            </div>
+          </div>
+        </div>
 
         <h3>Transaction Details</h3>
         <p><strong>Transaction Type:</strong> {transaction?.type || "—"}</p>
         <div style={{
-  display: 'flex',
-  alignItems: 'center',
-  marginBottom: 8,
-  maxWidth: 800, // or your popup width
-  flexWrap: 'wrap'
-}}>
-  <strong style={{ minWidth: 140 }}>Transaction ID#:</strong>
-  <span
-    style={{
-      fontFamily: 'monospace',
-      fontSize: 16,
-      marginRight: 8,
-      maxWidth: 720,
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      display: 'inline-block',
-      wordBreak: 'break-all',
-      verticalAlign: 'middle'
-    }}
-    title={transaction?.value}
-  >
-    {transaction?.value || "—"}
-  </span>
-  {transaction?.value && (
-    <button
-      onClick={() => {
-        navigator.clipboard.writeText(transaction.value);
-        toast.success("Transaction ID copied!");
-      }}
-      style={{
-        background: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        padding: 0,
-        marginLeft: 4,
-      }}
-      title="Copy Transaction ID"
-    >
-      <FiCopy size={16} color="#1976d2" />
-    </button>
-  )}
-</div>
+          display: 'flex',
+          alignItems: 'center',
+          marginBottom: 8,
+          maxWidth: 800, // or your popup width
+          flexWrap: 'wrap'
+        }}>
+          <strong style={{ minWidth: 140 }}>Transaction ID#:</strong>
+          <span
+            style={{
+              fontFamily: 'monospace',
+              fontSize: 16,
+              marginRight: 8,
+              maxWidth: 720,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              display: 'inline-block',
+              wordBreak: 'break-all',
+              verticalAlign: 'middle'
+            }}
+            title={transaction?.value}
+          >
+            {transaction?.value || "—"}
+          </span>
+          {transaction?.value && (
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(transaction.value);
+                toast.success("Transaction ID copied!");
+              }}
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                marginLeft: 4,
+              }}
+              title="Copy Transaction ID"
+            >
+              <FiCopy size={16} color="#1976d2" />
+            </button>
+          )}
+        </div>
         <p>
           <strong>Transaction Time/Date:</strong>{' '}
           {transaction?.created_at
@@ -734,7 +767,7 @@ const TransactionPopup = ({
             <div style={{ marginTop: 20 }}>
 
               {/* <h4>Referred By</h4> */}
-              {currentUser?.user_refer_id && !editMode ? (
+              {currentUser?.ds_id && !editMode ? (
                 <div className="referral-card">
                   <div className="referral-field">
                     <span className="label">VIRON Username:</span>
@@ -780,7 +813,7 @@ const TransactionPopup = ({
                   >
                     <option value="">Select Designated Sponsor</option>
                     {allUsers
-                      .filter(u => (u.id !== currentUser.id && u.is_confirmation === 1))
+                      .filter(u => (u.id !== currentUser.id && u.is_confirmation === 1 && u.ds_count <2 ))
                       .map(u => (
                         <option key={u.id} value={u.id}>
                           {u.user_name} ({u.email})
@@ -794,7 +827,7 @@ const TransactionPopup = ({
                   >
                     {savingRefer ? "Saving..." : "Save Designated Sponsor"}
                   </button>
-                  {currentUser?.user_refer_id && (
+                  {currentUser?.ds_id && (
                     <button
                       className="close-btn"
                       style={{ marginLeft: 10 }}
