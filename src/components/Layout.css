@@ -68,9 +68,12 @@
 }
 
 @media (max-width: 768px) {
-  .content {
-    margin-left: 0;
-    width: 100%;
+    .content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 16px; /* smaller padding for mobile */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 /* === iPhone/small device optimization === */
