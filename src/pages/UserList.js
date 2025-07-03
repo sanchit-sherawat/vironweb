@@ -769,7 +769,7 @@ const TransactionPopup = ({
 
         {isPaid && (
           <div className="referral-section">
-            <h4 className="referral-title">Designated Sponsor (DS) Assigned</h4>
+            <h4 className="referral-title">DESIGNATED SPONSOR (DS) Assigned</h4>
             <div style={{ marginTop: 20 }}>
 
               {/* <h4>Referred By</h4> */}
