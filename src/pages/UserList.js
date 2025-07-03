@@ -849,7 +849,7 @@ const TransactionPopup = ({
         )}
         <div style={{ marginTop: 20 }}>
           {canConfirm && (
-            <button className="confirm-btn" onClick={onConfirm}>Payment Confirmed</button>
+             <button className="confirm-btn-verify" onClick={onConfirm}>Verify Payment</button>
           )}
           <button className="close-btn" onClick={onClose} style={{ marginLeft: 10 }}>Close</button>
         </div>
