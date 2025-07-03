@@ -230,11 +230,10 @@ function UserList() {
   const columnDefs = [
     {
       headerName: "Member ID",
-      field: "id",
+      valueGetter: params => (params.node.rowIndex + 1).toString().padStart(4, '0'),
       flex: 1,
       minWidth: 130,
       cellStyle: { textAlign: 'center' },
-      valueFormatter: params => params.value ? params.value.toString().padStart(3, '0') : '',
     },
 
     {
@@ -358,7 +357,7 @@ function UserList() {
         return referredUser ? referredUser.user_name : "";
       }
     },
-     {
+    {
       headerName: "DS Sponsor",
       field: "ds_id",
       flex: 1,
@@ -392,7 +391,7 @@ function UserList() {
     {
       headerName: "Action",
       cellRenderer: (params) => {
-        const { transaction, id, is_confirmation } = params.data;
+        const { transaction, id, is_confirmation, ds_id } = params.data;
         let paymentStatus = "Not Paid";
         if (transaction && is_confirmation === 1) paymentStatus = "Paid";
         else if (transaction && is_confirmation !== 1) paymentStatus = "Need Verify";
@@ -402,8 +401,14 @@ function UserList() {
         let disabled = false;
 
         if (paymentStatus === "Paid") {
-          btnText = "Assign DS";
-          btnColor = "#43e97b";
+          if (ds_id != null && ds_id !== 0) {
+            btnText = "DS Assigned";
+            btnColor = "#808080";
+
+          } else {
+            btnText = "Assign DS";
+            btnColor = "#43e97b";
+          }
         } else if (paymentStatus === "Need Verify") {
           btnText = "Verify";
           btnColor = "#ff9800";
@@ -692,10 +697,7 @@ const TransactionPopup = ({
               <span className="label">VIRON Username:</span>
               <span className="value">{currentUser?.user_name}</span>
             </div>
-            {/* <div className="referral-field">
-              <span className="label">User Email:</span>
-              <span className="value">{currentUser?.email}</span>
-            </div> */}
+
             <div className="referral-field">
               <span className="label">First Name:</span>
               <span className="value">{currentUser?.first_name}</span>
@@ -703,6 +705,10 @@ const TransactionPopup = ({
             <div className="referral-field">
               <span className="label">Last Name:</span>
               <span className="value">{currentUser?.last_name}</span>
+            </div>
+            <div className="referral-field">
+              <span className="label">User Email:</span>
+              <span className="value">{currentUser?.email}</span>
             </div>
           </div>
         </div>
@@ -813,7 +819,7 @@ const TransactionPopup = ({
                   >
                     <option value="">Select Designated Sponsor</option>
                     {allUsers
-                      .filter(u => (u.id !== currentUser.id && u.is_confirmation === 1 && u.ds_count <2 ))
+                      .filter(u => (u.id !== currentUser.id && u.is_confirmation === 1 && u.ds_count < 2))
                       .map(u => (
                         <option key={u.id} value={u.id}>
                           {u.user_name} ({u.email})
