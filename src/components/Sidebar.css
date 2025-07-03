@@ -1,5 +1,6 @@
+/* === GENERAL LAYOUT === */
 .sidebar {
-  width: 280px;
+  width: 325px;
   min-width: 280px;
   background-color: #ADD8E6;
   height: 100vh;
@@ -10,18 +11,35 @@
   overflow-y: auto;
   color: #fff;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-  transition: width 0.3s ease;
-}
-.not-clickable {
-  display: flex;
-  align-items: center;
-  color: #555;
-  padding: 8px 16px;
-  cursor: default;
-  opacity: 0.8;
-  text-decoration: none;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  transform: translateX(0); /* default open */
 }
 
+.sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+/* .sidebar.open {
+  transform: translateX(0);
+} */
+
+/* === TOGGLE BUTTON === */
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 70px;
+  left: 15px;
+  z-index: 1101;
+  background: #0000B3;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: none;
+}
+
+/* === SIDEBAR CONTENT === */
 .sidebar-header {
   text-align: center;
   padding: 1rem;
@@ -34,7 +52,6 @@
 .sidebar-menu {
   list-style: none;
   padding: 0;
-  /* margin: 0; */
 }
 
 .sidebar-menu li {
@@ -74,31 +91,32 @@
   font-family: inherit;
 }
 
-.sidebar-menu .logout-btn{
-    background-color: #0000B3;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 12px 24px;
-    transition: background-color .3s ease;
-    margin: 40px 15px;
-    width: 90%;
+.sidebar-menu .logout-btn {
+  background-color: #0000B3;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  transition: background-color .3s ease;
+  margin: 40px 15px;
+  width: 90%;
 }
+
 .sidebar-menu .logout-btn:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .sidebar-menu li.p-line {
-    border-bottom: 1px dotted #545454;
-    margin: 15px 0px;
-} 
+  border-bottom: 1px dotted #545454;
+  margin: 15px 0px;
+}
 
 .disabled-link .menu-item {
   display: flex;
-  gap:12px;
+  gap: 12px;
   align-items: center;
   color: #000;
   padding: 10px;
@@ -106,23 +124,38 @@
 }
 
 .disabled-link .menu-item:hover {
-  background-color: transparent; /* no hover effect */
+  background-color: transparent;
 }
 
+/* === CONTENT === */
+.content {
+  margin-left: 325px;
+  padding: 20px;
+  width: calc(100% - 325px);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
 
+.content.collapsed {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* === MOBILE RESPONSIVENESS === */
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
-    height: auto;
-    position: relative;
+    height: calc(100% - 60px);
+    top: 60px;
+    left: 100;
+    z-index: 1000;
   }
 
-  .sidebar-header {
-    font-size: 1.25rem;
+  .sidebar-toggle-btn {
+    display: block;
   }
 
-  .sidebar-menu a,
-  .logout-btn {
-    padding: 12px 16px;
+  .content {
+    margin-left: 0;
+    width: 100%;
   }
 }
