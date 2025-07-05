@@ -22,6 +22,7 @@ import MemberList from './pages/MemberList';
 import UserLisetForMember from './pages/UserLisetForMember';
 import { ToastContainer } from 'react-toastify'; // ✅ Import here
 import 'react-toastify/dist/ReactToastify.css';
+import ScrollToTop from './pages/ScrollToTop'; // Import the ScrollToTop component
 
 function App() {
   const token = localStorage.getItem('token');
@@ -29,7 +30,10 @@ function App() {
 
 
   return (
+    <>
+     
     <Router basename="/member">
+    <ScrollToTop />
       <ToastContainer position="top-right" autoClose={2000} hideProgressBar closeOnClick />
       <Routes>
         {/* <Route path='/login' element={<Login />} /> */}
@@ -148,6 +152,7 @@ function App() {
         />
       </Routes>
     </Router>
+    </>
   );
 }
 
