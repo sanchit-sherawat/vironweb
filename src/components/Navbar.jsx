@@ -15,8 +15,8 @@ function Navbar() {
         <h2>VIRON NETWORK</h2>
       </div>
       <div  className="navbar-right">
-        <p style={{padding:"10px"}}>@{username}</p>
-      {/*<img
+       {/* <p style={{padding:"10px"}}>@{username}</p>
+      <img
           src="https://www.w3schools.com/howto/img_avatar.png"
           alt="Profile"
           className="profile-pic"
