@@ -358,7 +358,7 @@ function UserList() {
       }
     },
     {
-  headerName: "Referral Count",
+  headerName: "Quantity Referred",
   field: "referral_count",
   flex: 1,
   minWidth: 120,
