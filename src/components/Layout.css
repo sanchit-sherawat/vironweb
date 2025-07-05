@@ -73,6 +73,7 @@
     width: 100% !important;
     padding: 16px; /* smaller padding for mobile */
     word-wrap: break-word;
+    overflow: hidden;
     overflow-wrap: break-word;
   }
 }
@@ -87,8 +88,13 @@
     left: 244px;
     top: 94px;
   }
-
+   h1, h2, h3 {
+    font-size: 1.2em;
+  }
   .content {
-    padding: 12px;
+     max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
   }
 }
+
