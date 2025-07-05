@@ -16,11 +16,11 @@ function Navbar() {
       </div>
       <div  className="navbar-right">
         <p style={{padding:"10px"}}>@{username}</p>
-        <img
+      {/*<img
           src="https://www.w3schools.com/howto/img_avatar.png"
           alt="Profile"
           className="profile-pic"
-        />
+        />*/}
       </div>
     </nav>
   );
