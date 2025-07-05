@@ -2,9 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+   word-wrap: break-word;
 }
-body {
-  
+body, body {
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: Arial, sans-serif;
   background: #f5f5f5;
 }
