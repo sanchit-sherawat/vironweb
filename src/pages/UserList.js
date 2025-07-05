@@ -358,6 +358,18 @@ function UserList() {
       }
     },
     {
+  headerName: "Referral Count",
+  field: "referral_count",
+  flex: 1,
+  minWidth: 120,
+  valueGetter: params => {
+    const allUsers = params.context?.allUsers || [];
+    // Count users whose user_refer_id matches this user's id
+    return allUsers.filter(u => u.user_refer_id === params.data.id).length;
+  },
+  cellStyle: { textAlign: 'center', fontWeight: 600 },
+},
+    {
       headerName: "DS Sponsor",
       field: "ds_id",
       flex: 1,
