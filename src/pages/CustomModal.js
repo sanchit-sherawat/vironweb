@@ -25,8 +25,24 @@ const CustomModal = ({ show, onClose, data }) => {
               <div className="modal-item"><label>🧑‍🦱 Last Name:</label> <span>{formatValue(data.last_name)}</span></div>
               <div className="modal-item"><label><FaEnvelope /> Email:</label> <span>{formatValue(data.email)}</span></div>
               <div className="modal-item"><label><FaPhone /> Phone:</label> <span>{formatValue(data.phone_number)}</span></div>
-              <div className="modal-item"><label><FaCalendarAlt /> Created At:</label> <span>{new Date(data.user_created_at).toLocaleString()}</span></div>
-              <div className="modal-item"><label><FaBirthdayCake /> DOB:</label> <span>{new Date(data.dob).toLocaleString()}</span></div>
+              <div className="modal-item"><label><FaCalendarAlt /> Created At:</label> <span>{new Date(data.user_created_at).toLocaleString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+              })}</span></div>
+              <div className="modal-item"><label><FaBirthdayCake /> DOB:</label> <span>{new Date(data.dob).toLocaleString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+              })}</span></div>
               <div className="modal-item"><label><FaMapMarkerAlt /> Country:</label> <span>{formatValue(data.country)}</span></div>
               <div className="modal-item"><label>🏙️ State:</label> <span>{formatValue(data.state)}</span></div>
               <div className="modal-item"><label>🏠 Province:</label> <span>{formatValue(data.province)}</span></div>
@@ -40,8 +56,16 @@ const CustomModal = ({ show, onClose, data }) => {
               <div className="modal-item"><label><FaInfoCircle /> Trasaction type:</label> <span>{formatValue(data?.transaction?.type)}</span></div>
               <div className="modal-item"><label><FaInfoCircle /> Transaction value:</label> <span>{formatValue(data?.transaction?.value)}</span></div>
               <div className="modal-item"><label><FaCalendarAlt /> Transaction Time/Date:</label> <span>   {data?.transaction?.created_at
-            ? new Date(data?.transaction.created_at).toLocaleString()
-            : '—'}</span></div>
+                ? new Date(data?.transaction.created_at).toLocaleString('en-US', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit',
+                  hour12: false
+                })
+                : '—'}</span></div>
             </div>
           ) : (
             <p>No data available.</p>

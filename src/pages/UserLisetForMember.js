@@ -168,7 +168,11 @@ function UserLisetForMember() {
             sortable: true,
             flex: 1,
             valueFormatter: (params) =>
-                params.value ? new Date(params.value).toLocaleDateString() : "—",
+                params.value ? new Date(params.value).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                }) : "—",
             filterParams: {
                 comparator: (filterLocalDateAtMidnight, cellValue) => {
                     const cellDate = new Date(cellValue);

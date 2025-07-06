@@ -328,7 +328,11 @@ function UserList() {
       sortable: true,
       flex: 1,
       valueFormatter: (params) =>
-        params.value ? new Date(params.value).toLocaleDateString() : "—",
+        params.value ? new Date(params.value).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }) : "—",
       filterParams: {
         comparator: (filterLocalDateAtMidnight, cellValue) => {
           const cellDate = new Date(cellValue);
@@ -358,17 +362,17 @@ function UserList() {
       }
     },
     {
-  headerName: "Quantity Referred",
-  field: "referral_count",
-  flex: 1,
-  minWidth: 120,
-  valueGetter: params => {
-    const allUsers = params.context?.allUsers || [];
-    // Count users whose user_refer_id matches this user's id
-    return allUsers.filter(u => u.user_refer_id === params.data.id).length;
-  },
-  cellStyle: { textAlign: 'center', fontWeight: 600 },
-},
+      headerName: "Quantity Referred",
+      field: "referral_count",
+      flex: 1,
+      minWidth: 120,
+      valueGetter: params => {
+        const allUsers = params.context?.allUsers || [];
+        // Count users whose user_refer_id matches this user's id
+        return allUsers.filter(u => u.user_refer_id === params.data.id).length;
+      },
+      cellStyle: { textAlign: 'center', fontWeight: 600 },
+    },
     {
       headerName: "DS Sponsor",
       field: "ds_id",
@@ -861,7 +865,7 @@ const TransactionPopup = ({
         )}
         <div style={{ marginTop: 20 }}>
           {canConfirm && (
-             <button className="confirm-btn-verify" onClick={onConfirm}>Verify Payment</button>
+            <button className="confirm-btn-verify" onClick={onConfirm}>Verify Payment</button>
           )}
           <button className="close-btn" onClick={onClose} style={{ marginLeft: 10 }}>Close</button>
         </div>
