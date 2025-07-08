@@ -6,11 +6,12 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './UserList.css'; // <- Add this
 import { ADMIN_BASE_URL } from './config';
 import './TransactionPopup.css';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaEdit } from 'react-icons/fa';
 import CustomModal from './CustomModal';
 import { toast } from 'react-toastify';
 import { FiCopy } from 'react-icons/fi';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 
 import { ModuleRegistry } from 'ag-grid-community';
@@ -36,7 +37,57 @@ function UserList() {
   const [selectedRowData, setSelectedRowData] = useState(null);
   const [manualConfirmOpen, setManualConfirmOpen] = useState(false);
   const [manualConfirmUserId, setManualConfirmUserId] = useState(null);
+  const [editReferOpen, setEditReferOpen] = useState(false);
+const [editReferUser, setEditReferUser] = useState(null);
+const [newReferId, setNewReferId] = useState('');
+const [savingReferEdit, setSavingReferEdit] = useState(false);
   // Inside TransactionPopup component
+
+
+const handleEditRefer = (user) => {
+  setEditReferUser(user);
+  setNewReferId(user.user_refer_id || '');
+  setEditReferOpen(true);
+};
+
+const handleSaveReferEdit = async () => {
+  setSavingReferEdit(true);
+  const token = localStorage.getItem('token');
+  try {
+    const response = await fetch(
+      `${ADMIN_BASE_URL}/adminapi/users/${editReferUser.id}/editrefer`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ userReferId: newReferId }),
+      }
+    );
+    const result = await response.json();
+    if (response.ok) {
+      toast.success('Referral updated successfully.');
+      setEditReferOpen(false);
+      setEditReferUser(null);
+      setNewReferId('');
+      // Refresh user list
+      setLoading(true);
+      fetch(`${ADMIN_BASE_URL}/adminapi/users`)
+        .then(res => res.json())
+        .then(data => {
+          setUsers(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    } else {
+      toast.error(result.message || 'Failed to update referral.');
+    }
+  } catch (err) {
+    toast.error('Network error. Please try again.');
+  }
+  setSavingReferEdit(false);
+};
 
 
   const handleRowClick = (data) => {
@@ -389,11 +440,19 @@ function UserList() {
       field: "user_refer_id",
       flex: 1,
       minWidth: 180,
-      valueGetter: params => {
-        // Find the user whose id matches user_refer_id
+      cellRenderer: (params) => {
         const allUsers = params.context?.allUsers || [];
         const referredUser = allUsers.find(u => u.id === params.data.user_refer_id);
-        return referredUser ? referredUser.user_name : "";
+        return (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span>{referredUser ? referredUser.user_name : ""}</span>
+            <FaEdit
+              style={{ color: "#1976d2", cursor: "pointer" }}
+              title="Edit Referred By"
+              onClick={() => params.context.handleEditRefer(params.data)}
+            />
+          </div>
+        );
       }
     },
     {
@@ -429,12 +488,15 @@ function UserList() {
         console.log("Transaction:", transaction, "Confirmation Status:", is_confirmation);
         if (transaction && is_confirmation === 1) return "Paid";
         if (transaction && is_confirmation !== 1) return "Need Verify";
+        if (is_confirmation === 1) return "Manual Paid";
         return "Not Paid";
       },
       cellStyle: params => {
         const status = params.value;
         if (status === "Paid") return { color: "#43e97b", fontWeight: 700 };
         if (status === "Need Verify") return { color: "#ff9800", fontWeight: 700 };
+        if (status === "Manual Paid") return { color: "#43e97b", fontWeight: 700 };
+
         return { color: "#e53935", fontWeight: 700 };
       },
       minWidth: 150
@@ -444,7 +506,7 @@ function UserList() {
       cellRenderer: (params) => {
         const { transaction, id, is_confirmation, ds_id } = params.data;
         let paymentStatus = "Not Paid";
-        if ( is_confirmation === 1) paymentStatus = "Paid";
+        if (is_confirmation === 1) paymentStatus = "Paid";
         else if (transaction && is_confirmation !== 1) paymentStatus = "Need Verify";
 
         let btnText = "View";
@@ -679,6 +741,7 @@ function UserList() {
               context={{
                 handleView,
                 handleDelete,
+                handleEditRefer,
                 allUsers: users,
               }}
             //onRowClicked={(event) => handleRowClick(event.data)}
@@ -747,6 +810,64 @@ function UserList() {
           </div>
         </div>
       )}
+      {editReferOpen && (
+  <div className="popup-overlay">
+    <div className="popup-content" style={{ maxWidth: 400 }}>
+      <h3>Edit "Referred By" User</h3>
+      <div style={{ marginBottom: 16 }}>
+        <div><strong>User Name:</strong> {editReferUser?.user_name}</div>
+        <div><strong>Email:</strong> {editReferUser?.email}</div>
+      </div>
+      <select
+        value={newReferId}
+        onChange={e => setNewReferId(e.target.value)}
+        style={{ width: '100%', padding: 8, borderRadius: 6, marginBottom: 16 }}
+      >
+        <option value="">Select Referred By</option>
+        {users
+          .filter(u => u.id !== editReferUser?.id)
+          .map(u => (
+            <option key={u.id} value={u.id}>
+              {u.user_name} ({u.email})
+            </option>
+          ))}
+      </select>
+      <div style={{ display: 'flex', gap: 12 }}>
+        <button
+          onClick={handleSaveReferEdit}
+          disabled={!newReferId || savingReferEdit}
+          style={{
+            background: "#1976d2",
+            color: "#fff",
+            border: "none",
+            borderRadius: 6,
+            padding: "8px 20px",
+            fontWeight: 600,
+            fontSize: 15,
+            cursor: "pointer",
+          }}
+        >
+          {savingReferEdit ? "Saving..." : "Save"}
+        </button>
+        <button
+          onClick={() => setEditReferOpen(false)}
+          style={{
+            background: "#e0e0e0",
+            color: "#333",
+            border: "none",
+            borderRadius: 6,
+            padding: "8px 20px",
+            fontWeight: 600,
+            fontSize: 15,
+            cursor: "pointer",
+          }}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </Layout>
   );
 
@@ -780,7 +901,7 @@ const TransactionPopup = ({
 
   if (!open) return null;
 
-  const isPaid = transaction && currentUser?.is_confirmation === 1;
+  const isPaid = currentUser?.is_confirmation === 1;
 
 
   // Find the referred user if user_refer_id is set
