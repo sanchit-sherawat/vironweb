@@ -28,18 +28,20 @@
   border-radius: 12px;
   max-width: 700px;
   width: 95%;
+  height: 95%;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
   position: relative;
   text-align: center;
+  /* overflow-y: scroll; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .modal-logo-container {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .modal-logo {
-  width: 150px;
+  width: 90px;
   height: auto;
 }
 
@@ -55,7 +57,7 @@
   text-align: left;
   font-size: 1rem;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.4;
   padding: 0 0.5rem;
 }
 

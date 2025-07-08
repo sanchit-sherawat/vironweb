@@ -5,7 +5,7 @@
   background-color: #ffffff;
   color: #000000;
   padding: 10px 20px;
-  height: 60px;
+  height: 85px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -19,7 +19,7 @@
 }
 
 .logo {
-  height: 70px;
+  height: 66px;
   /* margin-right: 10px; */
 }
 
