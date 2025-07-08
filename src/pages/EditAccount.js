@@ -18,7 +18,7 @@ function EditAccount() {
     homeStatus: '',
     employmentStatus: '',
     householdIncome: '',
-    socialMedia:'',
+    socialMedia: '',
     petStatus: '',
     fedback: '',
   });
@@ -47,7 +47,15 @@ function EditAccount() {
           city: data.city || '',
           province: data.province || '',
           zip: data.zip || '',
-          dob: data.dob ? new Date(data.dob).toISOString().slice(0, 10) : '',
+          dob: data.dob
+            ? (() => {
+              const date = new Date(data.dob);
+              const year = date.getFullYear();
+              const month = String(date.getMonth() + 1).padStart(2, '0');
+              const day = String(date.getDate()).padStart(2, '0');
+              return `${year}-${month}-${day}`;
+            })()
+            : '',
           homeStatus: data.homestatus || '',
           employmentStatus: data.employmentstatus || '',
           householdIncome: data.householdincome || '',
@@ -214,9 +222,9 @@ function EditAccount() {
                     style={styles.input}
                   />
                 </div>
-                
+
               </div>
-              
+
             </div>
             <div>
               <p><strong>VIRON.NETWORK is a secured website and we value your privacy.</strong></p>
@@ -225,16 +233,16 @@ function EditAccount() {
               <p>For example, your DOB is collected because we need to ensure you are at least age 18 to own and engage with VIRON. For individuals under 18, we will require the parents&rsquo; or legal guardians&rsquo; consent.</p>
             </div>
             <div style={styles.formGroup}>
-                 <div style={styles.formGroup}>
-                  <label style={styles.label}>Your Date of Birth (DOB)</label>
-                  <input
-                    type="date"
-                    name="dob"
-                    value={form.dob}
-                    onChange={handleChange}
-                    style={styles.input}
-                  />
-                </div>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Your Date of Birth (DOB)</label>
+                <input
+                  type="date"
+                  name="dob"
+                  value={form.dob}
+                  onChange={handleChange}
+                  style={styles.input}
+                />
+              </div>
               <label style={styles.label}>Are you renting or do you own your own home?</label>
               <div>
                 <label style={{ marginRight: 16 }}>
@@ -325,7 +333,7 @@ function EditAccount() {
               />
             </div>
 
-            
+
             <div style={styles.formGroup}>
               <label style={styles.label}>Do you have a pet?</label>
               <div>

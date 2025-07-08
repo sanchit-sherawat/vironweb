@@ -34,6 +34,8 @@ function UserList() {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
+  const [manualConfirmOpen, setManualConfirmOpen] = useState(false);
+  const [manualConfirmUserId, setManualConfirmUserId] = useState(null);
   // Inside TransactionPopup component
 
 
@@ -41,6 +43,39 @@ function UserList() {
     debugger
     setSelectedRowData(data);
     setShowModal(true);
+  };
+
+  const handleConfirmManual = async (userId) => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(
+        `${ADMIN_BASE_URL}/adminapi/users/${userId}/confirm`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
+      const result = await response.json();
+      if (response.ok) {
+        toast.success('User payment manually confirmed.');
+        // Refresh user list
+        setLoading(true);
+        fetch(`${ADMIN_BASE_URL}/adminapi/users`)
+          .then(res => res.json())
+          .then(data => {
+            setUsers(data);
+            setLoading(false);
+          })
+          .catch(() => setLoading(false));
+      } else {
+        toast.error(result.message || 'Failed to confirm payment.');
+      }
+    } catch (err) {
+      toast.error('Network error. Please try again.');
+    }
   };
 
   const handleView = (transaction, userId, canConfirm) => {
@@ -409,7 +444,7 @@ function UserList() {
       cellRenderer: (params) => {
         const { transaction, id, is_confirmation, ds_id } = params.data;
         let paymentStatus = "Not Paid";
-        if (transaction && is_confirmation === 1) paymentStatus = "Paid";
+        if ( is_confirmation === 1) paymentStatus = "Paid";
         else if (transaction && is_confirmation !== 1) paymentStatus = "Need Verify";
 
         let btnText = "View";
@@ -429,9 +464,11 @@ function UserList() {
           btnText = "Verify";
           btnColor = "#ff9800";
         } else {
-          btnText = "Not Paid";
-          btnColor = "#e53935";
-          disabled = true;
+          if (paymentStatus === "Not Paid") {
+            btnText = "Not Paid";
+            btnColor = "#e53935";
+            // disabled = true; // Remove this line
+          }
         }
         return (
           <>
@@ -449,14 +486,18 @@ function UserList() {
                 cursor: disabled ? "not-allowed" : "pointer",
                 opacity: disabled ? 0.7 : 1,
               }}
-              onClick={() =>
-                !disabled &&
-                params.context.handleView(
-                  transaction,
-                  id,
-                  !!transaction && is_confirmation !== 1
-                )
-              }
+              onClick={() => {
+                if (paymentStatus === "Not Paid") {
+                  setManualConfirmUserId(id);
+                  setManualConfirmOpen(true);
+                } else if (!disabled) {
+                  params.context.handleView(
+                    transaction,
+                    id,
+                    !!transaction && is_confirmation !== 1
+                  );
+                }
+              }}
               disabled={disabled}
             >
               {btnText}
@@ -662,6 +703,50 @@ function UserList() {
         onClose={() => setShowModal(false)}
         data={selectedRowData}
       />
+      {manualConfirmOpen && (
+        <div className="popup-overlay">
+          <div className="popup-content" style={{ maxWidth: 400 }}>
+            <h3>Manual Payment Confirmation</h3>
+            <p>Do you want to manually confirm the payment for this user?</p>
+            <div style={{ display: 'flex', gap: 16, marginTop: 24 }}>
+              <button
+                style={{
+                  background: "#43e97b",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 6,
+                  padding: "10px 24px",
+                  fontWeight: 600,
+                  fontSize: 15,
+                  cursor: "pointer",
+                }}
+                onClick={async () => {
+                  // Call your manual confirm API here
+                  await handleConfirmManual(manualConfirmUserId);
+                  setManualConfirmOpen(false);
+                }}
+              >
+                Yes
+              </button>
+              <button
+                style={{
+                  background: "#e53935",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 6,
+                  padding: "10px 24px",
+                  fontWeight: 600,
+                  fontSize: 15,
+                  cursor: "pointer",
+                }}
+                onClick={() => setManualConfirmOpen(false)}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 
