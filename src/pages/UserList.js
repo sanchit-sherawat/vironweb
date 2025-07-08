@@ -733,7 +733,7 @@ const handleSaveReferEdit = async () => {
               columnDefs={columnDefs}
               pagination={true}
               animateRows={true}
-              paginationPageSize={50}
+              paginationPageSize={100}
               suppressHorizontalScroll={false}
               suppressRowClickSelection={true}
               rowSelection="single"
