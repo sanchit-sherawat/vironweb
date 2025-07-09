@@ -246,8 +246,8 @@ function ForgotPasswordPage() {
 
                 <div className="footer-bottom-area">
                     <div className="container copy-right">
-                        <p>Copyright &copy; 2025 VIRON.NETWORK. All rights reserved.</p>
-                        <p>
+                        <p class="pb-20">Copyright &copy; 2025 VIRON.NETWORK. All rights reserved.</p>
+                        <p class="pb-20">
                             <Link to="/faq"><b>FAQ</b></Link> | <Link to="/privacy-policy"><b>Privacy Policy</b></Link> | <Link to="/disclaimer"><b>Disclaimer</b></Link> | <Link to="/terms-of-use"><b>Terms of Use</b></Link> | <Link to="/service-agreement"><b>Service Agreement</b></Link>
                         </p>
                     </div>

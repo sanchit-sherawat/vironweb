@@ -104,14 +104,14 @@ function VironNotice() {
 
                     <p style={{ backgroundColor: "yellow" }}> NOTE: <u>The <strong>SAVINGS</strong> alone from your daily regular spending can exceed the entire cost of your VIRON Home-Business!</u> </p>
                 </p>
-                <p><strong>&#x2022; VIRON One-Time Registration Fee $39.95 </strong>(waived during this pre-launch).</p>
-                <p><strong>&#x2022; VIRON Annual Registration Fee $149.95  </strong>(waived during this pre-launch).</p>
-                <p><strong>&#x2022; VIRON Direct Referrals (DRs) </strong>$195 each x2 = $390 <u style={{ color: "red" }}>(reduced to only $199 total during this Pre-Launch).</u>*This limited pricing is subject to change without notice and in accordance with market demand. NOTE: There is a limit of 2 DRs per member, because you will only need 2 DRs to qualify for all commissions and bonuses per the SC Compensation Plan.</p>
+                <p class="pb-20"><strong>&#x2022; VIRON One-Time Registration Fee $39.95 </strong>(waived during this pre-launch).</p>
+                <p class="pb-20"><strong>&#x2022; VIRON Annual Registration Fee $149.95  </strong>(waived during this pre-launch).</p>
+                <p class="pb-20"><strong>&#x2022; VIRON Direct Referrals (DRs) </strong>$195 each x2 = $390 <u style={{ color: "red" }}>(reduced to only $199 total during this Pre-Launch).</u>*This limited pricing is subject to change without notice and in accordance with market demand. NOTE: There is a limit of 2 DRs per member, because you will only need 2 DRs to qualify for all commissions and bonuses per the SC Compensation Plan.</p>
                 <strong>STRONG NOTE: Each DR will bring forth a subsequent DR that will be placed under them, and so forth. <span style={{ backgroundColor: "yellow" }}><u>Ensuring your downline grows with PAYING members, ongoing!</u> </span></strong>
 
                 <h3 className='red-highlight'>TOTAL COST DURING PRE-LAUNCH: </h3>
                 <p className='red-highlight'>Above totals $499.00 + $20 crypto transaction fee = $519.00</p>
-                <p><strong>NOTE:</strong>If the cryptocurrency value drops while we are processing your transaction and setting up your account, it may cause a stall in the process. In this case, you will be contacted to provide the difference. <strong>*To avoid the risk of this inconvenience, the “crypto transaction fee” will also help cover the typical fluctuations in the crypto market for you.</strong></p>
+                <p class="pb-20"><strong>NOTE:</strong>If the cryptocurrency value drops while we are processing your transaction and setting up your account, it may cause a stall in the process. In this case, you will be contacted to provide the difference. <strong>*To avoid the risk of this inconvenience, the “crypto transaction fee” will also help cover the typical fluctuations in the crypto market for you.</strong></p>
 
                 <p className="dots">:::</p>
                 <h3 className="notice-title">PAYMENT</h3>
@@ -146,7 +146,7 @@ function VironNotice() {
                 <p style={{ textAlign: "center" }} className='red-highlight'>Crypto Transaction ID #. Then paste or enter it in the corresponding field below:</p>
 
                 <div style={{ marginTop: '2rem' }}>
-                    <p><strong>Please enter your crypto transaction ID:</strong></p>
+                    <p class="pb-20"><strong>Please enter your crypto transaction ID:</strong></p>
                     <form className="crypto-form" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="btc_txn">BTC Blockchain Transaction ID:</label>
@@ -180,7 +180,7 @@ function VironNotice() {
 
 
                 <h4 style={{ marginTop: '2rem', fontWeight: 'bold' }}>Congratulations on discovering VIRON.NETWORK!</h4>
-                <p><em>-The VIRON Administration</em></p>
+                <p class="pb-20"><em>-The VIRON Administration</em></p>
 
             </div>
 

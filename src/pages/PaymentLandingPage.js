@@ -13,7 +13,7 @@ export default function PaymentLandingPage() {
                 <h2 className='pb-10'>NOTIFICATION<br/>Your Payment is Processing…</h2>
             </div>
             <p className='pb-20'>Your cryptocurrency payment for your <strong><u>VIRON Home-Business (&ldquo;VHB&rdquo;)</u> </strong>is being processed and is awaiting confirmation on the Blockchain.<strong className='text-red'> The VIRON Administrators have been notified. </strong>Once your payment is confirmed and cleared, your VHB account status will be marked &ldquo;PAID&rdquo;.</p>
-            <p>The VIRON Administrators will then correctly set up your account with the qualified <strong>third-party MLM company</strong>, which will complete your VHB.</p>
+            <p class="pb-20">The VIRON Administrators will then correctly set up your account with the qualified <strong>third-party MLM company</strong>, which will complete your VHB.</p>
             <p className='pb-20'>We will be in touch with you at each step, and you will be notified accordingly.</p>
             <p className='pb-20'><strong className='text-red'>EMPHASIS:</strong> Please understand that we are currently in <strong><u>PRE-LAUNCH</u></strong>. The Pre-Launch will conclude when we reach 5,500 total members. We will then automatically enter <strong>FULL-LAUNCH</strong>.</p>
             <p className='pb-20'><strong className='text-red'>STRONG EMPHASIS:</strong> Your VIRON position is currently <u>secure and locked per your Time/Date Stamp</u>. Until the Pre-Launch is over, your funds are placed in our ESCROW account. <span className='text-highlighted'>Your funds are only drawn when the following steps are completed:</span></p>

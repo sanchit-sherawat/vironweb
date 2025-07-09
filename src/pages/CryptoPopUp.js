@@ -24,20 +24,20 @@ const CryptoModal = ({ isOpen, onClose }) => {
 
                 {/* Content */}
                 <div className="modal-content">
-                    <p>
+                    <p class="pb-20">
                         The public is now much more aware of the issues and problems associated with fiat
                         currency and instruments, particularly for companies with a powerful product launch.
                     </p>
-                    <p>
+                    <p class="pb-20">
                         <strong>VIRON</strong> is engineered to level the playing field for everyone, which is
                         expected to drive growth and generate revenues at high velocity.
                     </p>
-                    <p>
+                    <p class="pb-20">
                         With that said, any savvy business person would want to grow without hindrance and avoid the 
                         <strong><em><u> bottleneck risks </u></em></strong>
                         often associated with fiat instruments and their payment methods.
                     </p>
-                    <p>
+                    <p class="pb-20">
                         Furthermore, without a doubt, Cryptocurrency, with an emphasis on Bitcoin, is no longer
                         “the wave of the future.” <strong>It is widespread and is HERE NOW!</strong>
                     </p>

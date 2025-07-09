@@ -64,7 +64,7 @@ const CustomModal = ({ show, onClose, data }) => {
                 : '—'}</span></div>
             </div>
           ) : (
-            <p>No data available.</p>
+            <p class="pb-20">No data available.</p>
           )}
         </div>
         <div className="custom-modal-footer">

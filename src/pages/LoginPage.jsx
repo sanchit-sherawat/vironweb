@@ -174,7 +174,7 @@ function LoginPage() {
                 <div className="footer-bottom-area">
                     <div className="container copy-right">
                         <p className="black-text">Copyright &copy; 2025 VIRON.NETWORK. All rights reserved.</p>
-                        <p>
+                        <p class="pb-20">
                             <a href="https://viron.network/faq.html"><b>FAQ</b></a> | <a href="https://viron.network/privacy-policy.html"><b>Privacy Policy</b></a> | <a href="https://viron.network/disclaimer.html"><b>Disclaimer</b></a> | <a href="https://viron.network/terms-of-use.html"><b>Terms of Use</b></a> | <a href="https://viron.network/service-agreement.html"><b>Service Agreement</b></a>
                         </p>
                     </div>
