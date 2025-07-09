@@ -38,56 +38,56 @@ function UserList() {
   const [manualConfirmOpen, setManualConfirmOpen] = useState(false);
   const [manualConfirmUserId, setManualConfirmUserId] = useState(null);
   const [editReferOpen, setEditReferOpen] = useState(false);
-const [editReferUser, setEditReferUser] = useState(null);
-const [newReferId, setNewReferId] = useState('');
-const [savingReferEdit, setSavingReferEdit] = useState(false);
+  const [editReferUser, setEditReferUser] = useState(null);
+  const [newReferId, setNewReferId] = useState('');
+  const [savingReferEdit, setSavingReferEdit] = useState(false);
   // Inside TransactionPopup component
 
 
-const handleEditRefer = (user) => {
-  setEditReferUser(user);
-  setNewReferId(user.user_refer_id || '');
-  setEditReferOpen(true);
-};
+  const handleEditRefer = (user) => {
+    setEditReferUser(user);
+    setNewReferId(user.user_refer_id || '');
+    setEditReferOpen(true);
+  };
 
-const handleSaveReferEdit = async () => {
-  setSavingReferEdit(true);
-  const token = localStorage.getItem('token');
-  try {
-    const response = await fetch(
-      `${ADMIN_BASE_URL}/adminapi/users/${editReferUser.id}/editrefer`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({ userReferId: newReferId }),
+  const handleSaveReferEdit = async () => {
+    setSavingReferEdit(true);
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(
+        `${ADMIN_BASE_URL}/adminapi/users/${editReferUser.id}/editrefer`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({ userReferId: newReferId }),
+        }
+      );
+      const result = await response.json();
+      if (response.ok) {
+        toast.success('Referral updated successfully.');
+        setEditReferOpen(false);
+        setEditReferUser(null);
+        setNewReferId('');
+        // Refresh user list
+        setLoading(true);
+        fetch(`${ADMIN_BASE_URL}/adminapi/users`)
+          .then(res => res.json())
+          .then(data => {
+            setUsers(data);
+            setLoading(false);
+          })
+          .catch(() => setLoading(false));
+      } else {
+        toast.error(result.message || 'Failed to update referral.');
       }
-    );
-    const result = await response.json();
-    if (response.ok) {
-      toast.success('Referral updated successfully.');
-      setEditReferOpen(false);
-      setEditReferUser(null);
-      setNewReferId('');
-      // Refresh user list
-      setLoading(true);
-      fetch(`${ADMIN_BASE_URL}/adminapi/users`)
-        .then(res => res.json())
-        .then(data => {
-          setUsers(data);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    } else {
-      toast.error(result.message || 'Failed to update referral.');
+    } catch (err) {
+      toast.error('Network error. Please try again.');
     }
-  } catch (err) {
-    toast.error('Network error. Please try again.');
-  }
-  setSavingReferEdit(false);
-};
+    setSavingReferEdit(false);
+  };
 
 
   const handleRowClick = (data) => {
@@ -811,63 +811,108 @@ const handleSaveReferEdit = async () => {
         </div>
       )}
       {editReferOpen && (
-  <div className="popup-overlay">
-    <div className="popup-content" style={{ maxWidth: 400 }}>
-      <h3>Edit "Referred By" User</h3>
-      <div style={{ marginBottom: 16 }}>
-        <div><strong>User Name:</strong> {editReferUser?.user_name}</div>
-        <div><strong>Email:</strong> {editReferUser?.email}</div>
-      </div>
-      <select
-        value={newReferId}
-        onChange={e => setNewReferId(e.target.value)}
-        style={{ width: '100%', padding: 8, borderRadius: 6, marginBottom: 16 }}
-      >
-        <option value="">Select Referred By</option>
-        {users
-          .filter(u => u.id !== editReferUser?.id)
-          .map(u => (
-            <option key={u.id} value={u.id}>
-              {u.user_name} ({u.email})
-            </option>
-          ))}
-      </select>
-      <div style={{ display: 'flex', gap: 12 }}>
-        <button
-          onClick={handleSaveReferEdit}
-          disabled={!newReferId || savingReferEdit}
-          style={{
-            background: "#1976d2",
-            color: "#fff",
-            border: "none",
-            borderRadius: 6,
-            padding: "8px 20px",
-            fontWeight: 600,
-            fontSize: 15,
-            cursor: "pointer",
-          }}
-        >
-          {savingReferEdit ? "Saving..." : "Save"}
-        </button>
-        <button
-          onClick={() => setEditReferOpen(false)}
-          style={{
-            background: "#e0e0e0",
-            color: "#333",
-            border: "none",
-            borderRadius: 6,
-            padding: "8px 20px",
-            fontWeight: 600,
-            fontSize: 15,
-            cursor: "pointer",
-          }}
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+        <div className="popup-overlay" style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999
+        }}>
+          <div className="popup-content" style={{
+            backgroundColor: '#fff',
+            padding: '24px',
+            borderRadius: '12px',
+            width: '100%',
+            maxWidth: '420px',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+            fontFamily: 'Segoe UI, sans-serif',
+          }}>
+            <h2 style={{ fontSize: '20px', marginBottom: '16px', color: '#333' }}>
+              Edit <span style={{ color: '#1976d2' }}>"Referred By"</span> User
+            </h2>
+
+            <div style={{
+              backgroundColor: '#f5f5f5',
+              padding: '12px 16px',
+              borderRadius: '8px',
+              marginBottom: '20px'
+            }}>
+              <p style={{ margin: '4px 0', fontWeight: 600 }}>
+                👤 User Name: <span style={{ fontWeight: 400 }}>{editReferUser?.user_name}</span>
+              </p>
+              <p style={{ margin: '4px 0', fontWeight: 600 }}>
+                📧 Email: <span style={{ fontWeight: 400 }}>{editReferUser?.email}</span>
+              </p>
+            </div>
+
+            <label style={{ display: 'block', marginBottom: '6px', fontWeight: 600, fontSize: 14 }}>
+              Select Referred By
+            </label>
+            <select
+              value={newReferId}
+              onChange={e => setNewReferId(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '10px 12px',
+                borderRadius: '8px',
+                border: '1.5px solid #90a4ae',
+                marginBottom: '24px',
+                fontSize: 15,
+              }}
+            >
+              <option value="">Select Referred By</option>
+              {users
+                .filter(u => u && u.id !== editReferUser?.id && u.user_name)
+                .sort((a, b) => a.user_name.localeCompare(b.user_name))
+                .map(u => (
+                  <option key={u.id} value={u.id}>
+                    {u.user_name} ({u.email})
+                  </option>
+                ))}
+            </select>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
+              <button
+                onClick={handleSaveReferEdit}
+                disabled={!newReferId || savingReferEdit}
+                style={{
+                  backgroundColor: "#1976d2",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "8px",
+                  padding: "10px 20px",
+                  fontWeight: 600,
+                  fontSize: "15px",
+                  cursor: savingReferEdit ? "not-allowed" : "pointer",
+                  opacity: savingReferEdit ? 0.7 : 1,
+                  transition: '0.2s'
+                }}
+              >
+                {savingReferEdit ? "Saving..." : "Save"}
+              </button>
+              <button
+                onClick={() => setEditReferOpen(false)}
+                style={{
+                  backgroundColor: "#e0e0e0",
+                  color: "#333",
+                  border: "none",
+                  borderRadius: "8px",
+                  padding: "10px 20px",
+                  fontWeight: 600,
+                  fontSize: "15px",
+                  cursor: "pointer",
+                  transition: '0.2s'
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </Layout>
   );
 
