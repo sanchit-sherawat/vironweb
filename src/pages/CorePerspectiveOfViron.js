@@ -7,8 +7,8 @@ function CorePerspectiveOfViron() {
         <div className='row'>
           <div className='col'>
             <div style={{ padding: '2rem' }} className='text-center'>
-                <h2 className='text-red pb-10'>THE CORE PERSPECTIVE of VIRON</h2>
-                <p  >Article updated: 17 June 2025</p>
+                <h2 className='text-red'>THE CORE PERSPECTIVE of VIRON</h2>
+                <p  className='pb-10'>Article updated: 17 June 2025</p>
                 <h3><em className='text-blue'>“People Fail; Systems Prevail”</em><br/>VIRON.NETWORK is Systemization.</h3>
             </div>
           </div>
