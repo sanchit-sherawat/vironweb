@@ -933,26 +933,26 @@ function UserList() {
               <p>No referred users.</p>
             ) : (
               <div className="referred-users-table-wrapper">
-              <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 16 }}>
-                <thead>
-                  <tr>
-                    <th style={{ textAlign: "left", padding: 8 }}>User Name</th>
-                    <th style={{ textAlign: "left", padding: 8 }}>Email</th>
-                    <th style={{ textAlign: "left", padding: 8 }}>First Name</th>
-                    <th style={{ textAlign: "left", padding: 8 }}>Last Name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {referredUsersList.map(u => (
-                    <tr key={u.id}>
-                      <td style={{ padding: 8 }}>{u.user_name}</td>
-                      <td style={{ padding: 8 }}>{u.email}</td>
-                      <td style={{ padding: 8 }}>{u.first_name}</td>
-                      <td style={{ padding: 8 }}>{u.last_name}</td>
+                <table className="referred-users-table">
+                  <thead>
+                    <tr>
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {referredUsersList.map(u => (
+                      <tr key={u.id}>
+                        <td>{u.user_name}</td>
+                        <td>{u.email}</td>
+                        <td>{u.first_name}</td>
+                        <td>{u.last_name}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             )}
             <div style={{ marginTop: 24, textAlign: "right" }}>
