@@ -144,3 +144,14 @@
   -moz-user-select: text !important;
   -ms-user-select: text !important;
 }
+
+
+.referred-users-table-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.popup-content {
+  max-height: 65vh;
+  overflow-y: auto;
+}

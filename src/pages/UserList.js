@@ -41,6 +41,9 @@ function UserList() {
   const [editReferUser, setEditReferUser] = useState(null);
   const [newReferId, setNewReferId] = useState('');
   const [savingReferEdit, setSavingReferEdit] = useState(false);
+  const [referredUsersOpen, setReferredUsersOpen] = useState(false);
+  const [referredUsersList, setReferredUsersList] = useState([]);
+  const [referredByUser, setReferredByUser] = useState(null);
   // Inside TransactionPopup component
 
 
@@ -460,10 +463,33 @@ function UserList() {
       field: "referral_count",
       flex: 1,
       minWidth: 120,
-      valueGetter: params => {
+      cellRenderer: (params) => {
         const allUsers = params.context?.allUsers || [];
-        // Count users whose user_refer_id matches this user's id
-        return allUsers.filter(u => u.user_refer_id === params.data.id).length;
+        const referredUsers = allUsers.filter(u => u.user_refer_id === params.data.id);
+        const count = referredUsers.length;
+        return (
+          <span
+            style={{
+              color: count > 0 ? "#1976d2" : "#333",
+              textDecoration: count > 0 ? "underline" : "none",
+              cursor: count > 0 ? "pointer" : "default",
+              fontWeight: 600,
+              display: "inline-block",
+              width: "100%",
+              textAlign: "center"
+            }}
+            onClick={() => {
+              if (count > 0) {
+                setReferredUsersList(referredUsers);
+                setReferredByUser(params.data);
+                setReferredUsersOpen(true);
+              }
+            }}
+            title={count > 0 ? "View referred users" : ""}
+          >
+            {count}
+          </span>
+        );
       },
       cellStyle: { textAlign: 'center', fontWeight: 600 },
     },
@@ -811,7 +837,7 @@ function UserList() {
         </div>
       )}
       {editReferOpen && (
-        <div className="popup-overlay" 
+        <div className="popup-overlay"
         >
           <div className="popup-content" >
             <h2 style={{ fontSize: '20px', marginBottom: '16px', color: '#333' }}>
@@ -892,6 +918,58 @@ function UserList() {
                 }}
               >
                 Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {referredUsersOpen && (
+        <div className="popup-overlay">
+          <div className="popup-content" style={{ maxWidth: 600 }}>
+            <h3>
+              Users referred by: <span style={{ color: "#1976d2" }}>{referredByUser?.user_name}</span>
+            </h3>
+            {referredUsersList.length === 0 ? (
+              <p>No referred users.</p>
+            ) : (
+              <div className="referred-users-table-wrapper">
+              <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 16 }}>
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: "left", padding: 8 }}>User Name</th>
+                    <th style={{ textAlign: "left", padding: 8 }}>Email</th>
+                    <th style={{ textAlign: "left", padding: 8 }}>First Name</th>
+                    <th style={{ textAlign: "left", padding: 8 }}>Last Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {referredUsersList.map(u => (
+                    <tr key={u.id}>
+                      <td style={{ padding: 8 }}>{u.user_name}</td>
+                      <td style={{ padding: 8 }}>{u.email}</td>
+                      <td style={{ padding: 8 }}>{u.first_name}</td>
+                      <td style={{ padding: 8 }}>{u.last_name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              </div>
+            )}
+            <div style={{ marginTop: 24, textAlign: "right" }}>
+              <button
+                style={{
+                  background: "#1976d2",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 6,
+                  padding: "8px 24px",
+                  fontWeight: 600,
+                  fontSize: 15,
+                  cursor: "pointer",
+                }}
+                onClick={() => setReferredUsersOpen(false)}
+              >
+                Close
               </button>
             </div>
           </div>
