@@ -38,6 +38,10 @@
 }
 
 /* Custom styles for the all static pages */
+p {
+  margin:16px 0px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -88,9 +92,6 @@
 
 ul>li, ol>li{
   margin-bottom:10px;
-}
-p{
-  padding: 10px;
 }
 
 .pt-20 {
@@ -287,9 +288,9 @@ hr {
   
 }
 .faq-accordion .accordion .accordion-content ul {
-    list-style: none;
+    list-style: disc;
     padding: 0;
-    margin: 0;
+    margin-left: 30px;
 }
 .faq-accordion .accordion .accordion-content.show {
   display: block;
