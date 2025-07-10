@@ -811,24 +811,9 @@ function UserList() {
         </div>
       )}
       {editReferOpen && (
-        <div className="popup-overlay" style={{
-          position: 'fixed',
-          top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 9999
-        }}>
-          <div className="popup-content" style={{
-            backgroundColor: '#fff',
-            padding: '24px',
-            borderRadius: '12px',
-            width: '100%',
-            maxWidth: '420px',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-            fontFamily: 'Segoe UI, sans-serif',
-          }}>
+        <div className="popup-overlay" 
+        >
+          <div className="popup-content" >
             <h2 style={{ fontSize: '20px', marginBottom: '16px', color: '#333' }}>
               Edit <span style={{ color: '#1976d2' }}>"Referred By"</span> User
             </h2>

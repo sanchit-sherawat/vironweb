@@ -10,7 +10,7 @@
   background-color: #ADD8E6;
   height: calc(100vh - 60px);
   position: fixed;
-  top:90px;
+  top: 90px;
   left: 0;
   overflow-y: auto;
   transition: transform 0.3s ease;
@@ -25,7 +25,7 @@
   transform: translateX(0);
 }
 
-/* Toggle button (mobile only) */
+/* === Toggle Button === */
 .sidebar-toggle-btn {
   position: fixed;
   top: 100px;
@@ -33,23 +33,39 @@
   background-color: #ADD8E6;
   color: black;
   border: none;
- 
-  font-size: 1rem; 
+  font-size: 1rem;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: left 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
   display: none;
+  padding: 10px;
+  border-radius: 4px;
 }
-@media (max-width: 768px) {
+
+@media (max-width: 1024px) {
   .sidebar-toggle-btn {
     display: block;
   }
+
   .sidebar-toggle-btn.on-sidebar {
-    left: 307px; /* Match sidebar width */
+    left: 307px;
   }
 
   .sidebar-toggle-btn.on-screen {
     left: 10px;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0 !important;
+    width: 100% !important;
   }
 }
 
@@ -59,7 +75,6 @@
   margin-left: 350px;
   width: calc(100% - 350px);
   transition: margin-left 0.3s ease, width 0.3s ease;
-   
 }
 
 .content.collapsed {
@@ -67,34 +82,38 @@
   width: 100%;
 }
 
+/* === Small Devices (Mobile, iPhone) === */
 @media (max-width: 768px) {
-    .content {
-    margin-left: 0 !important;
-    width: 100% !important;
-    padding: 16px; /* smaller padding for mobile */
+  .sidebar {
+    width: 300px;
+    min-width: 300px;
+  }
+
+  .sidebar-toggle-btn.on-sidebar {
+    left: 267px;
+  }
+
+  .content {
+    padding: 16px;
     word-wrap: break-word;
-    overflow: hidden;
     overflow-wrap: break-word;
+    overflow-x: hidden;
   }
 }
-/* === iPhone/small device optimization === */
-@media (max-width: 400px) {
+
+@media (max-width: 480px) {
   .sidebar {
     width: 280px;
     min-width: 280px;
+    top: 72px;
   }
 
   .sidebar-toggle-btn.on-sidebar {
     left: 244px;
     top: 94px;
   }
-   h1, h2, h3 {
+
+  h1, h2, h3 {
     font-size: 1.2em;
   }
-  .content {
-     max-width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  }
 }
-

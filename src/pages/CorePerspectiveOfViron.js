@@ -8,7 +8,7 @@ function CorePerspectiveOfViron() {
           <div className='col'>
             <div style={{ padding: '2rem' }} className='text-center'>
                 <h2 className='text-red'>THE CORE PERSPECTIVE of VIRON</h2>
-                <p  className='pb-10'>Article updated: 17 June 2025</p>
+                <p   >Article updated: 17 June 2025</p>
                 <h3><em className='text-blue'>“People Fail; Systems Prevail”</em><br/>VIRON.NETWORK is Systemization.</h3>
             </div>
           </div>
@@ -26,8 +26,8 @@ function CorePerspectiveOfViron() {
             <hr/>
             <p class="pb-20">I took the liberty of understanding that most people that have failed, are failing, or will fail in MLM because they <u>cannot sell</u>. But of course, for a <em>&ldquo;cha-ching&rdquo;</em> (a sale) to occur, someone has to buy something, and someone has to SELL something. Therefore, we cannot <em>remove</em> the &ldquo;selling&rdquo; aspect from the equation.</p>
             <p className='text-tab'>I simply <em>&ldquo;<strong><u>transferred</u></strong>&rdquo;</em> the <em>Selling</em> element <u>from the individuals (amateurs)&hellip;to the <strong>PROFESSIONALS</strong></u>. Thus, the VIRON concept per: <em className='text-red'>&ldquo;Let Professionals Build Your Network Marketing Business <strong><u>for</u></strong> You&rdquo;.</em> </p>
-            <p className='text-tab2 pb-10'>Then I &ldquo;super-systemized&rdquo; it.</p>
-            <p className='text-tab3 pb-10'>The result, VIRON.NETWORK</p>
+            <p className='text-tab2'>Then I &ldquo;super-systemized&rdquo; it.</p>
+            <p className='text-tab3 '>The result, VIRON.NETWORK</p>
             <p className='text-tab4'>Imminent deployment 2025.</p>
             <p className='pt-50'><em>-Systematically and Non-Arbitrarily, </em></p>
             <img src="assets/Vinh-Le.jpg" alt="Mr. Vinh Le"></img>
