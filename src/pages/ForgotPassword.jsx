@@ -329,8 +329,8 @@ function Login() {
       <footer className="footer-bottom-area">
         <div className="container">
           <div className="copy-right">
-            <p class="pb-20">Copyright <i className="bx bx-copyright"></i> 2025 VIRON.NETWORK. All rights reserved.</p>
-            <p class="pb-20">
+            <p class=" ">Copyright <i className="bx bx-copyright"></i> 2025 VIRON.NETWORK. All rights reserved.</p>
+            <p class=" ">
               <a href="https://viron.network/faq.html"><b>FAQ</b></a> | <a href="https://viron.network/privacy-policy.html"><b>Privacy Policy</b></a> | <a href="https://viron.network/disclaimer.html"><b>Disclaimer</b></a> | <a href="https://viron.network/terms-of-use.html"><b>Terms of Use</b></a> | <a href="https://viron.network/service-agreement.html"><b>Service Agreement</b></a>
             </p>
           </div>

@@ -140,7 +140,7 @@ function FAQ() {
             <div style={{ paddingTop: '2rem' }} className="text-center">
               <img src='https://viron.network/assets/img/viron-logo.svg' alt="Viron Logo" className="img-logo-center" />
               <h2 className='mt-15 mb-0 text-red'>Frequently Asked Questions (F.A.Q.)</h2>
-              <p className='mt-0 pb-20'>Last Updated: 08 June 2025</p>
+              <p className='mt-0  '>Last Updated: 08 June 2025</p>
             </div>
             <div className="text-center mb-10" style={{ padding: '0px 20px', border: '2px solid #000', width: '45%', margin: '0 auto' }}>
               <p><strong>NOTE: General Questions are in font color: <em className="text-red">RED</em>.</strong><br /><strong>Answers or Comments are in font color: <em>BLACK</em> or <em className="text-blue">BLUE</em>.</strong></p>

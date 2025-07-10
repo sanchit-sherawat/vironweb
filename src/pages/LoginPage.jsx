@@ -68,11 +68,9 @@ const toggleNav = () => {
                         <img src="https://viron.network/assets/img/viron-logo.svg" alt="Viron Network Advisor" />
                     </Link>
 
-<div className="hamburger" onClick={toggleNav}>
-    {isNavOpen ? '✖' : '☰'}
-</div>
 
                     <nav className="main-nav">  
+                        
                         <ul>
                             <li><a href="https://viron.network/index.html">Home</a></li>
                             <li><a href="https://viron.network/works">How It Works</a></li>
@@ -88,6 +86,10 @@ const toggleNav = () => {
                         <a href="https://viron.network/register" className="button registration-button">Registration</a>
                         {/* <a href="https://viron.network/member/loginPage" className="button login-button">Login</a> */}
                     </div>
+                    
+<div className="hamburger" onClick={toggleNav}>
+    {isNavOpen ? '✖' : '☰'}
+</div>
                 </div>
             </header>
 

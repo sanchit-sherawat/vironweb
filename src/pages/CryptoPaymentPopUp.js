@@ -11,8 +11,8 @@ const CryptoPaymentModal = ({ isOpen, onClose }) => {
 
                 {/* Content */}
                 <div className='modal-content text-center'>
-                    <p class="pb-20">We highly suggest <u>Exodus</u>: <a href="https://www.exodus.com/">https://www.exodus.com/</a></p>
-                    <p class="pb-20">Exodus is a publicly traded company, listed on the NYSE American Exchange, and is trading under the ticker symbol &ldquo;EXOD&rdquo;.</p>
+                    <p class=" ">We highly suggest <u>Exodus</u>: <a href="https://www.exodus.com/">https://www.exodus.com/</a></p>
+                    <p class=" ">Exodus is a publicly traded company, listed on the NYSE American Exchange, and is trading under the ticker symbol &ldquo;EXOD&rdquo;.</p>
                     <img src="assets/exodus.png" alt="Exodus Logo" className='exodus'/>
                     <p className='mb-0'>With Exodus;</p>
                     <ol class="custom-number-list mt-0">
