@@ -925,7 +925,7 @@ function UserList() {
       )}
       {referredUsersOpen && (
         <div className="popup-overlay">
-          <div className="popup-content" style={{ maxWidth: 600 }}>
+          <div className="popup-content" style={{ maxWidth: 800 }}>
             <h3>
               Users referred by: <span style={{ color: "#1976d2" }}>{referredByUser?.user_name}</span>
             </h3>
