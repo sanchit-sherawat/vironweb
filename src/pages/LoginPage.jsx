@@ -13,6 +13,12 @@ function LoginPage() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
+const toggleNav = () => {
+    document.body.classList.toggle('nav-open');
+    setIsNavOpen(prev => !prev);
+};
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,11 +68,11 @@ function LoginPage() {
                         <img src="https://viron.network/assets/img/viron-logo.svg" alt="Viron Network Advisor" />
                     </Link>
 
-                    <div className="hamburger" onClick={() => document.body.classList.toggle('nav-open')}>
-                        &#9776;
-                    </div>
+<div className="hamburger" onClick={toggleNav}>
+    {isNavOpen ? '✖' : '☰'}
+</div>
 
-                    <nav className="main-nav">
+                    <nav className="main-nav">  
                         <ul>
                             <li><a href="https://viron.network/index.html">Home</a></li>
                             <li><a href="https://viron.network/works">How It Works</a></li>
@@ -174,7 +180,7 @@ function LoginPage() {
                 <div className="footer-bottom-area">
                     <div className="container copy-right">
                         <p className="black-text">Copyright &copy; 2025 VIRON.NETWORK. All rights reserved.</p>
-                        <p class="pb-20">
+                        <p class=" ">
                             <a href="https://viron.network/faq.html"><b>FAQ</b></a> | <a href="https://viron.network/privacy-policy.html"><b>Privacy Policy</b></a> | <a href="https://viron.network/disclaimer.html"><b>Disclaimer</b></a> | <a href="https://viron.network/terms-of-use.html"><b>Terms of Use</b></a> | <a href="https://viron.network/service-agreement.html"><b>Service Agreement</b></a>
                         </p>
                     </div>

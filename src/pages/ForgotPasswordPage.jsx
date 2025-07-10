@@ -14,6 +14,12 @@ function ForgotPasswordPage() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
+const toggleNav = () => {
+    document.body.classList.toggle('nav-open');
+    setIsNavOpen(prev => !prev);
+};
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -74,6 +80,10 @@ function ForgotPasswordPage() {
                     <Link to="/" className="logo">
                         <img src="https://viron.network/assets/img/viron-logo.svg" alt="Viron Network Advisor" />
                     </Link>
+<div className="hamburger" onClick={toggleNav}>
+    {isNavOpen ? '✖' : '☰'}
+</div>
+
                     <nav className="main-nav">
                         <ul>
                             <li>
@@ -246,8 +256,8 @@ function ForgotPasswordPage() {
 
                 <div className="footer-bottom-area">
                     <div className="container copy-right">
-                        <p class="pb-20">Copyright &copy; 2025 VIRON.NETWORK. All rights reserved.</p>
-                        <p class="pb-20">
+                        <p class=" ">Copyright &copy; 2025 VIRON.NETWORK. All rights reserved.</p>
+                        <p class=" ">
                             <Link to="/faq"><b>FAQ</b></Link> | <Link to="/privacy-policy"><b>Privacy Policy</b></Link> | <Link to="/disclaimer"><b>Disclaimer</b></Link> | <Link to="/terms-of-use"><b>Terms of Use</b></Link> | <Link to="/service-agreement"><b>Service Agreement</b></Link>
                         </p>
                     </div>

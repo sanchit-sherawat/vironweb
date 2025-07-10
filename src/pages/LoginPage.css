@@ -369,7 +369,8 @@ body {
   .go-top:hover {
     background-color: #0056b3;
   }
-  
+
+ 
   /* Responsive Adjustments (Basic) */
   @media (max-width: 768px) {
     .header-content {
@@ -377,10 +378,11 @@ body {
       text-align: center;
     }
   
-    .main-nav ul {
+    .main-nav  ul {
       flex-direction: column;
       margin-top: 15px;
     }
+
   
     .main-nav li {
       margin: 0 0 10px 0;
@@ -419,19 +421,42 @@ body {
   }
 
 
-/* Hamburger Icon Styles */
-.hamburger {
+/*   Icon Styles */
+.hamburger{
   display: none;
   font-size: 30px;
   cursor: pointer;
   color: #000;
-  margin-left: auto;
-}
 
-/* Responsive Nav - mobile toggle */
-@media (max-width: 768px) {
-  .hamburger {
+  margin-left: 20px;
+}
+@media (max-width: 1024px) {
+  .header-content{
+    flex-direction: row;
+  }
+  .hamburger  {
     display: block;
+  }
+
+  .main-nav {
+    display: none;
+    width: 100%;
+  }
+   body.nav-open .main-nav {
+    display: block;
+  }
+   .main-nav ul {
+    flex-direction: column;
+    margin-top: 15px;
+    align-items: center;
+  }
+
+}
+/* Responsive Nav - mobile toggle */
+@media (max-width: 768px)   {
+  .hamburger  {
+    display: block;
+    margin: 20px;
   }
 
   .main-nav {

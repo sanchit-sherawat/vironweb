@@ -117,7 +117,7 @@ function Login() {
       {/* START NAV AREA */}
       <div className="nav-area">
         <div className="navbar-area">
-          <div className="main-nav">
+          <div className=" ">
             <nav className="navbar navbar-expand-md">
               <div className="container">
                 <a className="navbar-brand" href="https://viron.network/index.html">

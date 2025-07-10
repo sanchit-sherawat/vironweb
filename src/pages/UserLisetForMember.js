@@ -246,7 +246,7 @@ function UserLisetForMember() {
             <div className="userlist-container">
                 <h2 className="userlist-heading">User List (Read Only)</h2>
                 {loading ? (
-                    <p class="pb-20">Loading...</p>
+                    <p class=" ">Loading...</p>
                 ) : (
                     <div className="ag-theme-alpine" style={{ width: '100%' }}>
                         <div
@@ -451,9 +451,9 @@ const TransactionPopup = ({
             <div className="popup-content">
 
                 <h3>Transaction Details</h3>
-                <p class="pb-20"><strong>Transaction Type:</strong> {transaction?.type || "—"}</p>
-                <p class="pb-20"><strong>Transaction ID#:</strong> {transaction?.value || "—"}</p>
-                <p class="pb-20">
+                <p class=" "><strong>Transaction Type:</strong> {transaction?.type || "—"}</p>
+                <p class=" "><strong>Transaction ID#:</strong> {transaction?.value || "—"}</p>
+                <p class=" ">
                     <strong>Transaction Time/Date:</strong>{' '}
                     {transaction?.created_at
                         ? new Date(transaction.created_at).toLocaleString()
