@@ -5,6 +5,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { ADMIN_BASE_URL } from './config';
 import CustomModal from './CustomModal';
+import "./UserList.css";
 
 function UserLisetForMember() {
     const [users, setUsers] = useState([]);
@@ -20,6 +21,9 @@ function UserLisetForMember() {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedRowData, setSelectedRowData] = useState(null);
+      const [referredUsersOpen, setReferredUsersOpen] = useState(false);
+      const [referredUsersList, setReferredUsersList] = useState([]);
+      const [referredByUser, setReferredByUser] = useState(null);
 
 
 
@@ -200,6 +204,41 @@ function UserLisetForMember() {
                 return referredUser ? referredUser.user_name : "";
             }
         },
+         {
+      headerName: "Quantity Referred",
+      field: "referral_count",
+      flex: 1,
+      minWidth: 120,
+      cellRenderer: (params) => {
+        const allUsers = params.context?.allUsers || [];
+        const referredUsers = allUsers.filter(u => u.user_refer_id === params.data.id);
+        const count = referredUsers.length;
+        return (
+          <span
+            style={{
+              color: count > 0 ? "#1976d2" : "#333",
+              textDecoration: count > 0 ? "underline" : "none",
+              cursor: count > 0 ? "pointer" : "default",
+              fontWeight: 600,
+              display: "inline-block",
+              width: "100%",
+              textAlign: "center"
+            }}
+            onClick={() => {
+              if (count > 0) {
+                setReferredUsersList(referredUsers);
+                setReferredByUser(params.data);
+                setReferredUsersOpen(true);
+              }
+            }}
+            title={count > 0 ? "View referred users" : ""}
+          >
+            {count}
+          </span>
+        );
+      },
+      cellStyle: { textAlign: 'center', fontWeight: 600 },
+    },
         {
             headerName: "Payment Status",
             field: "payment_status",
@@ -411,6 +450,58 @@ function UserLisetForMember() {
                     onClose={() => setShowModal(false)}
                     data={selectedRowData}
                 />
+                 {referredUsersOpen && (
+        <div className="popup-overlay">
+          <div className="popup-content" style={{ maxWidth: 800 }}>
+            <h3>
+              Users referred by: <span style={{ color: "#1976d2" }}>{referredByUser?.user_name}</span>
+            </h3>
+            {referredUsersList.length === 0 ? (
+              <p>No referred users.</p>
+            ) : (
+              <div className="referred-users-table-wrapper">
+                <table className="referred-users-table">
+                  <thead>
+                    <tr>
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {referredUsersList.map(u => (
+                      <tr key={u.id}>
+                        <td>{u.user_name}</td>
+                        <td>{u.email}</td>
+                        <td>{u.first_name}</td>
+                        <td>{u.last_name}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            <div style={{ marginTop: 24, textAlign: "right" }}>
+              <button
+                style={{
+                  background: "#1976d2",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 6,
+                  padding: "8px 24px",
+                  fontWeight: 600,
+                  fontSize: 15,
+                  cursor: "pointer",
+                }}
+                onClick={() => setReferredUsersOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
             </div>
         </Layout>
     );

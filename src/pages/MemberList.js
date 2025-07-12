@@ -161,11 +161,12 @@ function MemberList() {
     };
 
     const columnDefs = [
-        { headerName: "User Name", field: "user_name", flex: 1 },
-        { headerName: "First Name", field: "first_name", flex: 1 },
-        { headerName: "Last Name", field: "last_name", flex: 1 },
-        { headerName: "Phone", field: "phone_number", flex: 1 },
-        { headerName: "Email", field: "email", flex: 1 },
+        { headerName: "User Name", field: "user_name", flex: 1,  minWidth: 130, },
+        { headerName: "First Name", field: "first_name", flex: 1 ,  minWidth: 130,},
+        { headerName: "Last Name", field: "last_name", flex: 1 ,  minWidth: 130,},
+        { headerName: "Phone", field: "phone_number", flex: 1,  minWidth: 130, },
+        { headerName: "Email", field: "email", flex: 1 ,  minWidth: 130,},
+        
         {
             headerName: "Type",
             field: "type",
@@ -175,6 +176,8 @@ function MemberList() {
                 if (params.data.is_callcenter) return 'Callcenter';
                 return 'User';
             },
+         
+      minWidth: 130,
         },
         {
             headerName: "Actions",

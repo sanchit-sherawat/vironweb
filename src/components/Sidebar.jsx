@@ -44,6 +44,11 @@ function Sidebar({ isOpen, toggleSidebar }) {
         <ul className="sidebar-menu">
           {isAdmin ? (
             <>
+              <li className="disabled-link">
+                    <div className="menu-item">
+                      <FaUser /> <span>Your VIRON Username:<br />{username}</span>
+                    </div>
+                  </li>
               <li>
                 <NavLink to="/admin/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
                   <FaUsers /> <span>User List</span>
@@ -64,6 +69,11 @@ function Sidebar({ isOpen, toggleSidebar }) {
             <>
               {iscallcenter ? (
                 <>
+                   <li className="disabled-link">
+                    <div className="menu-item">
+                      <FaUser /> <span>Your VIRON Username:<br />{username}</span>
+                    </div>
+                  </li>
                   <li>
                     <NavLink to="/userlist" className={({ isActive }) => isActive ? 'active' : ''}>
                       <FaUsers /> <span>User List</span>
