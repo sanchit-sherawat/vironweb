@@ -64,10 +64,14 @@ const toggleNav = () => {
         <div className="login-page-container">
             <header className="main-header">
                 <div className="header-content">
+                    <div className="">
+
                     <Link to="/" className="logo">
                         <img src="https://viron.network/assets/img/viron-logo.svg" alt="Viron Network Advisor" />
                     </Link>
+                    </div>
 
+                <div className="flex">
 
                     <nav className="main-nav">  
                         
@@ -90,6 +94,7 @@ const toggleNav = () => {
 <div className="hamburger" onClick={toggleNav}>
     {isNavOpen ? '✖' : '☰'}
 </div>
+                </div>
                 </div>
             </header>
 

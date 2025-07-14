@@ -77,13 +77,14 @@ const toggleNav = () => {
             {/* Header */}
             <header className="main-header">
                 <div className="header-content">
+                    <div className="">
+
                     <Link to="/" className="logo">
                         <img src="https://viron.network/assets/img/viron-logo.svg" alt="Viron Network Advisor" />
                     </Link>
-<div className="hamburger" onClick={toggleNav}>
-    {isNavOpen ? '✖' : '☰'}
-</div>
 
+                    </div>
+                    <div className="flex">
                     <nav className="main-nav">
                         <ul>
                             <li>
@@ -113,6 +114,10 @@ const toggleNav = () => {
                         <a href="https://viron.network/register" className="button registration-button">Registration</a>
                         {/* <a href="https://viron.network/member/loginPage" className="button login-button">Login</a> */}
                     </div>
+                    <div className="hamburger" onClick={toggleNav}>
+    {isNavOpen ? '✖' : '☰'}
+</div>
+</div>
                 </div>
             </header>
 

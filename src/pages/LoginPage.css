@@ -422,59 +422,75 @@ body {
 
 
 /*   Icon Styles */
-.hamburger{
+/* Default Styles */
+.hamburger {
   display: none;
   font-size: 30px;
   cursor: pointer;
   color: #000;
-
   margin-left: 20px;
 }
-@media (max-width: 1024px) {
-  .header-content{
-    flex-direction: row;
-  }
-  .hamburger  {
-    display: block;
-  }
 
-  .main-nav {
-    display: none;
-    width: 100%;
-  }
-   body.nav-open .main-nav {
-    display: block;
-  }
-   .main-nav ul {
-    flex-direction: column;
-    margin-top: 15px;
+/* Main nav should be hidden by default on mobile */
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Tablet and Mobile Styles */
+@media (max-width: 1024px) {
+  .header-content {
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
   }
 
-}
-/* Responsive Nav - mobile toggle */
-@media (max-width: 768px)   {
-  .hamburger  {
+  .hamburger {
     display: block;
-    margin: 20px;
+    margin: 0 20px;
   }
-
   .main-nav {
     display: none;
     width: 100%;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 1rem 0;
+    position: absolute;
+    top: 95px;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   body.nav-open .main-nav {
-    display: block;
+    display: flex;
   }
 
   .main-nav ul {
+    display: flex;
     flex-direction: column;
-    margin-top: 15px;
     align-items: center;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .main-nav ul li a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
   }
 
   .auth-buttons {
+    display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 15px;
@@ -482,10 +498,38 @@ body {
 
   .auth-buttons .button {
     margin: 5px 0;
+    padding: 10px 20px;
+    background-color: #d11f2b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
   }
 }
 
+/* Optional desktop behavior */
+@media (min-width: 1025px) {
+  .main-nav {
+    display: flex !important;
+    justify-content: flex-end;
+  }
 
+  .main-nav ul {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .auth-buttons {
+    flex-direction: row;
+    margin-left: 1rem;
+  }
+
+  .auth-buttons .button {
+    margin: 0 0 0 10px;
+  }
+}
 
 .main-footer {
   background-color: #f9f9f9;
