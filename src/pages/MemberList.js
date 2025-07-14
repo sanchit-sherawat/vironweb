@@ -4,7 +4,7 @@ import { AgGridReact } from 'ag-grid-react';
 import Layout from '../components/Layout';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import { ADMIN_BASE_URL } from './config';
+import { ADMIN_BASE_URL, API_BASE_URL } from './config';
 import './UserList.css'
 import { FaEdit, FaTrash, FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa'; // Add FaEye, FaEyeSlash
 
@@ -61,21 +61,32 @@ function MemberList() {
             .catch(() => setLoading(false));
     };
 
-    const handleDelete = async (userId) => {
-        if (!window.confirm('Are you sure you want to delete this user?')) return;
-        try {
-            const response = await fetch(`${ADMIN_BASE_URL}/adminapi/user/${userId}`, { method: 'DELETE' });
-            const result = await response.json();
-            if (response.ok) {
-                alert('User deleted successfully.');
-                fetchUsers();
-            } else {
-                alert(result.message || 'Failed to delete user.');
-            }
-        } catch {
-            alert('Network error. Please try again.');
+const handleDelete = async (userId) => {
+    const token = localStorage.getItem('token');
+    if (!window.confirm('Are you sure you want to delete this user?')) return;
+    try {
+        const response = await fetch(`${API_BASE_URL}/user/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        // Only parse JSON if response has content
+        let result = {};
+        if (response.headers.get('content-type')?.includes('application/json')) {
+            result = await response.json();
         }
-    };
+        if (response.ok) {
+            alert('User deleted successfully.');
+            fetchUsers();
+        } else {
+            alert(result.message || 'Failed to delete user.');
+        }
+    } catch (err) {
+        alert('Network error. Please try again.');
+    }
+};
 
     const handleEdit = (user) => {
         setEditUser(user);
@@ -161,12 +172,12 @@ function MemberList() {
     };
 
     const columnDefs = [
-        { headerName: "User Name", field: "user_name", flex: 1,  minWidth: 130, },
-        { headerName: "First Name", field: "first_name", flex: 1 ,  minWidth: 130,},
-        { headerName: "Last Name", field: "last_name", flex: 1 ,  minWidth: 130,},
-        { headerName: "Phone", field: "phone_number", flex: 1,  minWidth: 130, },
-        { headerName: "Email", field: "email", flex: 1 ,  minWidth: 130,},
-        
+        { headerName: "User Name", field: "user_name", flex: 1, minWidth: 130, },
+        { headerName: "First Name", field: "first_name", flex: 1, minWidth: 130, },
+        { headerName: "Last Name", field: "last_name", flex: 1, minWidth: 130, },
+        { headerName: "Phone", field: "phone_number", flex: 1, minWidth: 130, },
+        { headerName: "Email", field: "email", flex: 1, minWidth: 130, },
+
         {
             headerName: "Type",
             field: "type",
@@ -176,8 +187,8 @@ function MemberList() {
                 if (params.data.is_callcenter) return 'Callcenter';
                 return 'User';
             },
-         
-      minWidth: 130,
+
+            minWidth: 130,
         },
         {
             headerName: "Actions",
@@ -218,7 +229,7 @@ function MemberList() {
                         value={value}
                         onChange={onChange}
                         required={required}
-                        style={{ ...inputStyle}}
+                        style={{ ...inputStyle }}
                     />
                     <span
                         onClick={() => setShowPassword((prev) => !prev)}
@@ -240,7 +251,7 @@ function MemberList() {
                 </label>
             );
         }
-         return (
+        return (
             <label>
                 {label}
                 <input
@@ -255,181 +266,181 @@ function MemberList() {
         );
     }
 
-        return (
-            <Layout>
-                <div className="userlist-container" style={{ padding: 20 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <h2>Internal User List</h2>
-                        <button onClick={() => setShowAddForm(true)} style={addBtnStyle}><FaPlus /> Add User</button>
-                    </div>
+    return (
+        <Layout>
+            <div className="userlist-container" style={{ padding: 20 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h2>Internal User List</h2>
+                    <button onClick={() => setShowAddForm(true)} style={addBtnStyle}><FaPlus /> Add User</button>
+                </div>
 
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        value={searchText}
-                        onChange={(e) => {
-                            setSearchText(e.target.value);
-                            if (gridRef.current && gridRef.current.setQuickFilter) {
-                                gridRef.current.setQuickFilter(e.target.value);
-                            }
-                        }}
-                        style={searchStyle}
+                <input
+                    type="text"
+                    placeholder="Search"
+                    value={searchText}
+                    onChange={(e) => {
+                        setSearchText(e.target.value);
+                        if (gridRef.current && gridRef.current.setQuickFilter) {
+                            gridRef.current.setQuickFilter(e.target.value);
+                        }
+                    }}
+                    style={searchStyle}
+                />
+
+                <div className="ag-theme-alpine" style={{ width: '100%', maxWidth: 1100 }}>
+                    <AgGridReact
+                        ref={gridRef}
+                        rowData={users}
+                        quickFilterText={searchText}
+                        columnDefs={columnDefs}
+                        theme='legacy'
+                        pagination={true}
+                        paginationPageSize={50}
+                        animateRows={true}
+                        domLayout="autoHeight"
                     />
+                </div>
 
-                    <div className="ag-theme-alpine" style={{ width: '100%', maxWidth: 1100 }}>
-                        <AgGridReact
-                            ref={gridRef}
-                            rowData={users}
-                            quickFilterText={searchText}
-                            columnDefs={columnDefs}
-                            theme='legacy'
-                            pagination={true}
-                            paginationPageSize={50}
-                            animateRows={true}
-                            domLayout="autoHeight"
+                {showAddForm && (
+                    <Modal onClose={() => setShowAddForm(false)} title="Add User" onSubmit={handleAddFormSubmit}>
+                        {inputField("Username", "user_name", "text", addForm.user_name, handleAddFormChange, true)}
+                        {inputField("First Name", "first_name", "text", addForm.first_name, handleAddFormChange, true)}
+                        {inputField("Last Name", "last_name", "text", addForm.last_name, handleAddFormChange, true)}
+                        {inputField("Phone Number", "phone_number", "text", addForm.phone_number, handleAddFormChange)}
+                        {inputField("Email", "email", "email", addForm.email, handleAddFormChange, true)}
+                        {inputField("Password", "password", "password", addForm.password, handleAddFormChange, true)}
+                        <RoleSelectField
+                            value={addForm.is_admin ? 'admin' : addForm.is_callcenter ? 'callcenter' : ''}
+                            onChange={({ is_admin, is_callcenter }) => setAddForm(prev => ({ ...prev, is_admin, is_callcenter }))}
                         />
-                    </div>
+                    </Modal>
+                )}
 
-                    {showAddForm && (
-                        <Modal onClose={() => setShowAddForm(false)} title="Add User" onSubmit={handleAddFormSubmit}>
-                            {inputField("Username", "user_name", "text", addForm.user_name, handleAddFormChange, true)}
-                            {inputField("First Name", "first_name", "text", addForm.first_name, handleAddFormChange, true)}
-                            {inputField("Last Name", "last_name", "text", addForm.last_name, handleAddFormChange, true)}
-                            {inputField("Phone Number", "phone_number", "text", addForm.phone_number, handleAddFormChange)}
-                            {inputField("Email", "email", "email", addForm.email, handleAddFormChange, true)}
-                            {inputField("Password", "password", "password", addForm.password, handleAddFormChange, true)}
-                            <RoleSelectField
-                                value={addForm.is_admin ? 'admin' : addForm.is_callcenter ? 'callcenter' : ''}
-                                onChange={({ is_admin, is_callcenter }) => setAddForm(prev => ({ ...prev, is_admin, is_callcenter }))}
-                            />
-                        </Modal>
-                    )}
-
-                    {editUser && (
-                        <Modal onClose={() => setEditUser(null)} title="Edit User" onSubmit={handleEditFormSubmit}>
-                            {inputField("Username", "user_name", "text", editForm.user_name, handleEditFormChange, true)}
-                            {inputField("First Name", "first_name", "text", editForm.first_name, handleEditFormChange, true)}
-                            {inputField("Last Name", "last_name", "text", editForm.last_name, handleEditFormChange, true)}
-                            {inputField("Phone Number", "phone_number", "text", editForm.phone_number, handleEditFormChange)}
-                            {inputField("Email", "email", "email", editForm.email, handleEditFormChange, true)}
-                            <RoleSelectField
-                                value={editForm.is_admin ? 'admin' : editForm.is_callcenter ? 'callcenter' : ''}
-                                onChange={({ is_admin, is_callcenter }) => setEditForm(prev => ({ ...prev, is_admin, is_callcenter }))}
-                            />
-                        </Modal>
-                    )}
-                </div>
-            </Layout>
-        );
-    }
-
-    const Modal = ({ children, onClose, title, onSubmit }) => (
-        <div style={modalOverlay} onClick={onClose}>
-            <form onClick={(e) => e.stopPropagation()} onSubmit={onSubmit} style={modalBox}>
-                <h3>{title}</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>{children}</div>
-                <div style={{ display: 'flex', gap: 12, marginTop: 18 }}>
-                    <button type="submit" style={submitButtonStyle('#1976d2', '#fff')}>Submit</button>
-                    <button type="button" onClick={onClose} style={submitButtonStyle('#e0e0e0', '#333')}>Cancel</button>
-                </div>
-            </form>
-        </div>
+                {editUser && (
+                    <Modal onClose={() => setEditUser(null)} title="Edit User" onSubmit={handleEditFormSubmit}>
+                        {inputField("Username", "user_name", "text", editForm.user_name, handleEditFormChange, true)}
+                        {inputField("First Name", "first_name", "text", editForm.first_name, handleEditFormChange, true)}
+                        {inputField("Last Name", "last_name", "text", editForm.last_name, handleEditFormChange, true)}
+                        {inputField("Phone Number", "phone_number", "text", editForm.phone_number, handleEditFormChange)}
+                        {inputField("Email", "email", "email", editForm.email, handleEditFormChange, true)}
+                        <RoleSelectField
+                            value={editForm.is_admin ? 'admin' : editForm.is_callcenter ? 'callcenter' : ''}
+                            onChange={({ is_admin, is_callcenter }) => setEditForm(prev => ({ ...prev, is_admin, is_callcenter }))}
+                        />
+                    </Modal>
+                )}
+            </div>
+        </Layout>
     );
+}
 
-    const RoleSelectField = ({ value, onChange }) => (
-        <label>
-            Role
-            <select
-                value={value}
-                onChange={(e) => {
-                    const selected = e.target.value;
-                    onChange({
-                        is_admin: selected === 'admin' ? 1 : 0,
-                        is_callcenter: selected === 'callcenter' ? 1 : 0,
-                    });
-                }}
-                required
-                style={inputStyle}
-            >
-                <option value="">Select Role</option>
-                <option value="admin">Admin</option>
-                <option value="callcenter">Callcenter</option>
-            </select>
-        </label>
-    );
+const Modal = ({ children, onClose, title, onSubmit }) => (
+    <div style={modalOverlay} onClick={onClose}>
+        <form onClick={(e) => e.stopPropagation()} onSubmit={onSubmit} style={modalBox}>
+            <h3>{title}</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>{children}</div>
+            <div style={{ display: 'flex', gap: 12, marginTop: 18 }}>
+                <button type="submit" style={submitButtonStyle('#1976d2', '#fff')}>Submit</button>
+                <button type="button" onClick={onClose} style={submitButtonStyle('#e0e0e0', '#333')}>Cancel</button>
+            </div>
+        </form>
+    </div>
+);
 
-    const inputStyle = {
-        width: '100%',
-        padding: 8,
-        borderRadius: 6,
-        border: '1.5px solid #90a4ae',
-    };
+const RoleSelectField = ({ value, onChange }) => (
+    <label>
+        Role
+        <select
+            value={value}
+            onChange={(e) => {
+                const selected = e.target.value;
+                onChange({
+                    is_admin: selected === 'admin' ? 1 : 0,
+                    is_callcenter: selected === 'callcenter' ? 1 : 0,
+                });
+            }}
+            required
+            style={inputStyle}
+        >
+            <option value="">Select Role</option>
+            <option value="admin">Admin</option>
+            <option value="callcenter">Callcenter</option>
+        </select>
+    </label>
+);
 
-    const submitButtonStyle = (bg, color) => ({
-        padding: '10px 24px',
-        backgroundColor: bg,
-        color,
-        border: 'none',
-        borderRadius: 6,
-        fontWeight: 600,
-        fontSize: 15,
-        cursor: 'pointer',
-    });
+const inputStyle = {
+    width: '100%',
+    padding: 8,
+    borderRadius: 6,
+    border: '1.5px solid #90a4ae',
+};
 
-    const addBtnStyle = {
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-        background: '#1976d2',
-        color: '#fff',
-        border: 'none',
-        borderRadius: 6,
-        padding: '10px 18px',
-        fontWeight: 600,
-        fontSize: 15,
-        cursor: 'pointer',
-    };
+const submitButtonStyle = (bg, color) => ({
+    padding: '10px 24px',
+    backgroundColor: bg,
+    color,
+    border: 'none',
+    borderRadius: 6,
+    fontWeight: 600,
+    fontSize: 15,
+    cursor: 'pointer',
+});
 
-    const iconBtnStyle = (color) => ({
-        background: 'none',
-        border: 'none',
-        color,
-        cursor: 'pointer',
-        fontSize: '16px',
-    });
+const addBtnStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    background: '#1976d2',
+    color: '#fff',
+    border: 'none',
+    borderRadius: 6,
+    padding: '10px 18px',
+    fontWeight: 600,
+    fontSize: 15,
+    cursor: 'pointer',
+};
 
-    const searchStyle = {
-        maxWidth: 300,
-        margin: '16px 0',
-        padding: '10px 14px',
-        borderRadius: 6,
-        border: '1.5px solid #90a4ae',
-        fontSize: 15,
-    };
+const iconBtnStyle = (color) => ({
+    background: 'none',
+    border: 'none',
+    color,
+    cursor: 'pointer',
+    fontSize: '16px',
+});
 
-    const modalOverlay = {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        background: 'rgba(0,0,0,0.3)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 9999,
-    };
+const searchStyle = {
+    maxWidth: 300,
+    margin: '16px 0',
+    padding: '10px 14px',
+    borderRadius: 6,
+    border: '1.5px solid #90a4ae',
+    fontSize: 15,
+};
 
-    const modalBox = {
-        background: '#fff',
-        padding: 32,
-        borderRadius: 10,
-        minWidth: 350,
-        maxWidth: 400,
-        width: '90%',
-        boxShadow: '0 8px 32px rgba(44,62,80,0.18)',
-        display: 'flex',
-        flexDirection: 'column',
-    };
+const modalOverlay = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    background: 'rgba(0,0,0,0.3)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 9999,
+};
 
-    export default MemberList;
+const modalBox = {
+    background: '#fff',
+    padding: 32,
+    borderRadius: 10,
+    minWidth: 350,
+    maxWidth: 400,
+    width: '90%',
+    boxShadow: '0 8px 32px rgba(44,62,80,0.18)',
+    display: 'flex',
+    flexDirection: 'column',
+};
+
+export default MemberList;
