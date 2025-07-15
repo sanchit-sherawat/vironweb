@@ -193,10 +193,6 @@ const toggleNav = () => {
                     </div>
                 </div>
             </footer>
-
-            <div className="go-top">
-                <i className="bx bx-chevrons-up"></i>
-            </div>
         </div>
     );
 }

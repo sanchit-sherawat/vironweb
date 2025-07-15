@@ -25,8 +25,8 @@ function ExpectationsOfViron() {
               <li><u className='text-blue'>VIRON is naturally civic because it can level the playing field for any individual who wants a VHB</u>.</li>
             </ul>
             <p class=" "></p>
-            <p className='text-red'><strong><em>Here is a good analogy for understanding VIRON&hellip;</em></strong></p>
-            <p className='text-tab'><strong><em>In the world of Network Marketing, you are expected to go into countless sales &ldquo;battles&rdquo; and do the fighting alone. Wouldn&rsquo;t you like to be able to HIRE &ldquo;BRUCE LEE&rdquo; to do the fighting for you?! </em></strong><br/><span className='text-tab'><strong className='text-red'><em>With VIRON professionals, you now can! </em></strong></span></p>
+            <p className='text-red mb-0'><strong><em>Here is a good analogy for understanding VIRON&hellip;</em></strong></p>
+            <p className='text-tab mt-0'><strong><em>In the world of Network Marketing, you are expected to go into countless sales &ldquo;battles&rdquo; and do the fighting alone. Wouldn&rsquo;t you like to be able to HIRE &ldquo;BRUCE LEE&rdquo; to do the fighting for you?! </em></strong><br/><span className='text-tab'><strong className='text-red'><em>With VIRON professionals, you now can! </em></strong></span></p>
           </div>
         </div>
         <div className="row">
@@ -43,7 +43,7 @@ function ExpectationsOfViron() {
               <li>After you have successfully registered with VIRON.NETWORK, you will have access to your Back-Office. <em>After you comfortably review all the information in your back-office, you can fully engage as a paid VIRON Member and enjoy powerful benefits.</em></li>
               <li>
                 <p class=" ">Once you grasp the value of VIRON and its benefits for you, you can engage as follows:</p>
-                <ol type='a'>
+                <ol type='a' style={{marginLeft:'60px'}}>
                   <li><strong className='text-blue'>Pay for your Registration.</strong> Currently, during Pre-Launch, there is no cost to register with VIRON.NETWORK.</li>
                   <li><strong className='text-blue'>Purchase Up-To: 2 Direct Referrals (DRs)</strong>.<br/>
                     Each DR is priced by demand.<br/><strong>*Current DR pricing is outlined in the back office.</strong>
@@ -69,7 +69,7 @@ function ExpectationsOfViron() {
         <div className="row">
           <div className='col'>
            <p class=" "><strong>EMPHASIS</strong>: After you pay and acquire your VHB, your funds are placed into ESCROW with VIRON. Thereafter<span className='text-red'><u>, your funds are </u><strong><em><u>only drawn</u></em></strong><u> at each </u><strong><em><u>completed</u></em></strong><u> step below</u></span>:</p>
-          <ol type="A">
+          <ol type="A" style={{marginLeft:'60px'}}>
             <li>Your account with the <strong>third-party MLM company</strong> is paid for and set up. <strong><em>You will then have access to its products and can enjoy the significant benefits.</em></strong></li>
             <li>Your <strong>DRs</strong> <u>fulfilled</u>. <strong><em>STRONG EMPHASIS: We are spending professional effort and money to generate the DR for you <u>before</u> that DR is even placed into your MLM downline and <u>before</u> we draw your funds!</em></strong><br/><p class=" ">Therefore, your success is indeed our success.</p></li>
           </ol>

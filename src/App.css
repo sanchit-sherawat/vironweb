@@ -94,16 +94,20 @@ ul>li, ol>li{
   margin-bottom:10px;
 }
 
+.pt-50 {
+  padding-top: 50px;
+}
+
+.pt-30{
+  padding-top: 30px;
+}
+
 .pt-20 {
   padding-top: 20px;
 }
 
 .pt-10 {
   padding-top: 10px;
-}
-
-.pt-50 {
-  padding-top: 50px;
 }
 
 .pb-1 {

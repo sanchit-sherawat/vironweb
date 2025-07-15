@@ -20,7 +20,7 @@ function CorePerspectiveOfViron() {
             <p className='text-center'><strong>Vinh H. Le&rsquo;s analysis, comments, and real-world application:</strong></p>
             <p class=" ">Per the history side of things, in my opinion, the phrase or idea of: <strong><em>&ldquo;People Fail, Systems Prevail&rdquo;</em></strong> - logically or most likely stemmed from:</p>
             <p class=" "><strong>W. Edwards Deming</strong></p>
-            <ul>
+            <ul style={{marginLeft:'60px'}}>
                 <li>Mr.Deming, a pioneer in quality management and systems thinking, emphasized <u>process rather than assigning blame to individuals.</u> His most notable work was in transforming Japanese manufacturing after World War II. Mr. Deming often emphasized: <strong className='text-blue'><em>&ldquo;A bad system will beat a good person every time.&rdquo; </em></strong>This conveys a similar concept: <u>system design has a greater impact on outcomes than individual effort or competence</u>.</li>
             </ul>
             <hr/>
