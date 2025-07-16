@@ -760,6 +760,7 @@ function UserList() {
               pagination={true}
               animateRows={true}
               paginationPageSize={500}
+              paginationPageSizeSelector={[20, 50, 100, 500]} 
               suppressHorizontalScroll={false}
               suppressRowClickSelection={true}
               rowSelection="single"
