@@ -111,7 +111,7 @@ function VironNotice() {
                             <h3 className='text-red mt-0'><strong><u>CRITICAL NOTICES & INSTRUCTIONS.</u></strong></h3>
                         </div>
                         <div>
-                            <h3 className='text-red text-center mb-0'><strong>NOTICE 1: </strong></h3>
+                            <h3 className='text-red text-center mt-10 mb-0'><strong>NOTICE 1: </strong></h3>
                             <p className='mt-0'>The following simple instructions are to help you set up your <strong><u>VIRON Home-Business (&ldquo;VHB&rdquo;)</u></strong> and guide you through making a payment correctly, the first time. <strong className='text-red'>This will only take a few minutes, and once you complete this ONE-TIME process, your VHB will be fully automated.</strong></p>
                             <p >By the way, we understand your frustrations from the lack of success in this industry. We want you to know that you have come to the right place, and at the best time. <span className='text-blue'>Please understand that you are now entering a 100% performance-guaranteed environment.</span> This means that after you have engaged and have settled your payment with VIRON, your funds will be placed in our ESCROW ACCOUNT. At each step of the process, for your convenience and benefit, we will precisely follow the instructions described and act on your behalf. </p>
                             <p><strong><em>&ldquo;People Fail&hellip;Systems Prevail&rdquo;</em></strong>. In the world that we live in, no one can guarantee you perfection. However, we genuinely believe and have utmost confidence that <strong>your VIRON Home-Business can give you the best chance for success.</strong> <u className='text-red'>VIRON is to be by your side long term. For your success, VIRON means serious business. Please read everything carefully to ensure you have the correct expectations.</u></p>
@@ -132,7 +132,7 @@ function VironNotice() {
                             <p className='text-center mb-0'><strong>:::</strong></p>
                             <h3 className='text-red text-center mt-0 paymentArea'><strong>PAYMENT AREA.</strong></h3>
                             <p className='text-center mt-0 mb-0'>During Pre-Launch, we are <u>directly</u> accepting cryptocurrency payments:<br />Bitcoin (<strong>BTC</strong>),<br />Ethereum (<strong>ETH</strong>),<br /><strong>USDT</strong> (<em>Tron Network</em>).</p>
-                            <p className='text-center text-red mt-0 mb-0'>To complete your <strong>VIRON Home-Business</strong> (&ldquo;<strong>VHB</strong>&rdquo;),<br />please send your Cryptocurrency payment to:</p>
+                            <p className='text-center text-red mb-0'>To complete your <strong>VIRON Home-Business</strong> (&ldquo;<strong>VHB</strong>&rdquo;),<br />please send your Cryptocurrency payment to:</p>
                             <hr className='mt-0' />
                             <p className='text-center text-blue'><strong>VIRON.NETWORK ACCOUNTING</strong><br />
                                 <strong>Cryptocurrency Wallets</strong><br />

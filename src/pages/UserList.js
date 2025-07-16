@@ -513,14 +513,14 @@ function UserList() {
         const { transaction, is_confirmation } = params.data;
         console.log("Transaction:", transaction, "Confirmation Status:", is_confirmation);
         if (transaction && is_confirmation === 1) return "Paid";
-        if (transaction && is_confirmation !== 1) return "Need Verify";
+        if (transaction && is_confirmation !== 1) return "Verify Payment";
         if (is_confirmation === 1) return "Manual Paid";
         return "Not Paid";
       },
       cellStyle: params => {
         const status = params.value;
         if (status === "Paid") return { color: "#43e97b", fontWeight: 700 };
-        if (status === "Need Verify") return { color: "#ff9800", fontWeight: 700 };
+        if (status === "Verify Payment") return { color: "#ff9800", fontWeight: 700 };
         if (status === "Manual Paid") return { color: "#43e97b", fontWeight: 700 };
 
         return { color: "#e53935", fontWeight: 700 };
@@ -533,7 +533,7 @@ function UserList() {
         const { transaction, id, is_confirmation, ds_id } = params.data;
         let paymentStatus = "Not Paid";
         if (is_confirmation === 1) paymentStatus = "Paid";
-        else if (transaction && is_confirmation !== 1) paymentStatus = "Need Verify";
+        else if (transaction && is_confirmation !== 1) paymentStatus = "Verify Payment";
 
         let btnText = "View";
         let btnColor = "#1976d2";
@@ -548,7 +548,7 @@ function UserList() {
             btnText = "Assign DS";
             btnColor = "#43e97b";
           }
-        } else if (paymentStatus === "Need Verify") {
+        } else if (paymentStatus === "Verify Payment") {
           btnText = "Verify";
           btnColor = "#ff9800";
         } else {
@@ -759,7 +759,7 @@ function UserList() {
               columnDefs={columnDefs}
               pagination={true}
               animateRows={true}
-              paginationPageSize={100}
+              paginationPageSize={500}
               suppressHorizontalScroll={false}
               suppressRowClickSelection={true}
               rowSelection="single"
@@ -1161,7 +1161,7 @@ const TransactionPopup = ({
                     onClick={() => onSaveRefer(selectedReferId)}
                     disabled={!selectedReferId || savingRefer}
                   >
-                    {savingRefer ? "Saving..." : "Save Designated Sponsor"}
+                    {savingRefer ? "Saving..." : "Assign Designated Sponsor"}
                   </button>
                   {currentUser?.ds_id && (
                     <button
