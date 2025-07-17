@@ -152,7 +152,6 @@ function EditAccount() {
                     onChange={handleChange}
                     style={styles.input}
                     required
-                    disabled
                   />
                 </div>
 

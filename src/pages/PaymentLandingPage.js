@@ -16,7 +16,7 @@ export default function PaymentLandingPage() {
             <p class=" ">The VIRON Administrators will then correctly set up your account with the qualified <strong>third-party MLM company</strong>, which will complete your VHB.</p>
             <p className=' '>We will be in touch with you at each step, and you will be notified accordingly.</p>
             <p className=' '><strong className='text-red'>EMPHASIS:</strong> Please understand that we are currently in <strong><u>PRE-LAUNCH</u></strong>. The Pre-Launch will conclude when we reach 5,500 total members. We will then automatically enter <strong>FULL-LAUNCH</strong>.</p>
-            <p className=' '><strong className='text-red'>STRONG EMPHASIS:</strong> Your VIRON position is currently <u>secure and locked per your Time/Date Stamp</u>. Until the Pre-Launch is over, your funds are placed in our ESCROW account. <span className='text-highlighted'>Your funds are only drawn when the following steps are completed:</span></p>
+            <p className=' '><strong className='text-red'>STRONG EMPHASIS:</strong> Your VIRON position is currently <u>secure and locked per your Time/Date Stamp</u>. Until the Pre-Launch is over, your funds are placed in our ESCROW account. <strong><span className='text-highlighted'>Your funds are only drawn when the following steps are completed:</span></strong></p>
             <ol className='roman-list'>
               <li>You are correctly placed with the third-party MLM company: <strong>SAVE CLUB (&ldquo;<u className='text-blue'>SC</u>&rdquo;)</strong>.</li>
               <li>Your <strong>VIRON DRs</strong> purchased are placed into your <strong><u className='text-blue'>SC</u></strong> account</li>
