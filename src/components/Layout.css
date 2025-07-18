@@ -92,7 +92,9 @@
   .sidebar-toggle-btn.on-sidebar {
     left: 267px;
   }
-
+.modal-box{
+      height: 97%!important;
+}
   .content {
     padding: 16px;
     word-wrap: break-word;
