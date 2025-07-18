@@ -94,6 +94,7 @@
   }
 .modal-box{
       height: 97%!important;
+      overflow: scroll;
 }
   .content {
     padding: 16px;
