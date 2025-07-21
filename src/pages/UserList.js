@@ -747,33 +747,37 @@ function UserList() {
             </div>
 
 
+            <div style={{ width: "100%", overflowX: "auto" }}>
+              <div className="ag-theme-alpine" style={{ minWidth: "700px", height: "400px" }}>
+                <AgGridReact
+                  ref={gridRef}
+                  onGridReady={params => {
+                    gridRef.current = params;
+                  }}
+                  quickFilterText={searchText}
+                  theme="legacy"
+                  rowData={filteredUsers}
+                  columnDefs={columnDefs}
+                  pagination={true}
+                  animateRows={true}
+                  paginationPageSize={500}
+                  paginationPageSizeSelector={[20, 50, 100, 500]}
+                  suppressHorizontalScroll={false}
+                  suppressRowClickSelection={true}
+                  rowSelection="single"
+                  domLayout="autoHeight"
+                  context={{
+                    handleView,
+                    handleDelete,
+                    handleEditRefer,
+                    allUsers: users,
+                  }}
+                // pagination={false} 
+                //onRowClicked={(event) => handleRowClick(event.data)}
 
-            <AgGridReact
-              ref={gridRef}
-              onGridReady={params => {
-                gridRef.current = params;
-              }}
-              quickFilterText={searchText}
-              theme="legacy"
-              rowData={filteredUsers}
-              columnDefs={columnDefs}
-              pagination={true}
-              animateRows={true}
-              paginationPageSize={500}
-              paginationPageSizeSelector={[20, 50, 100, 500]} 
-              suppressHorizontalScroll={false}
-              suppressRowClickSelection={true}
-              rowSelection="single"
-              domLayout="autoHeight"
-              context={{
-                handleView,
-                handleDelete,
-                handleEditRefer,
-                allUsers: users,
-              }}
-            //onRowClicked={(event) => handleRowClick(event.data)}
-
-            />
+                />
+              </div>
+            </div>
           </div>
         )}
         <TransactionPopup
