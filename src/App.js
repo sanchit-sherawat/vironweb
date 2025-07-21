@@ -23,6 +23,7 @@ import UserLisetForMember from './pages/UserLisetForMember';
 import { ToastContainer } from 'react-toastify'; // ✅ Import here
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from './pages/ScrollToTop'; // Import the ScrollToTop component
+import AdminEditAccount from './pages/AdminEdit';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -67,6 +68,14 @@ function App() {
           element={
             <ProtectedRoute adminOnly={true}>
               <MemberList />
+            </ProtectedRoute>
+          }
+        />
+                 <Route
+          path='/admin/adminedit'
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <AdminEditAccount />
             </ProtectedRoute>
           }
         />

@@ -59,11 +59,17 @@ function Sidebar({ isOpen, toggleSidebar }) {
                   <FaUsers /> <span>Internal User List</span>
                 </NavLink>
               </li>
+               <li>
+                    <NavLink to="/admin/adminedit" className={({ isActive }) => isActive ? 'active' : ''}>
+                      <FaCog /> <strong>Edit Your Account Information</strong>
+                    </NavLink>
+              </li>
               <li>
                 <button className="logout-btn" onClick={handleLogout}>
                   <FaSignOutAlt /> <span>Logout</span>
                 </button>
               </li>
+               
             </>
           ) : (
             <>
